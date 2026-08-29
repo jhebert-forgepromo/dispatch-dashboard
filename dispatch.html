@@ -1,419 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ForgeOS Dispatch Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ForgeOS Progress</title>
 <style>
-  :root {
-    color-scheme: dark;
-    --bg: #0d0f14;
-    --bg-panel: #161a22;
-    --bg-card: #1c2230;
-    --border: #2a3142;
-    --border-hot: #3a4256;
-    --text: #e6e8ee;
-    --text-dim: #8a94a8;
-    --text-mute: #5c6478;
-    --accent: #ff7a1a;
-    --accent-hot: #ff9a4a;
-    --accent-dim: #7a3a08;
-    --ok: #4ade80;
-    --warn: #fbbf24;
-    --running: #38bdf8;
-    --paused: #a78bfa;
-    --queued: #64748b;
-    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  body {
-    background:
-      radial-gradient(circle at 15% -10%, rgba(255,122,26,0.08), transparent 45%),
-      radial-gradient(circle at 90% 5%, rgba(56,189,248,0.05), transparent 40%),
-      var(--bg);
-    min-height: 100vh;
-  }
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 64px; }
-
-  /* Header */
-  header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    gap: 16px; flex-wrap: wrap;
-    padding-bottom: 20px; margin-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .brand {
-    display: flex; align-items: center; gap: 14px;
-  }
-  .logo {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--accent), #c04a00);
-    display: grid; place-items: center;
-    font-family: var(--mono); font-weight: 800; font-size: 20px;
-    color: #0d0f14; box-shadow: 0 4px 16px rgba(255,122,26,0.35);
-  }
-  h1 {
-    font-family: var(--mono); font-weight: 700; font-size: 22px;
-    margin: 0; letter-spacing: -0.3px;
-  }
-  .subtitle {
-    color: var(--text-dim); font-size: 12px;
-    font-family: var(--mono); text-transform: uppercase; letter-spacing: 1.5px;
-    margin-top: 2px;
-  }
-  .stamp {
-    font-family: var(--mono); font-size: 12px;
-    color: var(--text-dim); text-align: right;
-  }
-  .stamp .label { color: var(--text-mute); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
-  .stamp .time { color: var(--accent-hot); font-size: 14px; margin-top: 2px; }
-
-  /* Section headers */
-  h2 {
-    font-family: var(--mono); font-size: 13px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 2px;
-    color: var(--accent); margin: 32px 0 14px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  h2::before {
-    content: ""; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); box-shadow: 0 0 8px var(--accent);
-  }
-  h2 .count {
-    font-size: 11px; color: var(--text-dim);
-    background: var(--bg-panel); padding: 2px 8px; border-radius: 10px;
-    letter-spacing: 1px;
-  }
-
-  /* Workstream grid */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
-  }
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    transition: border-color .15s, transform .15s;
-    display: flex; flex-direction: column; gap: 8px;
-    min-height: 88px;
-  }
-  .card:hover { border-color: var(--border-hot); transform: translateY(-1px); }
-  .card-title {
-    font-family: var(--mono); font-size: 13px; font-weight: 700;
-    color: var(--text); letter-spacing: 0.3px;
-    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
-  }
-  .card-desc {
-    font-size: 12px; color: var(--text-dim);
-    line-height: 1.45;
-  }
-  .pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--mono); font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 1px;
-    padding: 3px 8px; border-radius: 10px;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .pill::before {
-    content: ""; width: 6px; height: 6px; border-radius: 50%;
-    background: currentColor;
-    animation: pulse 2s infinite;
-  }
-  .pill.running { color: var(--running); background: rgba(56,189,248,0.12); }
-  .pill.draining { color: var(--accent-hot); background: rgba(255,122,26,0.14); }
-  .pill.pruning { color: var(--warn); background: rgba(251,191,36,0.12); }
-  .pill.pushing { color: var(--ok); background: rgba(74,222,128,0.12); }
-  .pill.coord { color: var(--paused); background: rgba(167,139,250,0.14); }
-  .pill.demo { color: var(--running); background: rgba(56,189,248,0.12); }
-  .pill.merge { color: var(--accent-hot); background: rgba(255,122,26,0.14); }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
-
-  /* IMPLEMENT worker chips */
-  .worker-block {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    grid-column: 1 / -1;
-  }
-  .worker-block .card-title { margin-bottom: 10px; }
-  .worker-chips {
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-  .chip {
-    font-family: var(--mono); font-size: 11px;
-    padding: 4px 10px; border-radius: 6px;
-    background: rgba(56,189,248,0.08);
-    border: 1px solid rgba(56,189,248,0.2);
-    color: #7dd3fc;
-  }
-
-  /* Control panel */
-  .controls {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 10px;
-  }
-  .btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: var(--sans); font-size: 13px; font-weight: 600;
-    padding: 14px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: left;
-    display: flex; flex-direction: column; gap: 6px;
-    transition: all .15s ease;
-    position: relative; overflow: hidden;
-  }
-  .btn:hover {
-    border-color: var(--accent);
-    background: linear-gradient(135deg, rgba(255,122,26,0.08), transparent);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(255,122,26,0.15);
-  }
-  .btn:active { transform: translateY(0); }
-  .btn-label {
-    font-weight: 700; color: var(--text); font-size: 13px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .btn-label::before {
-    content: "▸"; color: var(--accent); font-size: 10px;
-  }
-  .btn-prompt {
-    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
-    background: rgba(0,0,0,0.25);
-    padding: 4px 8px; border-radius: 4px;
-    border-left: 2px solid var(--accent-dim);
-    word-break: break-word;
-  }
-  .btn.copied { border-color: var(--ok); background: rgba(74,222,128,0.08); }
-  .btn.copied .btn-label::before { content: "✓"; color: var(--ok); }
-
-  /* Constraints panel */
-  .constraints {
-    background: linear-gradient(135deg, rgba(251,191,36,0.05), rgba(0,0,0,0));
-    border: 1px solid rgba(251,191,36,0.25);
-    border-left: 3px solid var(--warn);
-    border-radius: 10px;
-    padding: 14px 18px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 8px 20px;
-  }
-  .constraint {
-    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
-    display: flex; gap: 8px; align-items: flex-start;
-  }
-  .constraint::before {
-    content: "⚠"; color: var(--warn); flex-shrink: 0;
-  }
-  .constraint code {
-    color: var(--accent-hot); background: rgba(255,122,26,0.08);
-    padding: 1px 5px; border-radius: 3px; font-size: 11px;
-  }
-
-  /* Footer */
-  footer {
-    margin-top: 40px; padding-top: 20px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: var(--text-mute); font-family: var(--mono); font-size: 11px;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  footer strong { color: var(--accent-hot); }
-
-  /* Toast */
-  .toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--bg-card);
-    border: 1px solid var(--ok);
-    color: var(--ok);
-    font-family: var(--mono); font-size: 13px; font-weight: 600;
-    padding: 10px 20px; border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    transition: transform .25s ease;
-    z-index: 100;
-    pointer-events: none;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  @media (max-width: 640px) {
-    .wrap { padding: 16px 12px 40px; }
-    h1 { font-size: 18px; }
-    .stamp { text-align: left; }
-    header { align-items: flex-start; }
-    .grid, .controls { grid-template-columns: 1fr; }
-  }
+:root {
+  --bg:#faf6ef; --card:#fffdf7; --ink:#1f2937; --muted:#6b7280;
+  --accent:#d4622a; --accent-soft:#f4d5c2; --border:#e7ddc9;
+  --green:#2d7a3f; --blue:#2563eb; --amber:#d97706; --lblue:#06b6d4; --gray:#6b7280; --lgray:#d1d5db;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; padding:24px 20px 96px; }
+h1 { margin:0 0 4px; font-size:28px; color:var(--accent); letter-spacing:-0.01em; }
+.subtitle { color:var(--muted); font-size:13px; margin-bottom:20px; }
+.overall { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:22px; }
+.overall-pct { font-size:38px; font-weight:700; color:var(--accent); line-height:1; }
+.overall-txt { color:var(--muted); font-size:14px; margin-top:4px; }
+.bar { background:var(--accent-soft); border-radius:6px; height:10px; overflow:hidden; margin-top:10px; }
+.bar > i { display:block; height:100%; background:var(--accent); border-radius:6px; transition:width .3s; }
+.projects { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:28px; }
+.pcard { flex:1 1 260px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.pcard h3 { margin:0 0 6px; font-size:16px; }
+.pcard .big { font-size:30px; font-weight:700; color:var(--accent); line-height:1.1; }
+.pcard .sub { color:var(--muted); font-size:12px; margin-top:6px; }
+h2 { font-size:18px; margin:24px 0 12px; color:var(--ink); }
+details { background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:10px; overflow:hidden; }
+details summary { cursor:pointer; padding:12px 16px; display:flex; align-items:center; gap:12px; list-style:none; font-weight:600; }
+details summary::-webkit-details-marker { display:none; }
+details summary::before { content:"\25b8"; color:var(--muted); font-size:12px; transition:transform .15s; }
+details[open] summary::before { transform:rotate(90deg); }
+.epic-name { flex:1; }
+.epic-pct { font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; min-width:80px; text-align:right; }
+.epic-bar { flex:0 0 120px; background:var(--accent-soft); height:6px; border-radius:4px; overflow:hidden; }
+.epic-bar > i { display:block; height:100%; background:var(--accent); }
+.features { padding:4px 16px 14px; border-top:1px solid var(--border); }
+.frow { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px dashed #eee; font-size:13px; }
+.frow:last-child { border-bottom:none; }
+.frow .slug { flex:1; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+.pill { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:600; color:#fff; letter-spacing:.02em; white-space:nowrap; }
+.pill.merged { background:var(--green); }
+.pill.pr-open { background:var(--blue); }
+.pill.pr-checks-failing { background:var(--amber); }
+.pill.tests-written { background:var(--lblue); }
+.pill.in-progress { background:var(--gray); }
+.pill.not-started { background:var(--lgray); color:#374151; }
+.loc { color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+.pr-link { color:var(--accent); text-decoration:none; font-size:12px; font-weight:600; }
+.pr-link:hover { text-decoration:underline; }
+.check { color:var(--green); font-weight:700; }
+.legend { margin-top:28px; padding:14px 18px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+.legend h3 { margin:0 0 8px; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.legend-items { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.legend-items span { display:inline-flex; align-items:center; gap:6px; font-size:12px; }
+.regen { position:fixed; bottom:16px; right:16px; background:var(--accent); color:#fff; border:none; padding:12px 18px; border-radius:999px; font-weight:600; cursor:pointer; box-shadow:0 4px 14px rgba(212,98,42,.35); font-size:13px; }
+.regen:hover { background:#b8531e; }
+.toast { position:fixed; bottom:70px; right:16px; background:#1f2937; color:#fff; padding:10px 14px; border-radius:8px; font-size:12px; opacity:0; transition:opacity .3s; pointer-events:none; }
+.toast.show { opacity:1; }
+@media (max-width:640px) { .projects { flex-direction:column; } .epic-bar { flex:0 0 60px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <div class="brand">
-      <div class="logo">F</div>
-      <div>
-        <h1>ForgeOS Dispatch Dashboard</h1>
-        <div class="subtitle">Orchestrator Control Surface</div>
-      </div>
-    </div>
-    <div class="stamp">
-      <div class="label">Last Updated</div>
-      <div class="time" id="stamp">—</div>
-    </div>
-  </header>
-
-  <h2>Active Workstreams <span class="count" id="ws-count">0</span></h2>
-  <div class="grid" id="workstreams">
-    <div class="card">
-      <div class="card-title">SHIP QUEUE <span class="pill draining">Draining</span></div>
-      <div class="card-desc">4 PRs in flight: #378, #379, #377, #380</div>
-    </div>
-    <div class="card">
-      <div class="card-title">PRUNE <span class="pill pruning">Pruning</span></div>
-      <div class="card-desc">65 branches + 170 worktrees queued for cleanup</div>
-    </div>
-    <div class="card">
-      <div class="card-title">plans-consolidated <span class="pill pushing">Pushing</span></div>
-      <div class="card-desc">SHA <code style="color:var(--accent-hot);font-family:var(--mono)">50069f5</code></div>
-    </div>
-    <div class="card">
-      <div class="card-title">QBO Cleanup <span class="pill coord">Coord</span></div>
-      <div class="card-desc">Books cleanup coordinator running</div>
-    </div>
-    <div class="card">
-      <div class="card-title">SAGE Demo <span class="pill demo">Running</span></div>
-      <div class="card-desc">Pragmatic extract-what-exists session</div>
-    </div>
-    <div class="card">
-      <div class="card-title">MERGE COORDINATOR 2 <span class="pill merge">Merging</span></div>
-      <div class="card-desc">7 flagged branches under review</div>
-    </div>
-
-    <div class="worker-block">
-      <div class="card-title">IMPLEMENT Workers <span class="pill running">15 Running</span></div>
-      <div class="worker-chips">
-        <span class="chip">rep-kpi-mvp</span>
-        <span class="chip">quote-templates-mvp</span>
-        <span class="chip">stale-nudge-mvp</span>
-        <span class="chip">kbd-shortcuts-mvp</span>
-        <span class="chip">days-since-sent-mvp</span>
-        <span class="chip">customer-cross-link</span>
-        <span class="chip">quote-notes</span>
-        <span class="chip">recent-sidebar</span>
-        <span class="chip">line-item-drag</span>
-        <span class="chip">copy-clipboard</span>
-        <span class="chip">bulk-delete</span>
-        <span class="chip">line-item-typeahead</span>
-        <span class="chip">sortable-columns</span>
-        <span class="chip">quote-total-breakdown</span>
-        <span class="chip">session-timeout-warning</span>
-      </div>
-    </div>
-  </div>
-
-  <h2>Control Panel <span class="count">Copy → Paste into Dispatch</span></h2>
-  <div class="controls" id="controls">
-    <button class="btn" data-prompt="keep dev moving">
-      <span class="btn-label">Fire 3 more IMPLEMENTATION workers</span>
-      <span class="btn-prompt">keep dev moving</span>
-    </button>
-    <button class="btn" data-prompt="prod any paused sessions and get them shipping">
-      <span class="btn-label">Prod paused sessions</span>
-      <span class="btn-prompt">prod any paused sessions and get them shipping</span>
-    </button>
-    <button class="btn" data-prompt="what's the current ship queue status">
-      <span class="btn-label">SHIP QUEUE status</span>
-      <span class="btn-prompt">what's the current ship queue status</span>
-    </button>
-    <button class="btn" data-prompt="what is the current merge/my backlog?">
-      <span class="btn-label">Merge / backlog report</span>
-      <span class="btn-prompt">what is the current merge/my backlog?</span>
-    </button>
-    <button class="btn" data-prompt="spin up another SAGE session to demo what data exists and pragmatic extract-the-rest">
-      <span class="btn-label">Spawn SAGE session</span>
-      <span class="btn-prompt">spin up another SAGE session to demo what data exists and pragmatic extract-the-rest</span>
-    </button>
-    <button class="btn" data-prompt="keep everything moving">
-      <span class="btn-label">Everything moving</span>
-      <span class="btn-prompt">keep everything moving</span>
-    </button>
-  </div>
-
-  <h2>Constraints</h2>
-  <div class="constraints">
-    <div class="constraint">No push without <code>SHIP QUEUE</code></div>
-    <div class="constraint">No credentials committed</div>
-    <div class="constraint">Feature-boundary merges only</div>
-    <div class="constraint">Use <code>merge_queue.py</code> or <code>gh pr merge --squash --auto</code></div>
-  </div>
-
-  <footer>
-    Refresh this dashboard: <strong>republish via Dispatch</strong>
-  </footer>
-
+<h1>ForgeOS Progress</h1>
+<div class="subtitle" id="updated"></div>
+<div class="overall">
+  <div class="overall-pct" id="oPct">0%</div>
+  <div class="overall-txt" id="oTxt"></div>
+  <div class="bar"><i id="oBar" style="width:0%"></i></div>
 </div>
-
-<div class="toast" id="toast">Copied to clipboard</div>
-
+<h2>Projects</h2>
+<div class="projects" id="projects"></div>
+<h2>Epics</h2>
+<div id="epics"></div>
+<div class="legend">
+  <h3>Status</h3>
+  <div class="legend-items">
+    <span><span class="pill merged">merged</span>shipped to main</span>
+    <span><span class="pill pr-open">pr-open</span>PR open, checks green</span>
+    <span><span class="pill pr-checks-failing">pr-checks-failing</span>PR open, checks failing</span>
+    <span><span class="pill tests-written">tests-written</span>branch + verification checklist</span>
+    <span><span class="pill in-progress">in-progress</span>branch exists, no checklist</span>
+    <span><span class="pill not-started">not-started</span>no branch yet</span>
+  </div>
+</div>
+<button class="regen" id="regenBtn" title="Run regenerate.ps1 locally to refresh from git">Regenerate</button>
+<div class="toast" id="toast">Copied "regenerate dashboard" to clipboard</div>
 <script>
-  // Timestamp
-  (function() {
-    const stamp = document.getElementById('stamp');
-    const d = new Date();
-    const pad = n => String(n).padStart(2, '0');
-    stamp.textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  })();
-
-  // Workstream count
-  document.getElementById('ws-count').textContent =
-    document.querySelectorAll('#workstreams .card, #workstreams .worker-block').length;
-
-  // Copy-to-clipboard
-  const toast = document.getElementById('toast');
-  let toastTimer;
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+const DATA = {"generated_at": "2026-08-29T15:33:37+00:00", "pr_data_available": true, "projects": {"ForgeOS Product": {"total": 35, "by_status": {"merged": 0, "pr-open": 3, "pr-checks-failing": 0, "tests-written": 21, "in-progress": 8, "not-started": 3}, "percent": 0, "epics": ["quote-lifecycle", "customer", "ux-nav", "line-items-pricing", "security", "reporting"]}, "SAGE Integration": {"total": 3, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 3, "not-started": 0}, "percent": 0, "epics": ["sage-integration"]}, "Dispatch Dashboard": {"total": 0, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 0, "not-started": 0}, "percent": 0, "epics": []}}, "epics": {"quote-lifecycle": {"total": 17, "by_status": {"merged": 0, "pr-open": 2, "pr-checks-failing": 0, "tests-written": 10, "in-progress": 3, "not-started": 2}, "percent": 0, "slugs": ["quote-status-chips", "quote-total-breakdown", "quote-activity-log", "quote-internal-notes", "quote-notes", "quote-templates-mvp", "quote-pdf-download", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "quote-to-invoice", "quote-duplicate", "quote-bulk-delete", "quote-export-csv", "stale-nudge-mvp", "days-since-sent-mvp", "quote-pipeline-kanban"]}, "customer": {"total": 6, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 4, "in-progress": 2, "not-started": 0}, "percent": 0, "slugs": ["customer-notes-tags", "customer-credit-terms", "customer-search-filter", "customer-quotes-crosslink", "copy-clipboard-customer", "phone-address-autoformat"]}, "ux-nav": {"total": 6, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 4, "in-progress": 1, "not-started": 1}, "percent": 0, "slugs": ["dark-mode-toggle", "kbd-shortcuts-mvp", "kbd-shortcut-modal", "sortable-columns", "session-timeout-warning", "recent-items-sidebar"]}, "line-items-pricing": {"total": 4, "by_status": {"merged": 0, "pr-open": 1, "pr-checks-failing": 0, "tests-written": 2, "in-progress": 1, "not-started": 0}, "percent": 0, "slugs": ["line-item-typeahead", "lineitem-dup-delete", "qty-discount-ladder", "pricebook-admin-crud"]}, "security": {"total": 1, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 1, "in-progress": 0, "not-started": 0}, "percent": 0, "slugs": ["login-lockout"]}, "sage-integration": {"total": 3, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 3, "not-started": 0}, "percent": 0, "slugs": ["sage-pragmatic-demo", "sage-extract-prep", "sage-extract-paid-script"]}, "reporting": {"total": 1, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 1, "not-started": 0}, "percent": 0, "slugs": ["rep-kpi-mvp"]}}, "features": {"quote-status-chips": {"slug": "quote-status-chips", "branch": "local/feature-quote-status-chips-2026-08-27", "loc": 43215, "pr": 384, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384", "has_checklist": true, "status": "pr-open"}, "quote-total-breakdown": {"slug": "quote-total-breakdown", "branch": "local/feature-quote-total-breakdown-2026-08-27", "loc": 43475, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-activity-log": {"slug": "quote-activity-log", "branch": "local/feature-quote-activity-log-2026-08-27", "loc": 43770, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-internal-notes": {"slug": "quote-internal-notes", "branch": "local/feature-quote-internal-notes-2026-08-27", "loc": 32216, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-notes": {"slug": "quote-notes", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "quote-templates-mvp": {"slug": "quote-templates-mvp", "branch": "local/feature-quote-templates-mvp-2026-08-27", "loc": 32088, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "quote-pdf-download": {"slug": "quote-pdf-download", "branch": "local/feature-quote-pdf-download-2026-08-27", "loc": 43314, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-email-send": {"slug": "quote-email-send", "branch": "local/feature-quote-email-send-2026-08-27", "loc": 43397, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-reminder-cron": {"slug": "quote-reminder-cron", "branch": "local/feature-quote-reminder-cron-2026-08-27", "loc": 43874, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-signature-capture": {"slug": "quote-signature-capture", "branch": "local/feature-quote-signature-capture-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "quote-to-invoice": {"slug": "quote-to-invoice", "branch": "local/feature-quote-to-invoice-2026-08-27", "loc": 43561, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-duplicate": {"slug": "quote-duplicate", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "quote-bulk-delete": {"slug": "quote-bulk-delete", "branch": "local/feature-quote-bulk-delete-2026-08-27", "loc": 43522, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-export-csv": {"slug": "quote-export-csv", "branch": "local/feature-quote-export-csv-2026-08-27", "loc": 43622, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "stale-nudge-mvp": {"slug": "stale-nudge-mvp", "branch": "local/feature-stale-nudge-mvp-2026-08-27", "loc": 32113, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "days-since-sent-mvp": {"slug": "days-since-sent-mvp", "branch": "local/feature-days-since-sent-mvp-2026-08-27", "loc": 32049, "pr": 385, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/385", "has_checklist": false, "status": "pr-open"}, "quote-pipeline-kanban": {"slug": "quote-pipeline-kanban", "branch": "local/feature-quote-pipeline-kanban-2026-08-27", "loc": 43745, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-notes-tags": {"slug": "customer-notes-tags", "branch": "local/feature-customer-notes-tags-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "customer-credit-terms": {"slug": "customer-credit-terms", "branch": "local/feature-customer-credit-terms-2026-08-27", "loc": 43379, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-search-filter": {"slug": "customer-search-filter", "branch": "local/feature-customer-search-filter-2026-08-27", "loc": 43359, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-quotes-crosslink": {"slug": "customer-quotes-crosslink", "branch": "local/feature-customer-quotes-crosslink-2026-08-27", "loc": 32076, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "copy-clipboard-customer": {"slug": "copy-clipboard-customer", "branch": "local/feature-copy-clipboard-customer-2026-08-27", "loc": 43402, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "phone-address-autoformat": {"slug": "phone-address-autoformat", "branch": "local/feature-phone-address-autoformat-2026-08-27", "loc": 43357, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "dark-mode-toggle": {"slug": "dark-mode-toggle", "branch": "local/feature-dark-mode-toggle-2026-08-27", "loc": 43542, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "kbd-shortcuts-mvp": {"slug": "kbd-shortcuts-mvp", "branch": "local/feature-kbd-shortcuts-mvp-2026-08-27", "loc": 31935, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "kbd-shortcut-modal": {"slug": "kbd-shortcut-modal", "branch": "local/feature-kbd-shortcut-modal-2026-08-27", "loc": 43176, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "sortable-columns": {"slug": "sortable-columns", "branch": "local/feature-sortable-columns-2026-08-27", "loc": 43681, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "session-timeout-warning": {"slug": "session-timeout-warning", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "recent-items-sidebar": {"slug": "recent-items-sidebar", "branch": "local/feature-recent-items-sidebar-2026-08-27", "loc": 32139, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "line-item-typeahead": {"slug": "line-item-typeahead", "branch": "local/feature-line-item-typeahead-2026-08-27", "loc": 43312, "pr": 386, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386", "has_checklist": true, "status": "pr-open"}, "lineitem-dup-delete": {"slug": "lineitem-dup-delete", "branch": "local/feature-lineitem-dup-delete-2026-08-27", "loc": 43311, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "qty-discount-ladder": {"slug": "qty-discount-ladder", "branch": "local/feature-qty-discount-ladder-2026-08-27", "loc": 43631, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "pricebook-admin-crud": {"slug": "pricebook-admin-crud", "branch": "local/feature-pricebook-admin-crud-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "login-lockout": {"slug": "login-lockout", "branch": "local/feature-login-lockout-2026-08-27", "loc": 43607, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "sage-pragmatic-demo": {"slug": "sage-pragmatic-demo", "branch": "local/feature-sage-pragmatic-demo-2026-08-27", "loc": 45020, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "sage-extract-prep": {"slug": "sage-extract-prep", "branch": "local/feature-sage-extract-prep-2026-08-27", "loc": 44052, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "sage-extract-paid-script": {"slug": "sage-extract-paid-script", "branch": "local/feature-sage-extract-paid-script-2026-08-27", "loc": 44547, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "rep-kpi-mvp": {"slug": "rep-kpi-mvp", "branch": "local/feature-rep-kpi-mvp-2026-08-27", "loc": 32140, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}}, "summary": {"total": 38, "by_status": {"merged": 0, "pr-open": 3, "pr-checks-failing": 0, "tests-written": 21, "in-progress": 11, "not-started": 3}, "percent": 0}};
+function pill(status){ return '<span class="pill ' + status + '">' + status + '</span>'; }
+function bar(pct){ return '<div class="bar"><i style="width:' + pct + '%"></i></div>'; }
+function render(){
+  const d = DATA;
+  const upd = 'Last updated: ' + new Date(d.generated_at).toLocaleString() + (d.pr_data_available ? '' : ' — PR data unavailable');
+  document.getElementById('updated').textContent = upd;
+  const s = d.summary;
+  document.getElementById('oPct').textContent = s.percent + '%';
+  document.getElementById('oTxt').textContent = s.by_status.merged + ' of ' + s.total + ' features shipped';
+  document.getElementById('oBar').style.width = s.percent + '%';
+  const projEl = document.getElementById('projects');
+  for (const [name, p] of Object.entries(d.projects)) {
+    const label = p.total === 0 ? 'no features tracked yet' : (p.by_status.merged + ' of ' + p.total + ' shipped');
+    projEl.insertAdjacentHTML('beforeend',
+      '<div class="pcard"><h3>' + name + '</h3>' +
+      '<div class="big">' + p.percent + '%</div>' +
+      bar(p.percent) +
+      '<div class="sub">' + label + '</div></div>');
   }
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const text = btn.dataset.prompt;
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast('Copied: ' + text.slice(0, 40) + (text.length > 40 ? '…' : ''));
-      } catch(e) {
-        // Fallback
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta);
-        ta.select(); document.execCommand('copy'); ta.remove();
-        showToast('Copied');
-      }
-      btn.classList.add('copied');
-      setTimeout(() => btn.classList.remove('copied'), 1200);
-    });
-  });
+  const epicsEl = document.getElementById('epics');
+  for (const [epic, e] of Object.entries(d.epics)) {
+    let rows = '';
+    for (const slug of e.slugs) {
+      const f = d.features[slug];
+      const loc = f.loc ? ('<span class="loc">' + f.loc + ' LOC</span>') : '';
+      const pr = f.pr ? ('<a class="pr-link" href="' + f.pr_url + '" target="_blank" rel="noopener">#' + f.pr + '</a>') : '';
+      const chk = f.has_checklist ? '<span class="check" title="verification checklist present">✓</span>' : '';
+      rows += '<div class="frow">' + pill(f.status) + '<span class="slug">' + slug + '</span>' + chk + loc + pr + '</div>';
+    }
+    epicsEl.insertAdjacentHTML('beforeend',
+      '<details><summary><span class="epic-name">' + epic + '</span>' +
+      '<div class="epic-bar"><i style="width:' + e.percent + '%"></i></div>' +
+      '<span class="epic-pct">' + e.percent + '% · ' + e.by_status.merged + '/' + e.total + '</span></summary>' +
+      '<div class="features">' + rows + '</div></details>');
+  }
+}
+render();
+document.getElementById('regenBtn').addEventListener('click', function(){
+  const msg = 'regenerate dashboard';
+  if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(function(){});
+  const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2200);
+  window.open('mailto:jhebert@forgepromo.com?subject=Regenerate%20Dispatch&body=regenerate%20dashboard', '_blank');
+});
 </script>
 </body>
 </html>
