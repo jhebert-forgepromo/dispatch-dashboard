@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForgeOS Dispatch Dashboard</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0d0f14;
+    --bg-panel: #161a22;
+    --bg-card: #1c2230;
+    --border: #2a3142;
+    --border-hot: #3a4256;
+    --text: #e6e8ee;
+    --text-dim: #8a94a8;
+    --text-mute: #5c6478;
+    --accent: #ff7a1a;
+    --accent-hot: #ff9a4a;
+    --accent-dim: #7a3a08;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --running: #38bdf8;
+    --paused: #a78bfa;
+    --queued: #64748b;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background:
+      radial-gradient(circle at 15% -10%, rgba(255,122,26,0.08), transparent 45%),
+      radial-gradient(circle at 90% 5%, rgba(56,189,248,0.05), transparent 40%),
+      var(--bg);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  /* Header */
+  header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-bottom: 20px; margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .logo {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #c04a00);
+    display: grid; place-items: center;
+    font-family: var(--mono); font-weight: 800; font-size: 20px;
+    color: #0d0f14; box-shadow: 0 4px 16px rgba(255,122,26,0.35);
+  }
+  h1 {
+    font-family: var(--mono); font-weight: 700; font-size: 22px;
+    margin: 0; letter-spacing: -0.3px;
+  }
+  .subtitle {
+    color: var(--text-dim); font-size: 12px;
+    font-family: var(--mono); text-transform: uppercase; letter-spacing: 1.5px;
+    margin-top: 2px;
+  }
+  .stamp {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--text-dim); text-align: right;
+  }
+  .stamp .label { color: var(--text-mute); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
+  .stamp .time { color: var(--accent-hot); font-size: 14px; margin-top: 2px; }
+
+  /* Section headers */
+  h2 {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--accent); margin: 32px 0 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 8px var(--accent);
+  }
+  h2 .count {
+    font-size: 11px; color: var(--text-dim);
+    background: var(--bg-panel); padding: 2px 8px; border-radius: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Workstream grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: border-color .15s, transform .15s;
+    display: flex; flex-direction: column; gap: 8px;
+    min-height: 88px;
+  }
+  .card:hover { border-color: var(--border-hot); transform: translateY(-1px); }
+  .card-title {
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.3px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  }
+  .card-desc {
+    font-size: 12px; color: var(--text-dim);
+    line-height: 1.45;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 3px 8px; border-radius: 10px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .pill::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s infinite;
+  }
+  .pill.running { color: var(--running); background: rgba(56,189,248,0.12); }
+  .pill.draining { color: var(--accent-hot); background: rgba(255,122,26,0.14); }
+  .pill.pruning { color: var(--warn); background: rgba(251,191,36,0.12); }
+  .pill.pushing { color: var(--ok); background: rgba(74,222,128,0.12); }
+  .pill.coord { color: var(--paused); background: rgba(167,139,250,0.14); }
+  .pill.demo { color: var(--running); background: rgba(56,189,248,0.12); }
+  .pill.merge { color: var(--accent-hot); background: rgba(255,122,26,0.14); }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  /* IMPLEMENT worker chips */
+  .worker-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    grid-column: 1 / -1;
+  }
+  .worker-block .card-title { margin-bottom: 10px; }
+  .worker-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .chip {
+    font-family: var(--mono); font-size: 11px;
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.2);
+    color: #7dd3fc;
+  }
+
+  /* Control panel */
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    padding: 14px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: all .15s ease;
+    position: relative; overflow: hidden;
+  }
+  .btn:hover {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(255,122,26,0.08), transparent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255,122,26,0.15);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn-label {
+    font-weight: 700; color: var(--text); font-size: 13px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-label::before {
+    content: "▸"; color: var(--accent); font-size: 10px;
+  }
+  .btn-prompt {
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    background: rgba(0,0,0,0.25);
+    padding: 4px 8px; border-radius: 4px;
+    border-left: 2px solid var(--accent-dim);
+    word-break: break-word;
+  }
+  .btn.copied { border-color: var(--ok); background: rgba(74,222,128,0.08); }
+  .btn.copied .btn-label::before { content: "✓"; color: var(--ok); }
+
+  /* Constraints panel */
+  .constraints {
+    background: linear-gradient(135deg, rgba(251,191,36,0.05), rgba(0,0,0,0));
+    border: 1px solid rgba(251,191,36,0.25);
+    border-left: 3px solid var(--warn);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 8px 20px;
+  }
+  .constraint {
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .constraint::before {
+    content: "⚠"; color: var(--warn); flex-shrink: 0;
+  }
+  .constraint code {
+    color: var(--accent-hot); background: rgba(255,122,26,0.08);
+    padding: 1px 5px; border-radius: 3px; font-size: 11px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 40px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-mute); font-family: var(--mono); font-size: 11px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  footer strong { color: var(--accent-hot); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--bg-card);
+    border: 1px solid var(--ok);
+    color: var(--ok);
+    font-family: var(--mono); font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform .25s ease;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 16px 12px 40px; }
+    h1 { font-size: 18px; }
+    .stamp { text-align: left; }
+    header { align-items: flex-start; }
+    .grid, .controls { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="logo">F</div>
+      <div>
+        <h1>ForgeOS Dispatch Dashboard</h1>
+        <div class="subtitle">Orchestrator Control Surface</div>
+      </div>
+    </div>
+    <div class="stamp">
+      <div class="label">Last Updated</div>
+      <div class="time" id="stamp">—</div>
+    </div>
+  </header>
+
+  <h2>Active Workstreams <span class="count" id="ws-count">0</span></h2>
+  <div class="grid" id="workstreams">
+    <div class="card">
+      <div class="card-title">SHIP QUEUE <span class="pill draining">Draining</span></div>
+      <div class="card-desc">4 PRs in flight: #378, #379, #377, #380</div>
+    </div>
+    <div class="card">
+      <div class="card-title">PRUNE <span class="pill pruning">Pruning</span></div>
+      <div class="card-desc">65 branches + 170 worktrees queued for cleanup</div>
+    </div>
+    <div class="card">
+      <div class="card-title">plans-consolidated <span class="pill pushing">Pushing</span></div>
+      <div class="card-desc">SHA <code style="color:var(--accent-hot);font-family:var(--mono)">50069f5</code></div>
+    </div>
+    <div class="card">
+      <div class="card-title">QBO Cleanup <span class="pill coord">Coord</span></div>
+      <div class="card-desc">Books cleanup coordinator running</div>
+    </div>
+    <div class="card">
+      <div class="card-title">SAGE Demo <span class="pill demo">Running</span></div>
+      <div class="card-desc">Pragmatic extract-what-exists session</div>
+    </div>
+    <div class="card">
+      <div class="card-title">MERGE COORDINATOR 2 <span class="pill merge">Merging</span></div>
+      <div class="card-desc">7 flagged branches under review</div>
+    </div>
+
+    <div class="worker-block">
+      <div class="card-title">IMPLEMENT Workers <span class="pill running">15 Running</span></div>
+      <div class="worker-chips">
+        <span class="chip">rep-kpi-mvp</span>
+        <span class="chip">quote-templates-mvp</span>
+        <span class="chip">stale-nudge-mvp</span>
+        <span class="chip">kbd-shortcuts-mvp</span>
+        <span class="chip">days-since-sent-mvp</span>
+        <span class="chip">customer-cross-link</span>
+        <span class="chip">quote-notes</span>
+        <span class="chip">recent-sidebar</span>
+        <span class="chip">line-item-drag</span>
+        <span class="chip">copy-clipboard</span>
+        <span class="chip">bulk-delete</span>
+        <span class="chip">line-item-typeahead</span>
+        <span class="chip">sortable-columns</span>
+        <span class="chip">quote-total-breakdown</span>
+        <span class="chip">session-timeout-warning</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Control Panel <span class="count">Copy → Paste into Dispatch</span></h2>
+  <div class="controls" id="controls">
+    <button class="btn" data-prompt="keep dev moving">
+      <span class="btn-label">Fire 3 more IMPLEMENTATION workers</span>
+      <span class="btn-prompt">keep dev moving</span>
+    </button>
+    <button class="btn" data-prompt="prod any paused sessions and get them shipping">
+      <span class="btn-label">Prod paused sessions</span>
+      <span class="btn-prompt">prod any paused sessions and get them shipping</span>
+    </button>
+    <button class="btn" data-prompt="what's the current ship queue status">
+      <span class="btn-label">SHIP QUEUE status</span>
+      <span class="btn-prompt">what's the current ship queue status</span>
+    </button>
+    <button class="btn" data-prompt="what is the current merge/my backlog?">
+      <span class="btn-label">Merge / backlog report</span>
+      <span class="btn-prompt">what is the current merge/my backlog?</span>
+    </button>
+    <button class="btn" data-prompt="spin up another SAGE session to demo what data exists and pragmatic extract-the-rest">
+      <span class="btn-label">Spawn SAGE session</span>
+      <span class="btn-prompt">spin up another SAGE session to demo what data exists and pragmatic extract-the-rest</span>
+    </button>
+    <button class="btn" data-prompt="keep everything moving">
+      <span class="btn-label">Everything moving</span>
+      <span class="btn-prompt">keep everything moving</span>
+    </button>
+  </div>
+
+  <h2>Constraints</h2>
+  <div class="constraints">
+    <div class="constraint">No push without <code>SHIP QUEUE</code></div>
+    <div class="constraint">No credentials committed</div>
+    <div class="constraint">Feature-boundary merges only</div>
+    <div class="constraint">Use <code>merge_queue.py</code> or <code>gh pr merge --squash --auto</code></div>
+  </div>
+
+  <footer>
+    Refresh this dashboard: <strong>republish via Dispatch</strong>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+  // Timestamp
+  (function() {
+    const stamp = document.getElementById('stamp');
+    const d = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    stamp.textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  })();
+
+  // Workstream count
+  document.getElementById('ws-count').textContent =
+    document.querySelectorAll('#workstreams .card, #workstreams .worker-block').length;
+
+  // Copy-to-clipboard
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.prompt;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied: ' + text.slice(0, 40) + (text.length > 40 ? '…' : ''));
+      } catch(e) {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); ta.remove();
+        showToast('Copied');
+      }
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 1200);
+    });
+  });
+</script>
+</body>
+</html>
