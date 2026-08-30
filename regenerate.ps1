@@ -1,4 +1,7 @@
-# Regenerate ForgeOS Dispatch dashboard from live git + gh state.
+# Regenerate ForgeOS Dispatch dashboard from live git + gh state (v3 pipeline view).
+# Self-locates via $PSScriptRoot so it works from any folder depth.
+# Working clone lives at: C:\Users\jaheb\IT\Applications\ForgeOS\dispatch-dashboard\
+# Source repo (read-only) at: %USERPROFILE%\OneDrive - forgepromo com\IT\Applications\Sales_Pipeline
 # Usage (from the dispatch-dashboard clone):  pwsh ./regenerate.ps1
 $ErrorActionPreference = 'Stop'
 $sourceRepo = Join-Path $env:USERPROFILE 'OneDrive - forgepromo com\IT\Applications\Sales_Pipeline'
@@ -6,6 +9,9 @@ $pagesRepo  = $PSScriptRoot
 
 if (-not (Test-Path $sourceRepo)) {
   Write-Error "Source repo not found at $sourceRepo"
+}
+if (-not (Test-Path (Join-Path $pagesRepo 'regenerate.py'))) {
+  Write-Error "regenerate.py not found next to this script at $pagesRepo"
 }
 
 Write-Host "Fetching latest branches..."

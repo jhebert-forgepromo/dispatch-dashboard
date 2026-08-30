@@ -8,126 +8,314 @@
 :root {
   --bg:#faf6ef; --card:#fffdf7; --ink:#1f2937; --muted:#6b7280;
   --accent:#d4622a; --accent-soft:#f4d5c2; --border:#e7ddc9;
-  --green:#2d7a3f; --blue:#2563eb; --amber:#d97706; --lblue:#06b6d4; --gray:#6b7280; --lgray:#d1d5db;
+  --green:#2d7a3f; --blue:#2563eb; --amber:#d97706; --red:#b91c1c;
+  --lblue:#06b6d4; --gray:#6b7280; --lgray:#d1d5db;
+  --stage-notstarted:#e5e2d8; --stage-inprogress:#d9cfae;
+  --stage-tests:#f0d3a6; --stage-propen:#e6b47c;
+  --stage-prfail:#e78f6d; --stage-prbehind:#dfb26a; --stage-merged:#c86a2c;
 }
 * { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; padding:24px 20px 96px; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; padding:24px 20px 96px; }
 h1 { margin:0 0 4px; font-size:28px; color:var(--accent); letter-spacing:-0.01em; }
-.subtitle { color:var(--muted); font-size:13px; margin-bottom:20px; }
-.overall { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:22px; }
-.overall-pct { font-size:38px; font-weight:700; color:var(--accent); line-height:1; }
-.overall-txt { color:var(--muted); font-size:14px; margin-top:4px; }
-.bar { background:var(--accent-soft); border-radius:6px; height:10px; overflow:hidden; margin-top:10px; }
-.bar > i { display:block; height:100%; background:var(--accent); border-radius:6px; transition:width .3s; }
-.projects { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:28px; }
-.pcard { flex:1 1 260px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
-.pcard h3 { margin:0 0 6px; font-size:16px; }
-.pcard .big { font-size:30px; font-weight:700; color:var(--accent); line-height:1.1; }
+.subtitle { color:var(--muted); font-size:13px; margin-bottom:22px; }
+
+/* ---------- pipeline row ---------- */
+.pipeline { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:22px; }
+.stage {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:14px 12px 12px; position:relative; min-height:130px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.stage .stage-title {
+  font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; margin-bottom:6px;
+}
+.stage .stage-count { font-size:34px; font-weight:800; line-height:1; color:var(--ink); }
+.stage .stage-sub {
+  color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums;
+  margin-top:8px; line-height:1.35;
+}
+.stage .stage-sub strong { color:var(--ink); font-weight:600; }
+.stage .stage-bar {
+  position:absolute; top:0; left:0; right:0; height:4px; border-radius:12px 12px 0 0;
+}
+.stage-notstarted .stage-bar { background:var(--stage-notstarted); }
+.stage-inprogress .stage-bar { background:var(--stage-inprogress); }
+.stage-tests     .stage-bar { background:var(--stage-tests); }
+.stage-propen    .stage-bar { background:var(--stage-propen); }
+.stage-prfail    .stage-bar { background:var(--stage-prfail); }
+.stage-prbehind  .stage-bar { background:var(--stage-prbehind); }
+.stage-merged    .stage-bar { background:var(--stage-merged); }
+.stage.warn { border-color:#e78f6d; box-shadow:inset 0 0 0 1px rgba(231,143,109,.25); }
+.stage.warn.amber { border-color:#dfb26a; box-shadow:inset 0 0 0 1px rgba(223,178,106,.25); }
+
+/* ---------- headline stat cards ---------- */
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:22px; }
+.stat {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:16px 20px;
+}
+.stat .stat-label {
+  font-size:12px; color:var(--muted); text-transform:uppercase;
+  letter-spacing:.05em; font-weight:600;
+}
+.stat .stat-big {
+  font-size:38px; font-weight:800; color:var(--accent); line-height:1.05; margin-top:4px;
+}
+.stat .stat-sub { color:var(--muted); font-size:12px; margin-top:6px; }
+
+/* ---------- bottleneck ---------- */
+.bottleneck {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:12px 16px; margin-bottom:26px; display:flex; flex-wrap:wrap;
+  gap:14px; align-items:center; font-size:13px;
+}
+.bottleneck .b-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); font-weight:700; margin-right:4px;
+}
+.bottleneck .b-chip {
+  display:inline-flex; align-items:center; gap:6px; padding:4px 10px;
+  border-radius:999px; background:var(--accent-soft); color:#7c3d15;
+  font-size:12px; font-weight:600;
+}
+.bottleneck .b-chip.red { background:#f7d4c8; color:#7d1d12; }
+.bottleneck .b-chip.amber { background:#f2dcae; color:#7a4c11; }
+.bottleneck .b-chip.calm { background:#dfe9d8; color:#2d5027; }
+
+/* ---------- projects + epics (v2 hierarchy) ---------- */
+h2 { font-size:18px; margin:22px 0 10px; color:var(--ink); }
+.projects { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:22px; }
+.pcard { flex:1 1 240px; background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:14px 16px; }
+.pcard h3 { margin:0 0 6px; font-size:15px; }
+.pcard .big { font-size:26px; font-weight:700; color:var(--accent); line-height:1.1; }
 .pcard .sub { color:var(--muted); font-size:12px; margin-top:6px; }
-h2 { font-size:18px; margin:24px 0 12px; color:var(--ink); }
-details { background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:10px; overflow:hidden; }
-details summary { cursor:pointer; padding:12px 16px; display:flex; align-items:center; gap:12px; list-style:none; font-weight:600; }
+.pbar { background:var(--accent-soft); border-radius:6px; height:8px; overflow:hidden; margin-top:8px; }
+.pbar > i { display:block; height:100%; background:var(--accent); border-radius:6px; transition:width .3s; }
+
+details { background:var(--card); border:1px solid var(--border); border-radius:10px;
+  margin-bottom:10px; overflow:hidden; }
+details summary { cursor:pointer; padding:12px 16px; display:flex; align-items:center;
+  gap:12px; list-style:none; font-weight:600; }
 details summary::-webkit-details-marker { display:none; }
 details summary::before { content:"\25b8"; color:var(--muted); font-size:12px; transition:transform .15s; }
 details[open] summary::before { transform:rotate(90deg); }
 .epic-name { flex:1; }
-.epic-pct { font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; min-width:80px; text-align:right; }
+.epic-pct { font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums;
+  min-width:80px; text-align:right; }
 .epic-bar { flex:0 0 120px; background:var(--accent-soft); height:6px; border-radius:4px; overflow:hidden; }
 .epic-bar > i { display:block; height:100%; background:var(--accent); }
 .features { padding:4px 16px 14px; border-top:1px solid var(--border); }
-.frow { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px dashed #eee; font-size:13px; }
+.frow { display:flex; align-items:center; gap:10px; padding:8px 0;
+  border-bottom:1px dashed #eee; font-size:13px; }
 .frow:last-child { border-bottom:none; }
 .frow .slug { flex:1; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
-.pill { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:600; color:#fff; letter-spacing:.02em; white-space:nowrap; }
-.pill.merged { background:var(--green); }
-.pill.pr-open { background:var(--blue); }
-.pill.pr-checks-failing { background:var(--amber); }
+.pill { display:inline-block; padding:2px 9px; border-radius:999px;
+  font-size:11px; font-weight:700; color:#fff; letter-spacing:.02em; white-space:nowrap; }
+.pill.not-started   { background:var(--lgray); color:#374151; }
+.pill.in-progress   { background:var(--gray); }
 .pill.tests-written { background:var(--lblue); }
-.pill.in-progress { background:var(--gray); }
-.pill.not-started { background:var(--lgray); color:#374151; }
+.pill.pr-open       { background:var(--blue); }
+.pill.pr-failing    { background:var(--red); }
+.pill.pr-behind     { background:var(--amber); }
+.pill.merged        { background:var(--green); }
 .loc { color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
 .pr-link { color:var(--accent); text-decoration:none; font-size:12px; font-weight:600; }
 .pr-link:hover { text-decoration:underline; }
 .check { color:var(--green); font-weight:700; }
-.legend { margin-top:28px; padding:14px 18px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
-.legend h3 { margin:0 0 8px; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+
+.legend { margin-top:24px; padding:14px 18px; background:var(--card);
+  border:1px solid var(--border); border-radius:10px; }
+.legend h3 { margin:0 0 8px; font-size:13px; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.05em; }
 .legend-items { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
 .legend-items span { display:inline-flex; align-items:center; gap:6px; font-size:12px; }
-.regen { position:fixed; bottom:16px; right:16px; background:var(--accent); color:#fff; border:none; padding:12px 18px; border-radius:999px; font-weight:600; cursor:pointer; box-shadow:0 4px 14px rgba(212,98,42,.35); font-size:13px; }
+
+.regen { position:fixed; bottom:16px; right:16px; background:var(--accent);
+  color:#fff; border:none; padding:12px 18px; border-radius:999px;
+  font-weight:600; cursor:pointer; box-shadow:0 4px 14px rgba(212,98,42,.35); font-size:13px; }
 .regen:hover { background:#b8531e; }
-.toast { position:fixed; bottom:70px; right:16px; background:#1f2937; color:#fff; padding:10px 14px; border-radius:8px; font-size:12px; opacity:0; transition:opacity .3s; pointer-events:none; }
+.toast { position:fixed; bottom:70px; right:16px; background:#1f2937; color:#fff;
+  padding:10px 14px; border-radius:8px; font-size:12px; opacity:0;
+  transition:opacity .3s; pointer-events:none; }
 .toast.show { opacity:1; }
-@media (max-width:640px) { .projects { flex-direction:column; } .epic-bar { flex:0 0 60px; } }
+
+@media (max-width:1000px) {
+  .pipeline { grid-template-columns:repeat(4,1fr); }
+  .stats { grid-template-columns:1fr; }
+}
+@media (max-width:640px) {
+  .pipeline { grid-template-columns:repeat(2,1fr); }
+  .projects { flex-direction:column; }
+  .epic-bar { flex:0 0 60px; }
+}
 </style>
 </head>
 <body>
 <h1>ForgeOS Progress</h1>
 <div class="subtitle" id="updated"></div>
-<div class="overall">
-  <div class="overall-pct" id="oPct">0%</div>
-  <div class="overall-txt" id="oTxt"></div>
-  <div class="bar"><i id="oBar" style="width:0%"></i></div>
-</div>
+
+<div class="pipeline" id="pipeline"></div>
+
+<div class="stats" id="stats"></div>
+
+<div class="bottleneck" id="bottleneck"></div>
+
 <h2>Projects</h2>
 <div class="projects" id="projects"></div>
+
 <h2>Epics</h2>
 <div id="epics"></div>
+
 <div class="legend">
-  <h3>Status</h3>
+  <h3>Pipeline stages</h3>
   <div class="legend-items">
+    <span><span class="pill not-started">not-started</span>in the plan, no branch</span>
+    <span><span class="pill in-progress">in-progress</span>branch + commits, no tests yet</span>
+    <span><span class="pill tests-written">tests-written</span>tester checklist + new tests</span>
+    <span><span class="pill pr-open">pr-open</span>PR open, checks green/pending</span>
+    <span><span class="pill pr-failing">pr-failing</span>PR open, CI failing</span>
+    <span><span class="pill pr-behind">pr-behind</span>PR open, behind main</span>
     <span><span class="pill merged">merged</span>shipped to main</span>
-    <span><span class="pill pr-open">pr-open</span>PR open, checks green</span>
-    <span><span class="pill pr-checks-failing">pr-checks-failing</span>PR open, checks failing</span>
-    <span><span class="pill tests-written">tests-written</span>branch + verification checklist</span>
-    <span><span class="pill in-progress">in-progress</span>branch exists, no checklist</span>
-    <span><span class="pill not-started">not-started</span>no branch yet</span>
   </div>
 </div>
+
 <button class="regen" id="regenBtn" title="Run regenerate.ps1 locally to refresh from git">Regenerate</button>
 <div class="toast" id="toast">Copied "regenerate dashboard" to clipboard</div>
 <script>
-const DATA = {"generated_at": "2026-08-29T15:33:37+00:00", "pr_data_available": true, "projects": {"ForgeOS Product": {"total": 35, "by_status": {"merged": 0, "pr-open": 3, "pr-checks-failing": 0, "tests-written": 21, "in-progress": 8, "not-started": 3}, "percent": 0, "epics": ["quote-lifecycle", "customer", "ux-nav", "line-items-pricing", "security", "reporting"]}, "SAGE Integration": {"total": 3, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 3, "not-started": 0}, "percent": 0, "epics": ["sage-integration"]}, "Dispatch Dashboard": {"total": 0, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 0, "not-started": 0}, "percent": 0, "epics": []}}, "epics": {"quote-lifecycle": {"total": 17, "by_status": {"merged": 0, "pr-open": 2, "pr-checks-failing": 0, "tests-written": 10, "in-progress": 3, "not-started": 2}, "percent": 0, "slugs": ["quote-status-chips", "quote-total-breakdown", "quote-activity-log", "quote-internal-notes", "quote-notes", "quote-templates-mvp", "quote-pdf-download", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "quote-to-invoice", "quote-duplicate", "quote-bulk-delete", "quote-export-csv", "stale-nudge-mvp", "days-since-sent-mvp", "quote-pipeline-kanban"]}, "customer": {"total": 6, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 4, "in-progress": 2, "not-started": 0}, "percent": 0, "slugs": ["customer-notes-tags", "customer-credit-terms", "customer-search-filter", "customer-quotes-crosslink", "copy-clipboard-customer", "phone-address-autoformat"]}, "ux-nav": {"total": 6, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 4, "in-progress": 1, "not-started": 1}, "percent": 0, "slugs": ["dark-mode-toggle", "kbd-shortcuts-mvp", "kbd-shortcut-modal", "sortable-columns", "session-timeout-warning", "recent-items-sidebar"]}, "line-items-pricing": {"total": 4, "by_status": {"merged": 0, "pr-open": 1, "pr-checks-failing": 0, "tests-written": 2, "in-progress": 1, "not-started": 0}, "percent": 0, "slugs": ["line-item-typeahead", "lineitem-dup-delete", "qty-discount-ladder", "pricebook-admin-crud"]}, "security": {"total": 1, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 1, "in-progress": 0, "not-started": 0}, "percent": 0, "slugs": ["login-lockout"]}, "sage-integration": {"total": 3, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 3, "not-started": 0}, "percent": 0, "slugs": ["sage-pragmatic-demo", "sage-extract-prep", "sage-extract-paid-script"]}, "reporting": {"total": 1, "by_status": {"merged": 0, "pr-open": 0, "pr-checks-failing": 0, "tests-written": 0, "in-progress": 1, "not-started": 0}, "percent": 0, "slugs": ["rep-kpi-mvp"]}}, "features": {"quote-status-chips": {"slug": "quote-status-chips", "branch": "local/feature-quote-status-chips-2026-08-27", "loc": 43215, "pr": 384, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384", "has_checklist": true, "status": "pr-open"}, "quote-total-breakdown": {"slug": "quote-total-breakdown", "branch": "local/feature-quote-total-breakdown-2026-08-27", "loc": 43475, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-activity-log": {"slug": "quote-activity-log", "branch": "local/feature-quote-activity-log-2026-08-27", "loc": 43770, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-internal-notes": {"slug": "quote-internal-notes", "branch": "local/feature-quote-internal-notes-2026-08-27", "loc": 32216, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-notes": {"slug": "quote-notes", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "quote-templates-mvp": {"slug": "quote-templates-mvp", "branch": "local/feature-quote-templates-mvp-2026-08-27", "loc": 32088, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "quote-pdf-download": {"slug": "quote-pdf-download", "branch": "local/feature-quote-pdf-download-2026-08-27", "loc": 43314, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-email-send": {"slug": "quote-email-send", "branch": "local/feature-quote-email-send-2026-08-27", "loc": 43397, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-reminder-cron": {"slug": "quote-reminder-cron", "branch": "local/feature-quote-reminder-cron-2026-08-27", "loc": 43874, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-signature-capture": {"slug": "quote-signature-capture", "branch": "local/feature-quote-signature-capture-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "quote-to-invoice": {"slug": "quote-to-invoice", "branch": "local/feature-quote-to-invoice-2026-08-27", "loc": 43561, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-duplicate": {"slug": "quote-duplicate", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "quote-bulk-delete": {"slug": "quote-bulk-delete", "branch": "local/feature-quote-bulk-delete-2026-08-27", "loc": 43522, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "quote-export-csv": {"slug": "quote-export-csv", "branch": "local/feature-quote-export-csv-2026-08-27", "loc": 43622, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "stale-nudge-mvp": {"slug": "stale-nudge-mvp", "branch": "local/feature-stale-nudge-mvp-2026-08-27", "loc": 32113, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "days-since-sent-mvp": {"slug": "days-since-sent-mvp", "branch": "local/feature-days-since-sent-mvp-2026-08-27", "loc": 32049, "pr": 385, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/385", "has_checklist": false, "status": "pr-open"}, "quote-pipeline-kanban": {"slug": "quote-pipeline-kanban", "branch": "local/feature-quote-pipeline-kanban-2026-08-27", "loc": 43745, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-notes-tags": {"slug": "customer-notes-tags", "branch": "local/feature-customer-notes-tags-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "customer-credit-terms": {"slug": "customer-credit-terms", "branch": "local/feature-customer-credit-terms-2026-08-27", "loc": 43379, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-search-filter": {"slug": "customer-search-filter", "branch": "local/feature-customer-search-filter-2026-08-27", "loc": 43359, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "customer-quotes-crosslink": {"slug": "customer-quotes-crosslink", "branch": "local/feature-customer-quotes-crosslink-2026-08-27", "loc": 32076, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "copy-clipboard-customer": {"slug": "copy-clipboard-customer", "branch": "local/feature-copy-clipboard-customer-2026-08-27", "loc": 43402, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "phone-address-autoformat": {"slug": "phone-address-autoformat", "branch": "local/feature-phone-address-autoformat-2026-08-27", "loc": 43357, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "dark-mode-toggle": {"slug": "dark-mode-toggle", "branch": "local/feature-dark-mode-toggle-2026-08-27", "loc": 43542, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "kbd-shortcuts-mvp": {"slug": "kbd-shortcuts-mvp", "branch": "local/feature-kbd-shortcuts-mvp-2026-08-27", "loc": 31935, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "kbd-shortcut-modal": {"slug": "kbd-shortcut-modal", "branch": "local/feature-kbd-shortcut-modal-2026-08-27", "loc": 43176, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "sortable-columns": {"slug": "sortable-columns", "branch": "local/feature-sortable-columns-2026-08-27", "loc": 43681, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "session-timeout-warning": {"slug": "session-timeout-warning", "branch": null, "loc": 0, "pr": null, "pr_url": null, "has_checklist": false, "status": "not-started"}, "recent-items-sidebar": {"slug": "recent-items-sidebar", "branch": "local/feature-recent-items-sidebar-2026-08-27", "loc": 32139, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "line-item-typeahead": {"slug": "line-item-typeahead", "branch": "local/feature-line-item-typeahead-2026-08-27", "loc": 43312, "pr": 386, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386", "has_checklist": true, "status": "pr-open"}, "lineitem-dup-delete": {"slug": "lineitem-dup-delete", "branch": "local/feature-lineitem-dup-delete-2026-08-27", "loc": 43311, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "qty-discount-ladder": {"slug": "qty-discount-ladder", "branch": "local/feature-qty-discount-ladder-2026-08-27", "loc": 43631, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "pricebook-admin-crud": {"slug": "pricebook-admin-crud", "branch": "local/feature-pricebook-admin-crud-2026-08-27", "loc": 43075, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "login-lockout": {"slug": "login-lockout", "branch": "local/feature-login-lockout-2026-08-27", "loc": 43607, "pr": null, "pr_url": null, "has_checklist": true, "status": "tests-written"}, "sage-pragmatic-demo": {"slug": "sage-pragmatic-demo", "branch": "local/feature-sage-pragmatic-demo-2026-08-27", "loc": 45020, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "sage-extract-prep": {"slug": "sage-extract-prep", "branch": "local/feature-sage-extract-prep-2026-08-27", "loc": 44052, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "sage-extract-paid-script": {"slug": "sage-extract-paid-script", "branch": "local/feature-sage-extract-paid-script-2026-08-27", "loc": 44547, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}, "rep-kpi-mvp": {"slug": "rep-kpi-mvp", "branch": "local/feature-rep-kpi-mvp-2026-08-27", "loc": 32140, "pr": null, "pr_url": null, "has_checklist": false, "status": "in-progress"}}, "summary": {"total": 38, "by_status": {"merged": 0, "pr-open": 3, "pr-checks-failing": 0, "tests-written": 21, "in-progress": 11, "not-started": 3}, "percent": 0}};
+const DATA = {"generated_at": "2026-08-30T03:46:59+00:00", "pr_data_available": true, "pipeline": {"not-started": {"count": 3, "loc": 0, "tests": 0, "slugs": ["quote-notes", "quote-duplicate", "session-timeout-warning"]}, "in-progress": {"count": 9, "loc": 348372, "tests": 619, "slugs": ["quote-templates-mvp", "stale-nudge-mvp", "customer-notes-tags", "copy-clipboard-customer", "kbd-shortcuts-mvp", "sage-pragmatic-demo", "sage-extract-prep", "sage-extract-paid-script", "rep-kpi-mvp"]}, "tests-written": {"count": 23, "loc": 967372, "tests": 1581, "slugs": ["quote-total-breakdown", "quote-activity-log", "quote-internal-notes", "quote-pdf-download", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "quote-to-invoice", "quote-bulk-delete", "quote-export-csv", "quote-pipeline-kanban", "customer-credit-terms", "customer-search-filter", "customer-quotes-crosslink", "phone-address-autoformat", "dark-mode-toggle", "kbd-shortcut-modal", "sortable-columns", "recent-items-sidebar", "lineitem-dup-delete", "qty-discount-ladder", "pricebook-admin-crud", "login-lockout"]}, "pr-open": {"count": 3, "loc": 118576, "tests": 206, "slugs": ["quote-status-chips", "days-since-sent-mvp", "line-item-typeahead"]}, "pr-failing": {"count": 0, "loc": 0, "tests": 0, "slugs": []}, "pr-behind": {"count": 0, "loc": 0, "tests": 0, "slugs": []}, "merged": {"count": 0, "loc": 0, "tests": 0, "slugs": []}}, "headline": {"loc": 1434320, "tests": 2406, "features_with_code": 35, "awaiting_merge": 3, "shipped": 0}, "bottleneck": {"ci_queued": 2, "ci_failing": 1, "behind": 0, "pr_data_available": true}, "projects": {"ForgeOS Product": {"total": 35, "by_status": {"not-started": 3, "in-progress": 6, "tests-written": 23, "pr-open": 3, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "epics": ["quote-lifecycle", "customer", "ux-nav", "line-items-pricing", "security", "reporting"]}, "SAGE Integration": {"total": 3, "by_status": {"not-started": 0, "in-progress": 3, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "epics": ["sage-integration"]}, "Dispatch Dashboard": {"total": 0, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "epics": []}}, "epics": {"quote-lifecycle": {"total": 17, "by_status": {"not-started": 2, "in-progress": 2, "tests-written": 11, "pr-open": 2, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["quote-status-chips", "quote-total-breakdown", "quote-activity-log", "quote-internal-notes", "quote-notes", "quote-templates-mvp", "quote-pdf-download", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "quote-to-invoice", "quote-duplicate", "quote-bulk-delete", "quote-export-csv", "stale-nudge-mvp", "days-since-sent-mvp", "quote-pipeline-kanban"]}, "customer": {"total": 6, "by_status": {"not-started": 0, "in-progress": 2, "tests-written": 4, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["customer-notes-tags", "customer-credit-terms", "customer-search-filter", "customer-quotes-crosslink", "copy-clipboard-customer", "phone-address-autoformat"]}, "ux-nav": {"total": 6, "by_status": {"not-started": 1, "in-progress": 1, "tests-written": 4, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["dark-mode-toggle", "kbd-shortcuts-mvp", "kbd-shortcut-modal", "sortable-columns", "session-timeout-warning", "recent-items-sidebar"]}, "line-items-pricing": {"total": 4, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 3, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["line-item-typeahead", "lineitem-dup-delete", "qty-discount-ladder", "pricebook-admin-crud"]}, "security": {"total": 1, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 1, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["login-lockout"]}, "sage-integration": {"total": 3, "by_status": {"not-started": 0, "in-progress": 3, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["sage-pragmatic-demo", "sage-extract-prep", "sage-extract-paid-script"]}, "reporting": {"total": 1, "by_status": {"not-started": 0, "in-progress": 1, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["rep-kpi-mvp"]}}, "features": {"quote-status-chips": {"slug": "quote-status-chips", "branch": "local/feature-quote-status-chips-2026-08-27", "loc": 43215, "commits": 53, "tests_added": 68, "has_checklist": true, "pr": 384, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384", "pr_state": "pending", "pr_merge_state": "", "status": "pr-open"}, "quote-total-breakdown": {"slug": "quote-total-breakdown", "branch": "local/feature-quote-total-breakdown-2026-08-27", "loc": 43475, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-activity-log": {"slug": "quote-activity-log", "branch": "local/feature-quote-activity-log-2026-08-27", "loc": 43770, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-internal-notes": {"slug": "quote-internal-notes", "branch": "local/feature-quote-internal-notes-2026-08-27", "loc": 32216, "commits": 51, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-notes": {"slug": "quote-notes", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "quote-templates-mvp": {"slug": "quote-templates-mvp", "branch": "local/feature-quote-templates-mvp-2026-08-27", "loc": 32088, "commits": 51, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "quote-pdf-download": {"slug": "quote-pdf-download", "branch": "local/feature-quote-pdf-download-2026-08-27", "loc": 43314, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-email-send": {"slug": "quote-email-send", "branch": "local/feature-quote-email-send-2026-08-27", "loc": 43397, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-reminder-cron": {"slug": "quote-reminder-cron", "branch": "local/feature-quote-reminder-cron-2026-08-27", "loc": 43874, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-signature-capture": {"slug": "quote-signature-capture", "branch": "local/feature-quote-signature-capture-2026-08-27", "loc": 43591, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-to-invoice": {"slug": "quote-to-invoice", "branch": "local/feature-quote-to-invoice-2026-08-27", "loc": 43561, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-duplicate": {"slug": "quote-duplicate", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "quote-bulk-delete": {"slug": "quote-bulk-delete", "branch": "local/feature-quote-bulk-delete-2026-08-27", "loc": 43522, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-export-csv": {"slug": "quote-export-csv", "branch": "local/feature-quote-export-csv-2026-08-27", "loc": 43622, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "stale-nudge-mvp": {"slug": "stale-nudge-mvp", "branch": "local/feature-stale-nudge-mvp-2026-08-27", "loc": 32113, "commits": 51, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "days-since-sent-mvp": {"slug": "days-since-sent-mvp", "branch": "local/feature-days-since-sent-mvp-2026-08-27", "loc": 32049, "commits": 51, "tests_added": 69, "has_checklist": false, "pr": 385, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/385", "pr_state": "pending", "pr_merge_state": "", "status": "pr-open"}, "quote-pipeline-kanban": {"slug": "quote-pipeline-kanban", "branch": "local/feature-quote-pipeline-kanban-2026-08-27", "loc": 43745, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "customer-notes-tags": {"slug": "customer-notes-tags", "branch": "local/feature-customer-notes-tags-2026-08-27", "loc": 43075, "commits": 51, "tests_added": 68, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "customer-credit-terms": {"slug": "customer-credit-terms", "branch": "local/feature-customer-credit-terms-2026-08-27", "loc": 43379, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "customer-search-filter": {"slug": "customer-search-filter", "branch": "local/feature-customer-search-filter-2026-08-27", "loc": 43359, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "customer-quotes-crosslink": {"slug": "customer-quotes-crosslink", "branch": "local/feature-customer-quotes-crosslink-2026-08-27", "loc": 32076, "commits": 51, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "copy-clipboard-customer": {"slug": "copy-clipboard-customer", "branch": "local/feature-copy-clipboard-customer-2026-08-27", "loc": 43402, "commits": 52, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "phone-address-autoformat": {"slug": "phone-address-autoformat", "branch": "local/feature-phone-address-autoformat-2026-08-27", "loc": 43357, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "dark-mode-toggle": {"slug": "dark-mode-toggle", "branch": "local/feature-dark-mode-toggle-2026-08-27", "loc": 43542, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "kbd-shortcuts-mvp": {"slug": "kbd-shortcuts-mvp", "branch": "local/feature-kbd-shortcuts-mvp-2026-08-27", "loc": 31935, "commits": 51, "tests_added": 68, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "kbd-shortcut-modal": {"slug": "kbd-shortcut-modal", "branch": "local/feature-kbd-shortcut-modal-2026-08-27", "loc": 43176, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "sortable-columns": {"slug": "sortable-columns", "branch": "local/feature-sortable-columns-2026-08-27", "loc": 43681, "commits": 52, "tests_added": 70, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "session-timeout-warning": {"slug": "session-timeout-warning", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "recent-items-sidebar": {"slug": "recent-items-sidebar", "branch": "local/feature-recent-items-sidebar-2026-08-27", "loc": 32139, "commits": 51, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "line-item-typeahead": {"slug": "line-item-typeahead", "branch": "local/feature-line-item-typeahead-2026-08-27", "loc": 43312, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": 386, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386", "pr_state": "pending", "pr_merge_state": "", "status": "pr-open"}, "lineitem-dup-delete": {"slug": "lineitem-dup-delete", "branch": "local/feature-lineitem-dup-delete-2026-08-27", "loc": 43311, "commits": 52, "tests_added": 68, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "qty-discount-ladder": {"slug": "qty-discount-ladder", "branch": "local/feature-qty-discount-ladder-2026-08-27", "loc": 43631, "commits": 52, "tests_added": 69, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "pricebook-admin-crud": {"slug": "pricebook-admin-crud", "branch": "local/feature-pricebook-admin-crud-2026-08-27", "loc": 44027, "commits": 52, "tests_added": 70, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "login-lockout": {"slug": "login-lockout", "branch": "local/feature-login-lockout-2026-08-27", "loc": 43607, "commits": 52, "tests_added": 70, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "sage-pragmatic-demo": {"slug": "sage-pragmatic-demo", "branch": "local/feature-sage-pragmatic-demo-2026-08-27", "loc": 45020, "commits": 55, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "sage-extract-prep": {"slug": "sage-extract-prep", "branch": "local/feature-sage-extract-prep-2026-08-27", "loc": 44052, "commits": 52, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "sage-extract-paid-script": {"slug": "sage-extract-paid-script", "branch": "local/feature-sage-extract-paid-script-2026-08-27", "loc": 44547, "commits": 53, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "rep-kpi-mvp": {"slug": "rep-kpi-mvp", "branch": "local/feature-rep-kpi-mvp-2026-08-27", "loc": 32140, "commits": 51, "tests_added": 69, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}}, "summary": {"total": 38, "by_status": {"not-started": 3, "in-progress": 9, "tests-written": 23, "pr-open": 3, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0}};
+
+const STAGE_ORDER = ["not-started","in-progress","tests-written","pr-open","pr-failing","pr-behind","merged"];
+const STAGE_LABEL = {
+  "not-started":  "Not started",
+  "in-progress":  "In progress",
+  "tests-written":"Tests written",
+  "pr-open":      "PR open",
+  "pr-failing":   "PR failing",
+  "pr-behind":    "PR behind",
+  "merged":       "Merged"
+};
+const STAGE_CLASS = {
+  "not-started":  "stage-notstarted",
+  "in-progress":  "stage-inprogress",
+  "tests-written":"stage-tests",
+  "pr-open":      "stage-propen",
+  "pr-failing":   "stage-prfail",
+  "pr-behind":    "stage-prbehind",
+  "merged":       "stage-merged"
+};
+
+function fmt(n){ return (n||0).toLocaleString(); }
 function pill(status){ return '<span class="pill ' + status + '">' + status + '</span>'; }
-function bar(pct){ return '<div class="bar"><i style="width:' + pct + '%"></i></div>'; }
-function render(){
-  const d = DATA;
-  const upd = 'Last updated: ' + new Date(d.generated_at).toLocaleString() + (d.pr_data_available ? '' : ' — PR data unavailable');
-  document.getElementById('updated').textContent = upd;
-  const s = d.summary;
-  document.getElementById('oPct').textContent = s.percent + '%';
-  document.getElementById('oTxt').textContent = s.by_status.merged + ' of ' + s.total + ' features shipped';
-  document.getElementById('oBar').style.width = s.percent + '%';
-  const projEl = document.getElementById('projects');
-  for (const [name, p] of Object.entries(d.projects)) {
+
+function renderPipeline(){
+  const el = document.getElementById('pipeline');
+  const p = DATA.pipeline || {};
+  el.innerHTML = STAGE_ORDER.map(function(s){
+    const d = p[s] || {count:0,loc:0,tests:0};
+    const warn = (s === "pr-failing") ? " warn" : (s === "pr-behind" ? " warn amber" : "");
+    return '<div class="stage ' + STAGE_CLASS[s] + warn + '">' +
+      '<div class="stage-bar"></div>' +
+      '<div>' +
+        '<div class="stage-title">' + STAGE_LABEL[s] + '</div>' +
+        '<div class="stage-count">' + d.count + '</div>' +
+      '</div>' +
+      '<div class="stage-sub"><strong>' + fmt(d.loc) + '</strong> LOC · <strong>' +
+        fmt(d.tests) + '</strong> tests</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderStats(){
+  const h = DATA.headline || {};
+  const el = document.getElementById('stats');
+  el.innerHTML =
+    '<div class="stat">' +
+      '<div class="stat-label">Code written today</div>' +
+      '<div class="stat-big">' + fmt(h.loc) + '</div>' +
+      '<div class="stat-sub">LOC across <strong>' + fmt(h.features_with_code) +
+        '</strong> features · <strong>' + fmt(h.tests) + '</strong> new test files</div>' +
+    '</div>' +
+    '<div class="stat">' +
+      '<div class="stat-label">Awaiting merge</div>' +
+      '<div class="stat-big">' + fmt(h.awaiting_merge) + '</div>' +
+      '<div class="stat-sub">features with an open PR (green, failing, or behind)</div>' +
+    '</div>' +
+    '<div class="stat">' +
+      '<div class="stat-label">Shipped to main</div>' +
+      '<div class="stat-big">' + fmt(h.shipped) + '</div>' +
+      '<div class="stat-sub">features merged</div>' +
+    '</div>';
+}
+
+function renderBottleneck(){
+  const b = DATA.bottleneck || {};
+  const el = document.getElementById('bottleneck');
+  const chips = [];
+  if (!b.pr_data_available) {
+    chips.push('<span class="b-chip amber">PR data unavailable — run <code>gh auth login</code></span>');
+  } else {
+    if (b.ci_queued > 0)  chips.push('<span class="b-chip amber">Waiting on ' + b.ci_queued + ' CI runner' + (b.ci_queued===1?'':'s') + '</span>');
+    if (b.ci_failing > 0) chips.push('<span class="b-chip red">'    + b.ci_failing + ' failing CI</span>');
+    if (b.behind > 0)     chips.push('<span class="b-chip amber">'  + b.behind    + ' BEHIND main</span>');
+    if (chips.length === 0) chips.push('<span class="b-chip calm">All open PRs green &amp; up-to-date</span>');
+  }
+  el.innerHTML = '<span class="b-label">Bottlenecks</span>' + chips.join('');
+}
+
+function renderProjects(){
+  const el = document.getElementById('projects');
+  el.innerHTML = '';
+  for (const [name, p] of Object.entries(DATA.projects)) {
     const label = p.total === 0 ? 'no features tracked yet' : (p.by_status.merged + ' of ' + p.total + ' shipped');
-    projEl.insertAdjacentHTML('beforeend',
+    el.insertAdjacentHTML('beforeend',
       '<div class="pcard"><h3>' + name + '</h3>' +
       '<div class="big">' + p.percent + '%</div>' +
-      bar(p.percent) +
+      '<div class="pbar"><i style="width:' + p.percent + '%"></i></div>' +
       '<div class="sub">' + label + '</div></div>');
   }
-  const epicsEl = document.getElementById('epics');
-  for (const [epic, e] of Object.entries(d.epics)) {
+}
+
+function renderEpics(){
+  const el = document.getElementById('epics');
+  el.innerHTML = '';
+  for (const [epic, e] of Object.entries(DATA.epics)) {
     let rows = '';
     for (const slug of e.slugs) {
-      const f = d.features[slug];
+      const f = DATA.features[slug];
       const loc = f.loc ? ('<span class="loc">' + f.loc + ' LOC</span>') : '';
-      const pr = f.pr ? ('<a class="pr-link" href="' + f.pr_url + '" target="_blank" rel="noopener">#' + f.pr + '</a>') : '';
+      const pr  = f.pr  ? ('<a class="pr-link" href="' + f.pr_url + '" target="_blank" rel="noopener">#' + f.pr + '</a>') : '';
       const chk = f.has_checklist ? '<span class="check" title="verification checklist present">✓</span>' : '';
-      rows += '<div class="frow">' + pill(f.status) + '<span class="slug">' + slug + '</span>' + chk + loc + pr + '</div>';
+      rows += '<div class="frow">' + pill(f.status) +
+              '<span class="slug">' + slug + '</span>' + chk + loc + pr + '</div>';
     }
-    epicsEl.insertAdjacentHTML('beforeend',
+    el.insertAdjacentHTML('beforeend',
       '<details><summary><span class="epic-name">' + epic + '</span>' +
       '<div class="epic-bar"><i style="width:' + e.percent + '%"></i></div>' +
       '<span class="epic-pct">' + e.percent + '% · ' + e.by_status.merged + '/' + e.total + '</span></summary>' +
       '<div class="features">' + rows + '</div></details>');
   }
 }
+
+function render(){
+  document.getElementById('updated').textContent =
+    'Last updated: ' + new Date(DATA.generated_at).toLocaleString() +
+    (DATA.pr_data_available ? '' : ' — PR data unavailable');
+  renderPipeline();
+  renderStats();
+  renderBottleneck();
+  renderProjects();
+  renderEpics();
+}
 render();
+
 document.getElementById('regenBtn').addEventListener('click', function(){
   const msg = 'regenerate dashboard';
   if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(function(){});
-  const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2200);
+  const t = document.getElementById('toast');
+  t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2200);
   window.open('mailto:jhebert@forgepromo.com?subject=Regenerate%20Dispatch&body=regenerate%20dashboard', '_blank');
 });
 </script>

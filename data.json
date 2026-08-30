@@ -1,16 +1,116 @@
 {
-  "generated_at": "2026-08-29T15:33:37+00:00",
+  "generated_at": "2026-08-30T03:46:59+00:00",
   "pr_data_available": true,
+  "pipeline": {
+    "not-started": {
+      "count": 3,
+      "loc": 0,
+      "tests": 0,
+      "slugs": [
+        "quote-notes",
+        "quote-duplicate",
+        "session-timeout-warning"
+      ]
+    },
+    "in-progress": {
+      "count": 9,
+      "loc": 348372,
+      "tests": 619,
+      "slugs": [
+        "quote-templates-mvp",
+        "stale-nudge-mvp",
+        "customer-notes-tags",
+        "copy-clipboard-customer",
+        "kbd-shortcuts-mvp",
+        "sage-pragmatic-demo",
+        "sage-extract-prep",
+        "sage-extract-paid-script",
+        "rep-kpi-mvp"
+      ]
+    },
+    "tests-written": {
+      "count": 23,
+      "loc": 967372,
+      "tests": 1581,
+      "slugs": [
+        "quote-total-breakdown",
+        "quote-activity-log",
+        "quote-internal-notes",
+        "quote-pdf-download",
+        "quote-email-send",
+        "quote-reminder-cron",
+        "quote-signature-capture",
+        "quote-to-invoice",
+        "quote-bulk-delete",
+        "quote-export-csv",
+        "quote-pipeline-kanban",
+        "customer-credit-terms",
+        "customer-search-filter",
+        "customer-quotes-crosslink",
+        "phone-address-autoformat",
+        "dark-mode-toggle",
+        "kbd-shortcut-modal",
+        "sortable-columns",
+        "recent-items-sidebar",
+        "lineitem-dup-delete",
+        "qty-discount-ladder",
+        "pricebook-admin-crud",
+        "login-lockout"
+      ]
+    },
+    "pr-open": {
+      "count": 3,
+      "loc": 118576,
+      "tests": 206,
+      "slugs": [
+        "quote-status-chips",
+        "days-since-sent-mvp",
+        "line-item-typeahead"
+      ]
+    },
+    "pr-failing": {
+      "count": 0,
+      "loc": 0,
+      "tests": 0,
+      "slugs": []
+    },
+    "pr-behind": {
+      "count": 0,
+      "loc": 0,
+      "tests": 0,
+      "slugs": []
+    },
+    "merged": {
+      "count": 0,
+      "loc": 0,
+      "tests": 0,
+      "slugs": []
+    }
+  },
+  "headline": {
+    "loc": 1434320,
+    "tests": 2406,
+    "features_with_code": 35,
+    "awaiting_merge": 3,
+    "shipped": 0
+  },
+  "bottleneck": {
+    "ci_queued": 2,
+    "ci_failing": 1,
+    "behind": 0,
+    "pr_data_available": true
+  },
   "projects": {
     "ForgeOS Product": {
       "total": 35,
       "by_status": {
-        "merged": 0,
+        "not-started": 3,
+        "in-progress": 6,
+        "tests-written": 23,
         "pr-open": 3,
-        "pr-checks-failing": 0,
-        "tests-written": 21,
-        "in-progress": 8,
-        "not-started": 3
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "epics": [
@@ -25,12 +125,13 @@
     "SAGE Integration": {
       "total": 3,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 0,
+        "not-started": 0,
         "in-progress": 3,
-        "not-started": 0
+        "tests-written": 0,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "epics": [
@@ -40,12 +141,13 @@
     "Dispatch Dashboard": {
       "total": 0,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 0,
+        "not-started": 0,
         "in-progress": 0,
-        "not-started": 0
+        "tests-written": 0,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "epics": []
@@ -55,12 +157,13 @@
     "quote-lifecycle": {
       "total": 17,
       "by_status": {
-        "merged": 0,
+        "not-started": 2,
+        "in-progress": 2,
+        "tests-written": 11,
         "pr-open": 2,
-        "pr-checks-failing": 0,
-        "tests-written": 10,
-        "in-progress": 3,
-        "not-started": 2
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -86,12 +189,13 @@
     "customer": {
       "total": 6,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 4,
+        "not-started": 0,
         "in-progress": 2,
-        "not-started": 0
+        "tests-written": 4,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -106,12 +210,13 @@
     "ux-nav": {
       "total": 6,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 4,
+        "not-started": 1,
         "in-progress": 1,
-        "not-started": 1
+        "tests-written": 4,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -126,12 +231,13 @@
     "line-items-pricing": {
       "total": 4,
       "by_status": {
-        "merged": 0,
+        "not-started": 0,
+        "in-progress": 0,
+        "tests-written": 3,
         "pr-open": 1,
-        "pr-checks-failing": 0,
-        "tests-written": 2,
-        "in-progress": 1,
-        "not-started": 0
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -144,12 +250,13 @@
     "security": {
       "total": 1,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 1,
+        "not-started": 0,
         "in-progress": 0,
-        "not-started": 0
+        "tests-written": 1,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -159,12 +266,13 @@
     "sage-integration": {
       "total": 3,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 0,
+        "not-started": 0,
         "in-progress": 3,
-        "not-started": 0
+        "tests-written": 0,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -176,12 +284,13 @@
     "reporting": {
       "total": 1,
       "by_status": {
-        "merged": 0,
-        "pr-open": 0,
-        "pr-checks-failing": 0,
-        "tests-written": 0,
+        "not-started": 0,
         "in-progress": 1,
-        "not-started": 0
+        "tests-written": 0,
+        "pr-open": 0,
+        "pr-failing": 0,
+        "pr-behind": 0,
+        "merged": 0
       },
       "percent": 0,
       "slugs": [
@@ -194,354 +303,507 @@
       "slug": "quote-status-chips",
       "branch": "local/feature-quote-status-chips-2026-08-27",
       "loc": 43215,
+      "commits": 53,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": 384,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384",
-      "has_checklist": true,
+      "pr_state": "pending",
+      "pr_merge_state": "",
       "status": "pr-open"
     },
     "quote-total-breakdown": {
       "slug": "quote-total-breakdown",
       "branch": "local/feature-quote-total-breakdown-2026-08-27",
       "loc": 43475,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-activity-log": {
       "slug": "quote-activity-log",
       "branch": "local/feature-quote-activity-log-2026-08-27",
       "loc": 43770,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-internal-notes": {
       "slug": "quote-internal-notes",
       "branch": "local/feature-quote-internal-notes-2026-08-27",
       "loc": 32216,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-notes": {
       "slug": "quote-notes",
       "branch": null,
       "loc": 0,
+      "commits": 0,
+      "tests_added": 0,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "not-started"
     },
     "quote-templates-mvp": {
       "slug": "quote-templates-mvp",
       "branch": "local/feature-quote-templates-mvp-2026-08-27",
       "loc": 32088,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "quote-pdf-download": {
       "slug": "quote-pdf-download",
       "branch": "local/feature-quote-pdf-download-2026-08-27",
       "loc": 43314,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-email-send": {
       "slug": "quote-email-send",
       "branch": "local/feature-quote-email-send-2026-08-27",
       "loc": 43397,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-reminder-cron": {
       "slug": "quote-reminder-cron",
       "branch": "local/feature-quote-reminder-cron-2026-08-27",
       "loc": 43874,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-signature-capture": {
       "slug": "quote-signature-capture",
       "branch": "local/feature-quote-signature-capture-2026-08-27",
-      "loc": 43075,
+      "loc": 43591,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
-      "status": "in-progress"
+      "pr_state": null,
+      "pr_merge_state": null,
+      "status": "tests-written"
     },
     "quote-to-invoice": {
       "slug": "quote-to-invoice",
       "branch": "local/feature-quote-to-invoice-2026-08-27",
       "loc": 43561,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-duplicate": {
       "slug": "quote-duplicate",
       "branch": null,
       "loc": 0,
+      "commits": 0,
+      "tests_added": 0,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "not-started"
     },
     "quote-bulk-delete": {
       "slug": "quote-bulk-delete",
       "branch": "local/feature-quote-bulk-delete-2026-08-27",
       "loc": 43522,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "quote-export-csv": {
       "slug": "quote-export-csv",
       "branch": "local/feature-quote-export-csv-2026-08-27",
       "loc": 43622,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "stale-nudge-mvp": {
       "slug": "stale-nudge-mvp",
       "branch": "local/feature-stale-nudge-mvp-2026-08-27",
       "loc": 32113,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "days-since-sent-mvp": {
       "slug": "days-since-sent-mvp",
       "branch": "local/feature-days-since-sent-mvp-2026-08-27",
       "loc": 32049,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": 385,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/385",
-      "has_checklist": false,
+      "pr_state": "pending",
+      "pr_merge_state": "",
       "status": "pr-open"
     },
     "quote-pipeline-kanban": {
       "slug": "quote-pipeline-kanban",
       "branch": "local/feature-quote-pipeline-kanban-2026-08-27",
       "loc": 43745,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "customer-notes-tags": {
       "slug": "customer-notes-tags",
       "branch": "local/feature-customer-notes-tags-2026-08-27",
       "loc": 43075,
+      "commits": 51,
+      "tests_added": 68,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "customer-credit-terms": {
       "slug": "customer-credit-terms",
       "branch": "local/feature-customer-credit-terms-2026-08-27",
       "loc": 43379,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "customer-search-filter": {
       "slug": "customer-search-filter",
       "branch": "local/feature-customer-search-filter-2026-08-27",
       "loc": 43359,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "customer-quotes-crosslink": {
       "slug": "customer-quotes-crosslink",
       "branch": "local/feature-customer-quotes-crosslink-2026-08-27",
       "loc": 32076,
+      "commits": 51,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "copy-clipboard-customer": {
       "slug": "copy-clipboard-customer",
       "branch": "local/feature-copy-clipboard-customer-2026-08-27",
       "loc": 43402,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "phone-address-autoformat": {
       "slug": "phone-address-autoformat",
       "branch": "local/feature-phone-address-autoformat-2026-08-27",
       "loc": 43357,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "dark-mode-toggle": {
       "slug": "dark-mode-toggle",
       "branch": "local/feature-dark-mode-toggle-2026-08-27",
       "loc": 43542,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "kbd-shortcuts-mvp": {
       "slug": "kbd-shortcuts-mvp",
       "branch": "local/feature-kbd-shortcuts-mvp-2026-08-27",
       "loc": 31935,
+      "commits": 51,
+      "tests_added": 68,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "kbd-shortcut-modal": {
       "slug": "kbd-shortcut-modal",
       "branch": "local/feature-kbd-shortcut-modal-2026-08-27",
       "loc": 43176,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "sortable-columns": {
       "slug": "sortable-columns",
       "branch": "local/feature-sortable-columns-2026-08-27",
       "loc": 43681,
+      "commits": 52,
+      "tests_added": 70,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "session-timeout-warning": {
       "slug": "session-timeout-warning",
       "branch": null,
       "loc": 0,
+      "commits": 0,
+      "tests_added": 0,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "not-started"
     },
     "recent-items-sidebar": {
       "slug": "recent-items-sidebar",
       "branch": "local/feature-recent-items-sidebar-2026-08-27",
       "loc": 32139,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "line-item-typeahead": {
       "slug": "line-item-typeahead",
       "branch": "local/feature-line-item-typeahead-2026-08-27",
       "loc": 43312,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": 386,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386",
-      "has_checklist": true,
+      "pr_state": "pending",
+      "pr_merge_state": "",
       "status": "pr-open"
     },
     "lineitem-dup-delete": {
       "slug": "lineitem-dup-delete",
       "branch": "local/feature-lineitem-dup-delete-2026-08-27",
       "loc": 43311,
+      "commits": 52,
+      "tests_added": 68,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "qty-discount-ladder": {
       "slug": "qty-discount-ladder",
       "branch": "local/feature-qty-discount-ladder-2026-08-27",
       "loc": 43631,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "pricebook-admin-crud": {
       "slug": "pricebook-admin-crud",
       "branch": "local/feature-pricebook-admin-crud-2026-08-27",
-      "loc": 43075,
+      "loc": 44027,
+      "commits": 52,
+      "tests_added": 70,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
-      "status": "in-progress"
+      "pr_state": null,
+      "pr_merge_state": null,
+      "status": "tests-written"
     },
     "login-lockout": {
       "slug": "login-lockout",
       "branch": "local/feature-login-lockout-2026-08-27",
       "loc": 43607,
+      "commits": 52,
+      "tests_added": 70,
+      "has_checklist": true,
       "pr": null,
       "pr_url": null,
-      "has_checklist": true,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "tests-written"
     },
     "sage-pragmatic-demo": {
       "slug": "sage-pragmatic-demo",
       "branch": "local/feature-sage-pragmatic-demo-2026-08-27",
       "loc": 45020,
+      "commits": 55,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "sage-extract-prep": {
       "slug": "sage-extract-prep",
       "branch": "local/feature-sage-extract-prep-2026-08-27",
       "loc": 44052,
+      "commits": 52,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "sage-extract-paid-script": {
       "slug": "sage-extract-paid-script",
       "branch": "local/feature-sage-extract-paid-script-2026-08-27",
       "loc": 44547,
+      "commits": 53,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     },
     "rep-kpi-mvp": {
       "slug": "rep-kpi-mvp",
       "branch": "local/feature-rep-kpi-mvp-2026-08-27",
       "loc": 32140,
+      "commits": 51,
+      "tests_added": 69,
+      "has_checklist": false,
       "pr": null,
       "pr_url": null,
-      "has_checklist": false,
+      "pr_state": null,
+      "pr_merge_state": null,
       "status": "in-progress"
     }
   },
   "summary": {
     "total": 38,
     "by_status": {
-      "merged": 0,
+      "not-started": 3,
+      "in-progress": 9,
+      "tests-written": 23,
       "pr-open": 3,
-      "pr-checks-failing": 0,
-      "tests-written": 21,
-      "in-progress": 11,
-      "not-started": 3
+      "pr-failing": 0,
+      "pr-behind": 0,
+      "merged": 0
     },
     "percent": 0
   }
