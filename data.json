@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T22:13:33+00:00",
+  "generated_at": "2026-08-30T22:15:35+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -36,9 +36,9 @@
       ]
     },
     "pr-open": {
-      "count": 23,
-      "loc": 963080,
-      "tests": 1593,
+      "count": 24,
+      "loc": 995129,
+      "tests": 1662,
       "slugs": [
         "quote-status-chips",
         "quote-total-breakdown",
@@ -48,6 +48,7 @@
         "quote-reminder-cron",
         "quote-signature-capture",
         "quote-to-invoice",
+        "days-since-sent-mvp",
         "quote-pipeline-kanban",
         "customer-credit-terms",
         "customer-search-filter",
@@ -66,12 +67,10 @@
       ]
     },
     "pr-failing": {
-      "count": 1,
-      "loc": 32049,
-      "tests": 69,
-      "slugs": [
-        "days-since-sent-mvp"
-      ]
+      "count": 0,
+      "loc": 0,
+      "tests": 0,
+      "slugs": []
     },
     "pr-behind": {
       "count": 0,
@@ -97,8 +96,8 @@
     "shipped": 2
   },
   "bottleneck": {
-    "ci_queued": 2,
-    "ci_failing": 2,
+    "ci_queued": 4,
+    "ci_failing": 1,
     "behind": 3,
     "pr_data_available": true
   },
@@ -109,8 +108,8 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 3,
-        "pr-open": 22,
-        "pr-failing": 1,
+        "pr-open": 23,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 2
       },
@@ -162,8 +161,8 @@
         "not-started": 2,
         "in-progress": 2,
         "tests-written": 2,
-        "pr-open": 9,
-        "pr-failing": 1,
+        "pr-open": 10,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 1
       },
@@ -505,9 +504,9 @@
       "has_checklist": false,
       "pr": 421,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/421",
-      "pr_state": "failing",
-      "pr_merge_state": "DIRTY",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-pipeline-kanban": {
       "slug": "quote-pipeline-kanban",
@@ -802,8 +801,8 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 3,
-      "pr-open": 23,
-      "pr-failing": 1,
+      "pr-open": 24,
+      "pr-failing": 0,
       "pr-behind": 0,
       "merged": 2
     },
