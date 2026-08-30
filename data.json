@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T21:28:37+00:00",
+  "generated_at": "2026-08-30T21:38:33+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -36,9 +36,9 @@
       ]
     },
     "pr-open": {
-      "count": 24,
-      "loc": 1006988,
-      "tests": 1663,
+      "count": 23,
+      "loc": 961174,
+      "tests": 1589,
       "slugs": [
         "quote-status-chips",
         "quote-total-breakdown",
@@ -61,7 +61,6 @@
         "lineitem-dup-delete",
         "qty-discount-ladder",
         "pricebook-admin-crud",
-        "login-lockout",
         "sage-pragmatic-demo",
         "rep-kpi-mvp"
       ]
@@ -81,11 +80,12 @@
       "slugs": []
     },
     "merged": {
-      "count": 1,
-      "loc": 43314,
-      "tests": 68,
+      "count": 2,
+      "loc": 89128,
+      "tests": 142,
       "slugs": [
-        "quote-pdf-download"
+        "quote-pdf-download",
+        "login-lockout"
       ]
     }
   },
@@ -93,13 +93,13 @@
     "loc": 1440481,
     "tests": 2418,
     "features_with_code": 35,
-    "awaiting_merge": 25,
-    "shipped": 1
+    "awaiting_merge": 24,
+    "shipped": 2
   },
   "bottleneck": {
-    "ci_queued": 11,
-    "ci_failing": 7,
-    "behind": 19,
+    "ci_queued": 9,
+    "ci_failing": 6,
+    "behind": 3,
     "pr_data_available": true
   },
   "projects": {
@@ -109,12 +109,12 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 3,
-        "pr-open": 23,
+        "pr-open": 22,
         "pr-failing": 1,
         "pr-behind": 0,
-        "merged": 1
+        "merged": 2
       },
-      "percent": 3,
+      "percent": 6,
       "epics": [
         "quote-lifecycle",
         "customer",
@@ -255,12 +255,12 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 1,
+        "pr-open": 0,
         "pr-failing": 0,
         "pr-behind": 0,
-        "merged": 0
+        "merged": 1
       },
-      "percent": 0,
+      "percent": 100,
       "slugs": [
         "login-lockout"
       ]
@@ -739,9 +739,9 @@
       "has_checklist": true,
       "pr": 409,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/409",
-      "pr_state": "pending",
-      "pr_merge_state": "BLOCKED",
-      "status": "pr-open"
+      "pr_state": null,
+      "pr_merge_state": null,
+      "status": "merged"
     },
     "sage-pragmatic-demo": {
       "slug": "sage-pragmatic-demo",
@@ -802,11 +802,11 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 3,
-      "pr-open": 24,
+      "pr-open": 23,
       "pr-failing": 1,
       "pr-behind": 0,
-      "merged": 1
+      "merged": 2
     },
-    "percent": 3
+    "percent": 5
   }
 }
