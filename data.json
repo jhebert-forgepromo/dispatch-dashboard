@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T10:02:56+00:00",
+  "generated_at": "2026-08-30T12:10:19+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -36,42 +36,42 @@
       ]
     },
     "pr-open": {
-      "count": 9,
-      "loc": 368835,
-      "tests": 619,
+      "count": 23,
+      "loc": 959240,
+      "tests": 1586,
       "slugs": [
         "quote-status-chips",
+        "quote-total-breakdown",
+        "quote-internal-notes",
+        "quote-email-send",
+        "quote-reminder-cron",
         "quote-signature-capture",
         "quote-to-invoice",
+        "quote-pipeline-kanban",
         "customer-credit-terms",
+        "customer-search-filter",
+        "customer-quotes-crosslink",
         "copy-clipboard-customer",
+        "phone-address-autoformat",
+        "dark-mode-toggle",
+        "sortable-columns",
         "recent-items-sidebar",
+        "line-item-typeahead",
         "lineitem-dup-delete",
+        "qty-discount-ladder",
+        "pricebook-admin-crud",
         "login-lockout",
+        "sage-pragmatic-demo",
         "rep-kpi-mvp"
       ]
     },
     "pr-failing": {
-      "count": 16,
-      "loc": 664539,
-      "tests": 1101,
+      "count": 2,
+      "loc": 75819,
+      "tests": 138,
       "slugs": [
-        "quote-total-breakdown",
         "quote-activity-log",
-        "quote-internal-notes",
-        "quote-email-send",
-        "quote-reminder-cron",
-        "days-since-sent-mvp",
-        "quote-pipeline-kanban",
-        "customer-search-filter",
-        "customer-quotes-crosslink",
-        "phone-address-autoformat",
-        "dark-mode-toggle",
-        "sortable-columns",
-        "line-item-typeahead",
-        "qty-discount-ladder",
-        "pricebook-admin-crud",
-        "sage-pragmatic-demo"
+        "days-since-sent-mvp"
       ]
     },
     "pr-behind": {
@@ -90,16 +90,16 @@
     }
   },
   "headline": {
-    "loc": 1434818,
-    "tests": 2406,
+    "loc": 1436503,
+    "tests": 2410,
     "features_with_code": 35,
     "awaiting_merge": 25,
     "shipped": 1
   },
   "bottleneck": {
     "ci_queued": 0,
-    "ci_failing": 19,
-    "behind": 1,
+    "ci_failing": 4,
+    "behind": 0,
     "pr_data_available": true
   },
   "projects": {
@@ -109,8 +109,8 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 3,
-        "pr-open": 9,
-        "pr-failing": 15,
+        "pr-open": 22,
+        "pr-failing": 2,
         "pr-behind": 0,
         "merged": 1
       },
@@ -130,8 +130,8 @@
         "not-started": 0,
         "in-progress": 2,
         "tests-written": 0,
-        "pr-open": 0,
-        "pr-failing": 1,
+        "pr-open": 1,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 0
       },
@@ -162,8 +162,8 @@
         "not-started": 2,
         "in-progress": 2,
         "tests-written": 2,
-        "pr-open": 3,
-        "pr-failing": 7,
+        "pr-open": 8,
+        "pr-failing": 2,
         "pr-behind": 0,
         "merged": 1
       },
@@ -194,8 +194,8 @@
         "not-started": 0,
         "in-progress": 1,
         "tests-written": 0,
-        "pr-open": 2,
-        "pr-failing": 3,
+        "pr-open": 5,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 0
       },
@@ -215,8 +215,8 @@
         "not-started": 1,
         "in-progress": 1,
         "tests-written": 1,
-        "pr-open": 1,
-        "pr-failing": 2,
+        "pr-open": 3,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 0
       },
@@ -236,8 +236,8 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 1,
-        "pr-failing": 3,
+        "pr-open": 4,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 0
       },
@@ -271,8 +271,8 @@
         "not-started": 0,
         "in-progress": 2,
         "tests-written": 0,
-        "pr-open": 0,
-        "pr-failing": 1,
+        "pr-open": 1,
+        "pr-failing": 0,
         "pr-behind": 0,
         "merged": 0
       },
@@ -311,7 +311,7 @@
       "pr": 384,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "quote-total-breakdown": {
@@ -323,9 +323,9 @@
       "has_checklist": true,
       "pr": 395,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/395",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-activity-log": {
       "slug": "quote-activity-log",
@@ -337,7 +337,7 @@
       "pr": 400,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/400",
       "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "DIRTY",
       "status": "pr-failing"
     },
     "quote-internal-notes": {
@@ -349,9 +349,9 @@
       "has_checklist": true,
       "pr": 396,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/396",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-notes": {
       "slug": "quote-notes",
@@ -401,22 +401,22 @@
       "has_checklist": true,
       "pr": 394,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/394",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-reminder-cron": {
       "slug": "quote-reminder-cron",
       "branch": "local/feature-quote-reminder-cron-2026-08-27",
-      "loc": 43886,
-      "commits": 52,
-      "tests_added": 69,
+      "loc": 44738,
+      "commits": 57,
+      "tests_added": 71,
       "has_checklist": true,
       "pr": 414,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/414",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-signature-capture": {
       "slug": "quote-signature-capture",
@@ -428,7 +428,7 @@
       "pr": 405,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/405",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "quote-to-invoice": {
@@ -441,7 +441,7 @@
       "pr": 402,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/402",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "quote-duplicate": {
@@ -518,9 +518,9 @@
       "has_checklist": true,
       "pr": 410,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410",
-      "pr_state": "failing",
-      "pr_merge_state": "BEHIND",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "customer-notes-tags": {
       "slug": "customer-notes-tags",
@@ -544,8 +544,8 @@
       "has_checklist": true,
       "pr": 412,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/412",
-      "pr_state": "green",
-      "pr_merge_state": "UNKNOWN",
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "customer-search-filter": {
@@ -557,9 +557,9 @@
       "has_checklist": true,
       "pr": 390,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/390",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "customer-quotes-crosslink": {
       "slug": "customer-quotes-crosslink",
@@ -570,9 +570,9 @@
       "has_checklist": true,
       "pr": 387,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/387",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "copy-clipboard-customer": {
       "slug": "copy-clipboard-customer",
@@ -584,7 +584,7 @@
       "pr": 393,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/393",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "phone-address-autoformat": {
@@ -596,9 +596,9 @@
       "has_checklist": true,
       "pr": 389,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/389",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "dark-mode-toggle": {
       "slug": "dark-mode-toggle",
@@ -609,9 +609,9 @@
       "has_checklist": true,
       "pr": 397,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/397",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "kbd-shortcuts-mvp": {
       "slug": "kbd-shortcuts-mvp",
@@ -648,9 +648,9 @@
       "has_checklist": true,
       "pr": 398,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "session-timeout-warning": {
       "slug": "session-timeout-warning",
@@ -669,13 +669,13 @@
       "slug": "recent-items-sidebar",
       "branch": "local/feature-recent-items-sidebar-2026-08-27",
       "loc": 32139,
-      "commits": 51,
+      "commits": 52,
       "tests_added": 69,
       "has_checklist": true,
       "pr": 391,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/391",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "line-item-typeahead": {
@@ -687,9 +687,9 @@
       "has_checklist": true,
       "pr": 386,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "lineitem-dup-delete": {
       "slug": "lineitem-dup-delete",
@@ -700,8 +700,8 @@
       "has_checklist": true,
       "pr": 415,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/415",
-      "pr_state": "green",
-      "pr_merge_state": "UNKNOWN",
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "qty-discount-ladder": {
@@ -713,9 +713,9 @@
       "has_checklist": true,
       "pr": 399,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/399",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "pricebook-admin-crud": {
       "slug": "pricebook-admin-crud",
@@ -726,21 +726,21 @@
       "has_checklist": true,
       "pr": 411,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/411",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "login-lockout": {
       "slug": "login-lockout",
       "branch": "local/feature-login-lockout-2026-08-27",
-      "loc": 43605,
-      "commits": 53,
-      "tests_added": 70,
+      "loc": 44438,
+      "commits": 57,
+      "tests_added": 72,
       "has_checklist": true,
       "pr": 409,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/409",
-      "pr_state": "green",
-      "pr_merge_state": "UNKNOWN",
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "sage-pragmatic-demo": {
@@ -752,9 +752,9 @@
       "has_checklist": false,
       "pr": 401,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/401",
-      "pr_state": "failing",
-      "pr_merge_state": "UNKNOWN",
-      "status": "pr-failing"
+      "pr_state": "pending",
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "sage-extract-prep": {
       "slug": "sage-extract-prep",
@@ -786,13 +786,13 @@
       "slug": "rep-kpi-mvp",
       "branch": "local/feature-rep-kpi-mvp-2026-08-27",
       "loc": 32140,
-      "commits": 51,
+      "commits": 52,
       "tests_added": 69,
       "has_checklist": false,
       "pr": 392,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/392",
       "pr_state": "pending",
-      "pr_merge_state": "UNKNOWN",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     }
   },
@@ -802,8 +802,8 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 3,
-      "pr-open": 9,
-      "pr-failing": 16,
+      "pr-open": 23,
+      "pr-failing": 2,
       "pr-behind": 0,
       "merged": 1
     },
