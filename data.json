@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T05:05:32+00:00",
+  "generated_at": "2026-08-31T05:07:37+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -58,8 +58,8 @@
     },
     "pr-behind": {
       "count": 15,
-      "loc": 10531,
-      "tests": 33,
+      "loc": 11174,
+      "tests": 34,
       "slugs": [
         "quote-status-chips",
         "quote-email-send",
@@ -90,8 +90,8 @@
     }
   },
   "headline": {
-    "loc": 19543,
-    "tests": 63,
+    "loc": 20186,
+    "tests": 64,
     "features_with_code": 35,
     "awaiting_merge": 24,
     "shipped": 3
@@ -99,7 +99,7 @@
   "bottleneck": {
     "ci_queued": 2,
     "ci_failing": 3,
-    "behind": 56,
+    "behind": 55,
     "pr_data_available": true
   },
   "projects": {
@@ -512,9 +512,9 @@
     "quote-pipeline-kanban": {
       "slug": "quote-pipeline-kanban",
       "branch": "local/feature-quote-pipeline-kanban-2026-08-27",
-      "loc": 3270,
-      "commits": 22,
-      "tests_added": 11,
+      "loc": 3913,
+      "commits": 24,
+      "tests_added": 12,
       "has_checklist": true,
       "pr": 410,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410",
