@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T02:51:34+00:00",
+  "generated_at": "2026-08-31T02:53:33+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -96,8 +96,8 @@
     "shipped": 3
   },
   "bottleneck": {
-    "ci_queued": 18,
-    "ci_failing": 3,
+    "ci_queued": 23,
+    "ci_failing": 2,
     "behind": 0,
     "pr_data_available": true
   },
@@ -414,7 +414,7 @@
       "pr": 414,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/414",
       "pr_state": "pending",
-      "pr_merge_state": "DIRTY",
+      "pr_merge_state": "BLOCKED",
       "status": "pr-open"
     },
     "quote-signature-capture": {
