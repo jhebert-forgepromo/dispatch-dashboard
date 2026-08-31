@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T07:32:07+00:00",
+  "generated_at": "2026-08-31T07:33:47+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -35,14 +35,15 @@
       ]
     },
     "pr-open": {
-      "count": 10,
-      "loc": 4501,
-      "tests": 21,
+      "count": 11,
+      "loc": 11719,
+      "tests": 39,
       "slugs": [
         "quote-total-breakdown",
         "quote-activity-log",
         "quote-internal-notes",
         "quote-to-invoice",
+        "quote-pipeline-kanban",
         "customer-search-filter",
         "customer-quotes-crosslink",
         "dark-mode-toggle",
@@ -58,16 +59,15 @@
       "slugs": []
     },
     "pr-behind": {
-      "count": 14,
-      "loc": 13213,
-      "tests": 38,
+      "count": 13,
+      "loc": 6792,
+      "tests": 21,
       "slugs": [
         "quote-status-chips",
         "quote-email-send",
         "quote-reminder-cron",
         "quote-signature-capture",
         "days-since-sent-mvp",
-        "quote-pipeline-kanban",
         "customer-credit-terms",
         "copy-clipboard-customer",
         "phone-address-autoformat",
@@ -90,8 +90,8 @@
     }
   },
   "headline": {
-    "loc": 22694,
-    "tests": 69,
+    "loc": 23491,
+    "tests": 70,
     "features_with_code": 35,
     "awaiting_merge": 24,
     "shipped": 3
@@ -99,7 +99,7 @@
   "bottleneck": {
     "ci_queued": 0,
     "ci_failing": 3,
-    "behind": 49,
+    "behind": 48,
     "pr_data_available": true
   },
   "projects": {
@@ -109,9 +109,9 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 2,
-        "pr-open": 10,
+        "pr-open": 11,
         "pr-failing": 0,
-        "pr-behind": 13,
+        "pr-behind": 12,
         "merged": 3
       },
       "percent": 9,
@@ -162,9 +162,9 @@
         "not-started": 2,
         "in-progress": 2,
         "tests-written": 2,
-        "pr-open": 4,
+        "pr-open": 5,
         "pr-failing": 0,
-        "pr-behind": 6,
+        "pr-behind": 5,
         "merged": 1
       },
       "percent": 6,
@@ -512,15 +512,15 @@
     "quote-pipeline-kanban": {
       "slug": "quote-pipeline-kanban",
       "branch": "local/feature-quote-pipeline-kanban-2026-08-27",
-      "loc": 6421,
-      "commits": 32,
-      "tests_added": 17,
+      "loc": 7218,
+      "commits": 34,
+      "tests_added": 18,
       "has_checklist": true,
       "pr": 410,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410",
       "pr_state": "pending",
-      "pr_merge_state": "BEHIND",
-      "status": "pr-behind"
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "customer-notes-tags": {
       "slug": "customer-notes-tags",
@@ -802,9 +802,9 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 2,
-      "pr-open": 10,
+      "pr-open": 11,
       "pr-failing": 0,
-      "pr-behind": 14,
+      "pr-behind": 13,
       "merged": 3
     },
     "percent": 8
