@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T02:19:48+00:00",
+  "generated_at": "2026-08-31T02:21:39+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -36,10 +36,11 @@
       ]
     },
     "pr-open": {
-      "count": 22,
-      "loc": 910245,
-      "tests": 1529,
+      "count": 24,
+      "loc": 996817,
+      "tests": 1665,
       "slugs": [
+        "quote-status-chips",
         "quote-total-breakdown",
         "quote-activity-log",
         "quote-internal-notes",
@@ -53,6 +54,7 @@
         "customer-search-filter",
         "customer-quotes-crosslink",
         "copy-clipboard-customer",
+        "phone-address-autoformat",
         "dark-mode-toggle",
         "sortable-columns",
         "recent-items-sidebar",
@@ -71,13 +73,10 @@
       "slugs": []
     },
     "pr-behind": {
-      "count": 2,
-      "loc": 86572,
-      "tests": 136,
-      "slugs": [
-        "quote-status-chips",
-        "phone-address-autoformat"
-      ]
+      "count": 0,
+      "loc": 0,
+      "tests": 0,
+      "slugs": []
     },
     "merged": {
       "count": 2,
@@ -97,9 +96,9 @@
     "shipped": 2
   },
   "bottleneck": {
-    "ci_queued": 9,
+    "ci_queued": 7,
     "ci_failing": 1,
-    "behind": 2,
+    "behind": 0,
     "pr_data_available": true
   },
   "projects": {
@@ -109,9 +108,9 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 3,
-        "pr-open": 21,
+        "pr-open": 23,
         "pr-failing": 0,
-        "pr-behind": 2,
+        "pr-behind": 0,
         "merged": 2
       },
       "percent": 6,
@@ -162,9 +161,9 @@
         "not-started": 2,
         "in-progress": 2,
         "tests-written": 2,
-        "pr-open": 9,
+        "pr-open": 10,
         "pr-failing": 0,
-        "pr-behind": 1,
+        "pr-behind": 0,
         "merged": 1
       },
       "percent": 6,
@@ -194,9 +193,9 @@
         "not-started": 0,
         "in-progress": 1,
         "tests-written": 0,
-        "pr-open": 4,
+        "pr-open": 5,
         "pr-failing": 0,
-        "pr-behind": 1,
+        "pr-behind": 0,
         "merged": 0
       },
       "percent": 0,
@@ -311,8 +310,8 @@
       "pr": 384,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384",
       "pr_state": "pending",
-      "pr_merge_state": "BEHIND",
-      "status": "pr-behind"
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "quote-total-breakdown": {
       "slug": "quote-total-breakdown",
@@ -597,8 +596,8 @@
       "pr": 389,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/389",
       "pr_state": "pending",
-      "pr_merge_state": "BEHIND",
-      "status": "pr-behind"
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "dark-mode-toggle": {
       "slug": "dark-mode-toggle",
@@ -802,9 +801,9 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 3,
-      "pr-open": 22,
+      "pr-open": 24,
       "pr-failing": 0,
-      "pr-behind": 2,
+      "pr-behind": 0,
       "merged": 2
     },
     "percent": 5
