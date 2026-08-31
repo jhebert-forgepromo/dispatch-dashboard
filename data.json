@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T03:45:34+00:00",
+  "generated_at": "2026-08-31T03:47:32+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -413,7 +413,7 @@
       "has_checklist": true,
       "pr": 414,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/414",
-      "pr_state": "pending",
+      "pr_state": "green",
       "pr_merge_state": "DIRTY",
       "status": "pr-open"
     },
