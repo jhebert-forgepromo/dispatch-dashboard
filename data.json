@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T05:07:37+00:00",
+  "generated_at": "2026-08-31T05:09:33+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -35,14 +35,15 @@
       ]
     },
     "pr-open": {
-      "count": 9,
-      "loc": 4032,
-      "tests": 20,
+      "count": 10,
+      "loc": 7945,
+      "tests": 32,
       "slugs": [
         "quote-total-breakdown",
         "quote-activity-log",
         "quote-internal-notes",
         "quote-to-invoice",
+        "quote-pipeline-kanban",
         "customer-search-filter",
         "customer-quotes-crosslink",
         "sortable-columns",
@@ -57,16 +58,15 @@
       "slugs": []
     },
     "pr-behind": {
-      "count": 15,
-      "loc": 11174,
-      "tests": 34,
+      "count": 14,
+      "loc": 7261,
+      "tests": 22,
       "slugs": [
         "quote-status-chips",
         "quote-email-send",
         "quote-reminder-cron",
         "quote-signature-capture",
         "days-since-sent-mvp",
-        "quote-pipeline-kanban",
         "customer-credit-terms",
         "copy-clipboard-customer",
         "phone-address-autoformat",
@@ -99,7 +99,7 @@
   "bottleneck": {
     "ci_queued": 2,
     "ci_failing": 3,
-    "behind": 55,
+    "behind": 53,
     "pr_data_available": true
   },
   "projects": {
@@ -109,9 +109,9 @@
         "not-started": 3,
         "in-progress": 4,
         "tests-written": 2,
-        "pr-open": 9,
+        "pr-open": 10,
         "pr-failing": 0,
-        "pr-behind": 14,
+        "pr-behind": 13,
         "merged": 3
       },
       "percent": 9,
@@ -162,9 +162,9 @@
         "not-started": 2,
         "in-progress": 2,
         "tests-written": 2,
-        "pr-open": 4,
+        "pr-open": 5,
         "pr-failing": 0,
-        "pr-behind": 6,
+        "pr-behind": 5,
         "merged": 1
       },
       "percent": 6,
@@ -519,8 +519,8 @@
       "pr": 410,
       "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410",
       "pr_state": "pending",
-      "pr_merge_state": "BEHIND",
-      "status": "pr-behind"
+      "pr_merge_state": "BLOCKED",
+      "status": "pr-open"
     },
     "customer-notes-tags": {
       "slug": "customer-notes-tags",
@@ -802,9 +802,9 @@
       "not-started": 3,
       "in-progress": 6,
       "tests-written": 2,
-      "pr-open": 9,
+      "pr-open": 10,
       "pr-failing": 0,
-      "pr-behind": 15,
+      "pr-behind": 14,
       "merged": 3
     },
     "percent": 8
