@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T05:37:34+00:00",
+  "generated_at": "2026-08-31T05:40:22+00:00",
   "pr_data_available": true,
   "pipeline": {
     "not-started": {
@@ -99,7 +99,7 @@
   "bottleneck": {
     "ci_queued": 2,
     "ci_failing": 3,
-    "behind": 55,
+    "behind": 54,
     "pr_data_available": true
   },
   "projects": {
