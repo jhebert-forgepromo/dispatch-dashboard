@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T04:49:25+00:00",
+  "generated_at": "2026-09-04T04:49:54+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 118,
-    "tasks": 118,
+    "features": 117,
+    "tasks": 117,
     "tasks_merged": 104,
-    "tasks_open": 14,
+    "tasks_open": 13,
     "prs_merged": 439,
-    "prs_open": 14
+    "prs_open": 13
   },
   "pipeline": {
     "not-started": {
@@ -24,9 +24,8 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 4,
+      "count": 3,
       "slugs": [
-        "sla-p53-env-health",
         "sla-p53-env-health-cron",
         "sla-p2-2-stale-version-log",
         "sla-p35-invoice-versioning"
@@ -171,20 +170,20 @@
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 87,
+      "feature_total": 86,
       "feature_done": 80,
-      "task_total": 87,
+      "task_total": 86,
       "task_done": 80,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 2,
         "pr-failing": 1,
         "pr-behind": 3,
         "merged": 80
       },
-      "percent": 92,
+      "percent": 93,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -1495,39 +1494,21 @@
         {
           "slug": "infra-platform",
           "label": "Infrastructure & Platform",
-          "feature_total": 7,
+          "feature_total": 6,
           "feature_done": 5,
-          "task_total": 7,
+          "task_total": 6,
           "task_done": 5,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 1,
             "pr-failing": 0,
             "pr-behind": 0,
             "merged": 5
           },
-          "percent": 71,
+          "percent": 83,
           "features": [
-            {
-              "slug": "sla-p53-env-health",
-              "label": "env-health synthetic check (SLA-P5.3)",
-              "branch": "local/feature-sla-p53-env-health-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 519,
-                  "title": "feat: env-health synthetic check (SLA-P5.3)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/519",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T04:41:01Z"
-                }
-              ]
-            },
             {
               "slug": "sla-p53-env-health-cron",
               "label": "env-health synthetic cron (SLA-P5.3)",
