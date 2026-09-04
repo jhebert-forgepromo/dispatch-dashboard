@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T18:05:52+00:00",
+  "generated_at": "2026-09-04T18:18:25+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 135,
-    "tasks": 135,
+    "features": 137,
+    "tasks": 137,
     "tasks_merged": 119,
-    "tasks_open": 16,
+    "tasks_open": 18,
     "prs_merged": 452,
-    "prs_open": 16
+    "prs_open": 18
   },
   "pipeline": {
     "not-started": {
@@ -24,8 +24,10 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 10,
+      "count": 12,
       "slugs": [
+        "customer-address-structured",
+        "reporting-revenue-by-month",
         "quote-export-csv",
         "customer-ltv",
         "customer-bulk-delete-undo",
@@ -188,20 +190,20 @@
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 99,
+      "feature_total": 101,
       "feature_done": 91,
-      "task_total": 99,
+      "task_total": 101,
       "task_done": 91,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 7,
+        "pr-open": 9,
         "pr-failing": 0,
         "pr-behind": 1,
         "merged": 91
       },
-      "percent": 92,
+      "percent": 90,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -694,21 +696,39 @@
         {
           "slug": "customer",
           "label": "Customer",
-          "feature_total": 21,
+          "feature_total": 22,
           "feature_done": 18,
-          "task_total": 21,
+          "task_total": 22,
           "task_done": 18,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 3,
             "pr-failing": 0,
             "pr-behind": 1,
             "merged": 18
           },
-          "percent": 86,
+          "percent": 82,
           "features": [
+            {
+              "slug": "customer-address-structured",
+              "label": "structured address fields (line_1/2, city, postal_code, country)",
+              "branch": "local/feature-customer-address-structured-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 548,
+                  "title": "feat(customers): structured address fields (line_1/2, city, postal_code, country)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/548",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T18:14:29Z"
+                }
+              ]
+            },
             {
               "slug": "customer-bulk-delete-undo",
               "label": "customer bulk-delete with undo",
@@ -1930,21 +1950,39 @@
         {
           "slug": "reporting",
           "label": "Reporting & KPIs",
-          "feature_total": 5,
+          "feature_total": 6,
           "feature_done": 5,
-          "task_total": 5,
+          "task_total": 6,
           "task_done": 5,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 0,
+            "pr-open": 1,
             "pr-failing": 0,
             "pr-behind": 0,
             "merged": 5
           },
-          "percent": 100,
+          "percent": 83,
           "features": [
+            {
+              "slug": "reporting-revenue-by-month",
+              "label": "/reports/revenue-by-month 12-month rollup with inline SVG chart",
+              "branch": "local/feature-reporting-revenue-by-month-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 547,
+                  "title": "feat(reports): /reports/revenue-by-month 12-month rollup with inline SVG chart",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/547",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T18:12:04Z"
+                }
+              ]
+            },
             {
               "slug": "dashboard-kpi-quotes-week",
               "label": "\"quotes sent this week\" KPI tile",
