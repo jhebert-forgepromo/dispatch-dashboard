@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-04T13:12:55+00:00",
+  "generated_at": "2026-09-04T13:20:53+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 125,
-    "tasks": 125,
-    "tasks_merged": 110,
+    "features": 127,
+    "tasks": 127,
+    "tasks_merged": 112,
     "tasks_open": 15,
     "prs_merged": 445,
     "prs_open": 15
@@ -54,7 +54,7 @@
       ]
     },
     "merged": {
-      "count": 110,
+      "count": 112,
       "slugs": [
         "reporting-win-rate-monthly",
         "quote-email-preview",
@@ -160,6 +160,8 @@
         "rebrand-pr3-roles-forgeos",
         "rebrand-sales-pipeline-to-forgeos",
         "rebrand-pr2-package-name",
+        "dispatch-ignore-local-runtime-artifacts-freshness",
+        "dispatch-add-freshness-watchdog-scheduled-task-bo",
         "dispatch-v4-hierarchical-project-epic-feature-sto",
         "dispatch-feat-sage-cache-demo-page-visible-artifa",
         "dispatch-regenerate-dashboard-refresh-live-pr-mer",
@@ -1093,7 +1095,7 @@
                   "title": "feat(ux): server-side breadcrumbs component for detail pages",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/531",
                   "status": "pr-behind",
-                  "updated_at": "2026-09-04T11:29:32Z"
+                  "updated_at": "2026-09-04T13:20:21Z"
                 }
               ]
             },
@@ -2164,10 +2166,10 @@
     },
     {
       "name": "Dispatch Dashboard",
-      "feature_total": 6,
-      "feature_done": 6,
-      "task_total": 6,
-      "task_done": 6,
+      "feature_total": 8,
+      "feature_done": 8,
+      "task_total": 8,
+      "task_done": 8,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
@@ -2175,17 +2177,17 @@
         "pr-open": 0,
         "pr-failing": 0,
         "pr-behind": 0,
-        "merged": 6
+        "merged": 8
       },
       "percent": 100,
       "epics": [
         {
           "slug": "dispatch-dashboard-work",
           "label": "Dispatch Dashboard Work",
-          "feature_total": 6,
-          "feature_done": 6,
-          "task_total": 6,
-          "task_done": 6,
+          "feature_total": 8,
+          "feature_done": 8,
+          "task_total": 8,
+          "task_done": 8,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
@@ -2193,10 +2195,29 @@
             "pr-open": 0,
             "pr-failing": 0,
             "pr-behind": 0,
-            "merged": 6
+            "merged": 8
           },
           "percent": 100,
           "features": [
+            {
+              "slug": "dispatch-add-freshness-watchdog-scheduled-task-bo",
+              "label": "Add freshness watchdog, scheduled-task bootstrap, README",
+              "branch": "",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": null,
+                  "title": "Add freshness watchdog, scheduled-task bootstrap, README",
+                  "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/0ab0bf9f6edd545aba09d5fbb7858f411a8f9bdc",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T09:19:46-04:00",
+                  "sha": "0ab0bf9f6edd545aba09d5fbb7858f411a8f9bdc"
+                }
+              ]
+            },
             {
               "slug": "dispatch-dashboard-v2-progress-tracking-projects",
               "label": "Dashboard v2: progress tracking (Projects then Epics then Features)",
@@ -2251,6 +2272,25 @@
                   "status": "merged",
                   "merged_at": "2026-08-31T08:06:27-04:00",
                   "sha": "702edbc0d538af73bb575fc4428f877176764ee0"
+                }
+              ]
+            },
+            {
+              "slug": "dispatch-ignore-local-runtime-artifacts-freshness",
+              "label": "Ignore local runtime artifacts (freshness.log, pre-* backups)",
+              "branch": "",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": null,
+                  "title": "Ignore local runtime artifacts (freshness.log, pre-* backups)",
+                  "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/3394bce090befb2a562749ce5592526e4b2a3370",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T09:19:57-04:00",
+                  "sha": "3394bce090befb2a562749ce5592526e4b2a3370"
                 }
               ]
             },
