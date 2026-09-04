@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T05:27:35+00:00",
+  "generated_at": "2026-09-04T05:42:36+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -24,9 +24,10 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 5,
+      "count": 6,
       "slugs": [
         "sla-p42-reconcile-alert-evaluators",
+        "quote-export-csv",
         "sla-p14-intake-form",
         "sla-p53-env-health-cron",
         "sla-p2-2-stale-version-log",
@@ -41,9 +42,8 @@
       ]
     },
     "pr-behind": {
-      "count": 5,
+      "count": 4,
       "slugs": [
-        "quote-export-csv",
         "dashboard-instant-regen",
         "quote-diff-pdf",
         "quote-bottom-ux",
@@ -164,7 +164,7 @@
   "bottleneck": {
     "ci_queued": 0,
     "ci_failing": 2,
-    "behind": 7,
+    "behind": 6,
     "pr_data_available": true
   },
   "projects": [
@@ -178,9 +178,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 2,
+        "pr-open": 3,
         "pr-failing": 0,
-        "pr-behind": 3,
+        "pr-behind": 2,
         "merged": 81
       },
       "percent": 94,
@@ -196,9 +196,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 0,
+            "pr-open": 1,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 23
           },
           "percent": 96,
@@ -207,7 +207,7 @@
               "slug": "quote-export-csv",
               "label": "CSV export for the Projects tab quote list",
               "branch": "local/feature-quote-export-csv-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -216,8 +216,8 @@
                   "pr": 525,
                   "title": "feat: CSV export for the Projects tab quote list",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/525",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T05:09:20Z"
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T05:33:20Z"
                 }
               ]
             },
@@ -2502,7 +2502,7 @@
                   "title": "fix(sla-p4.2): reconcile the two live alert evaluators",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/526",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T05:14:43Z"
+                  "updated_at": "2026-09-04T05:42:07Z"
                 }
               ]
             },
