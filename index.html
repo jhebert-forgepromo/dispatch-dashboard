@@ -9,147 +9,207 @@
   --bg:#faf6ef; --card:#fffdf7; --ink:#1f2937; --muted:#6b7280;
   --accent:#d4622a; --accent-soft:#f4d5c2; --border:#e7ddc9;
   --green:#2d7a3f; --blue:#2563eb; --amber:#d97706; --red:#b91c1c;
-  --lblue:#06b6d4; --gray:#6b7280; --lgray:#d1d5db;
   --stage-notstarted:#e5e2d8; --stage-inprogress:#d9cfae;
   --stage-tests:#f0d3a6; --stage-propen:#e6b47c;
   --stage-prfail:#e78f6d; --stage-prbehind:#dfb26a; --stage-merged:#c86a2c;
 }
 * { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--ink);
-  font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; padding:24px 20px 96px; }
-h1 { margin:0 0 4px; font-size:28px; color:var(--accent); letter-spacing:-0.01em; }
+body {
+  margin:0; background:var(--bg); color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
+  padding:24px 20px 96px;
+}
+h1 {
+  margin:0 0 4px; font-size:28px; color:var(--accent); letter-spacing:-0.01em;
+}
+h2 { font-size:18px; margin:22px 0 10px; color:var(--ink); }
 .subtitle { color:var(--muted); font-size:13px; margin-bottom:22px; }
+code { background:#f1ead6; padding:1px 5px; border-radius:4px; font-size:12px; }
 
-/* ---------- pipeline row ---------- */
-.pipeline { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:22px; }
-.stage {
+/* ---------- Filter row ---------- */
+.filter {
   background:var(--card); border:1px solid var(--border); border-radius:12px;
-  padding:14px 12px 12px; position:relative; min-height:130px;
-  display:flex; flex-direction:column; justify-content:space-between;
+  padding:12px 16px; margin-bottom:22px; display:flex; flex-wrap:wrap;
+  gap:12px; align-items:center;
 }
-.stage .stage-title {
-  font-size:11px; letter-spacing:.04em; text-transform:uppercase;
-  color:var(--muted); font-weight:700; margin-bottom:6px;
+.filter .f-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--muted); font-weight:700;
 }
-.stage .stage-count { font-size:34px; font-weight:800; line-height:1; color:var(--ink); }
-.stage .stage-sub {
-  color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums;
-  margin-top:8px; line-height:1.35;
+.filter label {
+  display:inline-flex; align-items:center; gap:6px; padding:5px 12px;
+  border-radius:999px; background:#f1ead6; color:#5a4523; cursor:pointer;
+  font-size:13px; font-weight:600; user-select:none;
+  border:1px solid transparent;
 }
-.stage .stage-sub strong { color:var(--ink); font-weight:600; }
-.stage .stage-bar {
-  position:absolute; top:0; left:0; right:0; height:4px; border-radius:12px 12px 0 0;
+.filter label:hover { border-color:var(--accent-soft); }
+.filter input[type=checkbox] { margin:0; accent-color:var(--accent); cursor:pointer; }
+.filter .actions { margin-left:auto; display:flex; gap:8px; }
+.filter button {
+  background:transparent; border:1px solid var(--border); border-radius:6px;
+  padding:4px 10px; color:var(--muted); font-size:12px; cursor:pointer;
 }
-.stage-notstarted .stage-bar { background:var(--stage-notstarted); }
-.stage-inprogress .stage-bar { background:var(--stage-inprogress); }
-.stage-tests     .stage-bar { background:var(--stage-tests); }
-.stage-propen    .stage-bar { background:var(--stage-propen); }
-.stage-prfail    .stage-bar { background:var(--stage-prfail); }
-.stage-prbehind  .stage-bar { background:var(--stage-prbehind); }
-.stage-merged    .stage-bar { background:var(--stage-merged); }
-.stage.warn { border-color:#e78f6d; box-shadow:inset 0 0 0 1px rgba(231,143,109,.25); }
-.stage.warn.amber { border-color:#dfb26a; box-shadow:inset 0 0 0 1px rgba(223,178,106,.25); }
+.filter button:hover { border-color:var(--accent); color:var(--accent); }
 
-/* ---------- headline stat cards ---------- */
-.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:22px; }
+/* ---------- Stat cards ---------- */
+.stats {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px;
+}
 .stat {
   background:var(--card); border:1px solid var(--border); border-radius:12px;
   padding:16px 20px;
 }
 .stat .stat-label {
-  font-size:12px; color:var(--muted); text-transform:uppercase;
+  font-size:11px; color:var(--muted); text-transform:uppercase;
   letter-spacing:.05em; font-weight:600;
 }
 .stat .stat-big {
-  font-size:38px; font-weight:800; color:var(--accent); line-height:1.05; margin-top:4px;
+  font-size:34px; font-weight:800; color:var(--accent); line-height:1.05;
+  margin-top:4px;
 }
 .stat .stat-sub { color:var(--muted); font-size:12px; margin-top:6px; }
 
-/* ---------- bottleneck ---------- */
+/* ---------- Pipeline ---------- */
+.pipeline {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:22px;
+}
+.stage {
+  background:var(--card); border:1px solid var(--border); border-radius:10px;
+  padding:12px 10px 10px; position:relative;
+}
+.stage-bar {
+  position:absolute; top:0; left:0; right:0; height:4px; border-radius:10px 10px 0 0;
+}
+.stage.notstarted .stage-bar { background:var(--stage-notstarted); }
+.stage.inprogress .stage-bar { background:var(--stage-inprogress); }
+.stage.tests      .stage-bar { background:var(--stage-tests); }
+.stage.propen     .stage-bar { background:var(--stage-propen); }
+.stage.prfail     .stage-bar { background:var(--stage-prfail); }
+.stage.prbehind   .stage-bar { background:var(--stage-prbehind); }
+.stage.merged     .stage-bar { background:var(--stage-merged); }
+.stage-title {
+  font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); font-weight:700;
+}
+.stage-count {
+  font-size:26px; font-weight:800; line-height:1; margin-top:4px;
+}
+
+/* ---------- Bottleneck ---------- */
 .bottleneck {
   background:var(--card); border:1px solid var(--border); border-radius:12px;
-  padding:12px 16px; margin-bottom:26px; display:flex; flex-wrap:wrap;
-  gap:14px; align-items:center; font-size:13px;
+  padding:10px 16px; margin-bottom:22px; display:flex; flex-wrap:wrap;
+  gap:12px; align-items:center; font-size:13px;
 }
 .bottleneck .b-label {
   font-size:11px; text-transform:uppercase; letter-spacing:.05em;
-  color:var(--muted); font-weight:700; margin-right:4px;
+  color:var(--muted); font-weight:700;
 }
 .bottleneck .b-chip {
-  display:inline-flex; align-items:center; gap:6px; padding:4px 10px;
-  border-radius:999px; background:var(--accent-soft); color:#7c3d15;
-  font-size:12px; font-weight:600;
+  padding:4px 10px; border-radius:999px; background:var(--accent-soft);
+  color:#7c3d15; font-size:12px; font-weight:600;
 }
 .bottleneck .b-chip.red { background:#f7d4c8; color:#7d1d12; }
 .bottleneck .b-chip.amber { background:#f2dcae; color:#7a4c11; }
 .bottleneck .b-chip.calm { background:#dfe9d8; color:#2d5027; }
 
-/* ---------- projects + epics (v2 hierarchy) ---------- */
-h2 { font-size:18px; margin:22px 0 10px; color:var(--ink); }
-.projects { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:22px; }
-.pcard { flex:1 1 240px; background:var(--card); border:1px solid var(--border);
-  border-radius:12px; padding:14px 16px; }
-.pcard h3 { margin:0 0 6px; font-size:15px; }
-.pcard .big { font-size:26px; font-weight:700; color:var(--accent); line-height:1.1; }
-.pcard .sub { color:var(--muted); font-size:12px; margin-top:6px; }
-.pbar { background:var(--accent-soft); border-radius:6px; height:8px; overflow:hidden; margin-top:8px; }
-.pbar > i { display:block; height:100%; background:var(--accent); border-radius:6px; transition:width .3s; }
-
-details { background:var(--card); border:1px solid var(--border); border-radius:10px;
-  margin-bottom:10px; overflow:hidden; }
-details summary { cursor:pointer; padding:12px 16px; display:flex; align-items:center;
-  gap:12px; list-style:none; font-weight:600; }
-details summary::-webkit-details-marker { display:none; }
-details summary::before { content:"\25b8"; color:var(--muted); font-size:12px; transition:transform .15s; }
-details[open] summary::before { transform:rotate(90deg); }
-.epic-name { flex:1; }
-.epic-pct { font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums;
-  min-width:80px; text-align:right; }
-.epic-bar { flex:0 0 120px; background:var(--accent-soft); height:6px; border-radius:4px; overflow:hidden; }
-.epic-bar > i { display:block; height:100%; background:var(--accent); }
-.features { padding:4px 16px 14px; border-top:1px solid var(--border); }
-.frow { display:flex; align-items:center; gap:10px; padding:8px 0;
-  border-bottom:1px dashed #eee; font-size:13px; }
-.frow:last-child { border-bottom:none; }
-.frow .slug { flex:1; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
-.pill { display:inline-block; padding:2px 9px; border-radius:999px;
-  font-size:11px; font-weight:700; color:#fff; letter-spacing:.02em; white-space:nowrap; }
-.pill.not-started   { background:var(--lgray); color:#374151; }
-.pill.in-progress   { background:var(--gray); }
-.pill.tests-written { background:var(--lblue); }
-.pill.pr-open       { background:var(--blue); }
-.pill.pr-failing    { background:var(--red); }
-.pill.pr-behind     { background:var(--amber); }
-.pill.merged        { background:var(--green); }
-.loc { color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
-.pr-link { color:var(--accent); text-decoration:none; font-size:12px; font-weight:600; }
-.pr-link:hover { text-decoration:underline; }
-.check { color:var(--green); font-weight:700; }
-
-.legend { margin-top:24px; padding:14px 18px; background:var(--card);
-  border:1px solid var(--border); border-radius:10px; }
-.legend h3 { margin:0 0 8px; font-size:13px; color:var(--muted);
-  text-transform:uppercase; letter-spacing:.05em; }
-.legend-items { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
-.legend-items span { display:inline-flex; align-items:center; gap:6px; font-size:12px; }
-
-.regen { position:fixed; bottom:16px; right:16px; background:var(--accent);
-  color:#fff; border:none; padding:12px 18px; border-radius:999px;
-  font-weight:600; cursor:pointer; box-shadow:0 4px 14px rgba(212,98,42,.35); font-size:13px; }
-.regen:hover { background:#b8531e; }
-.toast { position:fixed; bottom:70px; right:16px; background:#1f2937; color:#fff;
-  padding:10px 14px; border-radius:8px; font-size:12px; opacity:0;
-  transition:opacity .3s; pointer-events:none; }
-.toast.show { opacity:1; }
-
-@media (max-width:1000px) {
-  .pipeline { grid-template-columns:repeat(4,1fr); }
-  .stats { grid-template-columns:1fr; }
+/* ---------- Tree ---------- */
+.tree { }
+details {
+  background:var(--card); border:1px solid var(--border); border-radius:10px;
+  margin-bottom:8px; overflow:hidden;
 }
-@media (max-width:640px) {
+details[open] > summary { border-bottom:1px solid var(--border); }
+details.project { border-color:var(--accent-soft); }
+details.project > summary {
+  background:linear-gradient(90deg,#fdf3e6,#fffdf7 60%);
+  padding:14px 16px; font-size:16px; font-weight:700;
+}
+details.epic { margin:6px 12px; }
+details.epic > summary {
+  padding:9px 14px; font-size:14px; font-weight:600; background:#fbf4e0;
+}
+details.feature { margin:4px 24px; border-color:#eadfc4; }
+details.feature > summary {
+  padding:7px 12px; font-size:13px; background:#fffdf7;
+}
+details.feature:not([open]) > summary:not(.no-children)::marker { color:var(--accent); }
+summary {
+  cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px;
+  user-select:none;
+}
+summary::-webkit-details-marker { display:none; }
+summary::before {
+  content:"▸"; display:inline-block; width:14px; color:var(--muted);
+  transition:transform .12s ease; flex-shrink:0;
+}
+details[open] > summary::before { transform:rotate(90deg); }
+summary.leaf::before { content:"•"; color:var(--accent); }
+.node-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.node-name .slug { color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; margin-left:4px; }
+.node-meta { display:flex; gap:10px; align-items:center; font-size:12px; color:var(--muted); flex-shrink:0; }
+.progress-bar {
+  width:120px; height:8px; background:#f1ead6; border-radius:99px; overflow:hidden;
+  flex-shrink:0;
+}
+.progress-bar i {
+  display:block; height:100%; background:linear-gradient(90deg,var(--accent),#b8501e);
+  transition:width .4s ease;
+}
+.pct { min-width:38px; text-align:right; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; }
+.counts { color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+.pill {
+  display:inline-block; padding:1px 8px; border-radius:99px; font-size:10px;
+  font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:#fff;
+  flex-shrink:0;
+}
+.pill.not-started  { background:#8f8676; }
+.pill.in-progress  { background:#a68a4b; }
+.pill.tests-written{ background:#c69a55; }
+.pill.pr-open      { background:#3c8763; }
+.pill.pr-failing   { background:#b0442a; }
+.pill.pr-behind    { background:#a67623; }
+.pill.merged       { background:#c86a2c; }
+
+/* Task rows (leaves) */
+.task-list { padding:6px 20px 10px 40px; }
+.task-row {
+  display:flex; align-items:center; gap:10px; padding:5px 0;
+  border-bottom:1px dashed #eee1c8;
+  font-size:12px;
+}
+.task-row:last-child { border-bottom:none; }
+.task-row a { color:var(--blue); text-decoration:none; font-weight:600; }
+.task-row a:hover { text-decoration:underline; }
+.task-row .task-title {
+  flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:var(--ink);
+}
+.task-row .task-date { color:var(--muted); font-variant-numeric:tabular-nums; }
+
+/* Toolbar buttons */
+.toolbar { display:flex; gap:8px; margin-bottom:10px; }
+.toolbar button {
+  background:var(--card); border:1px solid var(--border); border-radius:6px;
+  padding:5px 12px; color:var(--muted); font-size:12px; cursor:pointer;
+}
+.toolbar button:hover { border-color:var(--accent); color:var(--accent); }
+
+.hidden { display:none !important; }
+.empty {
+  padding:14px; color:var(--muted); font-style:italic; text-align:center;
+  border:1px dashed var(--border); border-radius:10px;
+}
+
+@media (max-width:900px) {
+  .stats { grid-template-columns:repeat(2,1fr); }
+  .pipeline { grid-template-columns:repeat(4,1fr); }
+  .progress-bar { width:60px; }
+}
+@media (max-width:600px) {
   .pipeline { grid-template-columns:repeat(2,1fr); }
-  .projects { flex-direction:column; }
-  .epic-bar { flex:0 0 60px; }
+  .node-meta { flex-wrap:wrap; gap:6px; }
+  .progress-bar { display:none; }
 }
 </style>
 </head>
@@ -157,167 +217,233 @@ details[open] summary::before { transform:rotate(90deg); }
 <h1>ForgeOS Progress</h1>
 <div class="subtitle" id="updated"></div>
 
-<div class="pipeline" id="pipeline"></div>
-
+<div class="filter" id="filter"></div>
 <div class="stats" id="stats"></div>
-
+<div class="pipeline" id="pipeline"></div>
 <div class="bottleneck" id="bottleneck"></div>
 
-<h2>Projects</h2>
-<div class="projects" id="projects"></div>
-
-<h2>Epics</h2>
-<div id="epics"></div>
-
-<div class="legend">
-  <h3>Pipeline stages</h3>
-  <div class="legend-items">
-    <span><span class="pill not-started">not-started</span>in the plan, no branch</span>
-    <span><span class="pill in-progress">in-progress</span>branch + commits, no tests yet</span>
-    <span><span class="pill tests-written">tests-written</span>tester checklist + new tests</span>
-    <span><span class="pill pr-open">pr-open</span>PR open, checks green/pending</span>
-    <span><span class="pill pr-failing">pr-failing</span>PR open, CI failing</span>
-    <span><span class="pill pr-behind">pr-behind</span>PR open, behind main</span>
-    <span><span class="pill merged">merged</span>shipped to main</span>
-  </div>
+<h2>Initiatives</h2>
+<div class="toolbar">
+  <button id="expandAll">Expand all</button>
+  <button id="collapseAll">Collapse all</button>
+  <button id="openInProgress">Open in-progress only</button>
 </div>
+<div class="tree" id="tree"></div>
 
-<button class="regen" id="regenBtn" title="Run regenerate.ps1 locally to refresh from git">Regenerate</button>
-<div class="toast" id="toast">Copied "regenerate dashboard" to clipboard</div>
 <script>
-const DATA = {"generated_at": "2026-09-03T05:19:45+00:00", "pr_data_available": true, "pipeline": {"not-started": {"count": 3, "loc": 0, "tests": 0, "slugs": ["quote-notes", "quote-duplicate", "session-timeout-warning"]}, "in-progress": {"count": 6, "loc": 3191, "tests": 4, "slugs": ["quote-templates-mvp", "stale-nudge-mvp", "kbd-shortcuts-mvp", "kbd-shortcut-modal", "sage-extract-prep", "sage-extract-paid-script"]}, "tests-written": {"count": 2, "loc": 996, "tests": 2, "slugs": ["quote-bulk-delete", "quote-export-csv"]}, "pr-open": {"count": 12, "loc": 22825, "tests": 58, "slugs": ["quote-status-chips", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "days-since-sent-mvp", "quote-pipeline-kanban", "dark-mode-toggle", "sortable-columns", "line-item-typeahead", "pricebook-admin-crud", "sage-pragmatic-demo", "rep-kpi-mvp"]}, "pr-failing": {"count": 6, "loc": 26715, "tests": 76, "slugs": ["quote-total-breakdown", "quote-activity-log", "quote-to-invoice", "customer-credit-terms", "recent-items-sidebar", "qty-discount-ladder"]}, "pr-behind": {"count": 0, "loc": 0, "tests": 0, "slugs": []}, "merged": {"count": 9, "loc": 34143, "tests": 95, "slugs": ["quote-internal-notes", "quote-pdf-download", "customer-notes-tags", "customer-search-filter", "customer-quotes-crosslink", "copy-clipboard-customer", "phone-address-autoformat", "lineitem-dup-delete", "login-lockout"]}}, "headline": {"loc": 87870, "tests": 235, "features_with_code": 35, "awaiting_merge": 18, "shipped": 9}, "bottleneck": {"ci_queued": 0, "ci_failing": 12, "behind": 4, "pr_data_available": true}, "projects": {"ForgeOS Product": {"total": 35, "by_status": {"not-started": 3, "in-progress": 4, "tests-written": 2, "pr-open": 11, "pr-failing": 6, "pr-behind": 0, "merged": 9}, "percent": 26, "epics": ["quote-lifecycle", "customer", "ux-nav", "line-items-pricing", "security", "reporting"]}, "SAGE Integration": {"total": 3, "by_status": {"not-started": 0, "in-progress": 2, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "epics": ["sage-integration"]}, "Dispatch Dashboard": {"total": 0, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "epics": []}}, "epics": {"quote-lifecycle": {"total": 17, "by_status": {"not-started": 2, "in-progress": 2, "tests-written": 2, "pr-open": 6, "pr-failing": 3, "pr-behind": 0, "merged": 2}, "percent": 12, "slugs": ["quote-status-chips", "quote-total-breakdown", "quote-activity-log", "quote-internal-notes", "quote-notes", "quote-templates-mvp", "quote-pdf-download", "quote-email-send", "quote-reminder-cron", "quote-signature-capture", "quote-to-invoice", "quote-duplicate", "quote-bulk-delete", "quote-export-csv", "stale-nudge-mvp", "days-since-sent-mvp", "quote-pipeline-kanban"]}, "customer": {"total": 6, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 1, "pr-behind": 0, "merged": 5}, "percent": 83, "slugs": ["customer-notes-tags", "customer-credit-terms", "customer-search-filter", "customer-quotes-crosslink", "copy-clipboard-customer", "phone-address-autoformat"]}, "ux-nav": {"total": 6, "by_status": {"not-started": 1, "in-progress": 2, "tests-written": 0, "pr-open": 2, "pr-failing": 1, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["dark-mode-toggle", "kbd-shortcuts-mvp", "kbd-shortcut-modal", "sortable-columns", "session-timeout-warning", "recent-items-sidebar"]}, "line-items-pricing": {"total": 4, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 2, "pr-failing": 1, "pr-behind": 0, "merged": 1}, "percent": 25, "slugs": ["line-item-typeahead", "lineitem-dup-delete", "qty-discount-ladder", "pricebook-admin-crud"]}, "security": {"total": 1, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 1}, "percent": 100, "slugs": ["login-lockout"]}, "sage-integration": {"total": 3, "by_status": {"not-started": 0, "in-progress": 2, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["sage-pragmatic-demo", "sage-extract-prep", "sage-extract-paid-script"]}, "reporting": {"total": 1, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 0}, "percent": 0, "slugs": ["rep-kpi-mvp"]}}, "features": {"quote-status-chips": {"slug": "quote-status-chips", "branch": "local/feature-quote-status-chips-2026-08-27", "loc": 140, "commits": 2, "tests_added": 1, "has_checklist": true, "pr": 384, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384", "pr_state": "green", "pr_merge_state": "DIRTY", "status": "pr-open"}, "quote-total-breakdown": {"slug": "quote-total-breakdown", "branch": "local/feature-quote-total-breakdown-2026-08-27", "loc": 400, "commits": 1, "tests_added": 2, "has_checklist": true, "pr": 395, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/395", "pr_state": "failing", "pr_merge_state": "BEHIND", "status": "pr-failing"}, "quote-activity-log": {"slug": "quote-activity-log", "branch": "local/feature-quote-activity-log-2026-08-27", "loc": 735, "commits": 1, "tests_added": 3, "has_checklist": true, "pr": 400, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/400", "pr_state": "failing", "pr_merge_state": "BEHIND", "status": "pr-failing"}, "quote-internal-notes": {"slug": "quote-internal-notes", "branch": "local/feature-quote-internal-notes-2026-08-27", "loc": 11212, "commits": 33, "tests_added": 30, "has_checklist": true, "pr": 396, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/396", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "quote-notes": {"slug": "quote-notes", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "quote-templates-mvp": {"slug": "quote-templates-mvp", "branch": "local/feature-quote-templates-mvp-2026-08-27", "loc": 257, "commits": 1, "tests_added": 1, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "quote-pdf-download": {"slug": "quote-pdf-download", "branch": "local/feature-quote-pdf-download-2026-08-27", "loc": 263, "commits": 1, "tests_added": 2, "has_checklist": true, "pr": 388, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/388", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "quote-email-send": {"slug": "quote-email-send", "branch": "local/feature-quote-email-send-2026-08-27", "loc": 366, "commits": 1, "tests_added": 1, "has_checklist": true, "pr": 394, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/394", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "quote-reminder-cron": {"slug": "quote-reminder-cron", "branch": "local/feature-quote-reminder-cron-2026-08-27", "loc": 832, "commits": 5, "tests_added": 2, "has_checklist": true, "pr": 414, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/414", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "quote-signature-capture": {"slug": "quote-signature-capture", "branch": "local/feature-quote-signature-capture-2026-08-27", "loc": 544, "commits": 3, "tests_added": 3, "has_checklist": true, "pr": 405, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/405", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "quote-to-invoice": {"slug": "quote-to-invoice", "branch": "local/feature-quote-to-invoice-2026-08-27", "loc": 12440, "commits": 39, "tests_added": 34, "has_checklist": true, "pr": 402, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/402", "pr_state": "failing", "pr_merge_state": "DIRTY", "status": "pr-failing"}, "quote-duplicate": {"slug": "quote-duplicate", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "quote-bulk-delete": {"slug": "quote-bulk-delete", "branch": "local/feature-quote-bulk-delete-2026-08-27", "loc": 447, "commits": 1, "tests_added": 1, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "quote-export-csv": {"slug": "quote-export-csv", "branch": "local/feature-quote-export-csv-2026-08-27", "loc": 549, "commits": 1, "tests_added": 1, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "tests-written"}, "stale-nudge-mvp": {"slug": "stale-nudge-mvp", "branch": "local/feature-stale-nudge-mvp-2026-08-27", "loc": 282, "commits": 1, "tests_added": 1, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "days-since-sent-mvp": {"slug": "days-since-sent-mvp", "branch": "local/feature-days-since-sent-mvp-2026-08-27", "loc": 218, "commits": 1, "tests_added": 1, "has_checklist": false, "pr": 421, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/421", "pr_state": "pending", "pr_merge_state": "DIRTY", "status": "pr-open"}, "quote-pipeline-kanban": {"slug": "quote-pipeline-kanban", "branch": "local/feature-quote-pipeline-kanban-2026-08-27", "loc": 16109, "commits": 74, "tests_added": 39, "has_checklist": true, "pr": 410, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "customer-notes-tags": {"slug": "customer-notes-tags", "branch": "local/feature-customer-notes-tags-2026-08-27", "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "merged"}, "customer-credit-terms": {"slug": "customer-credit-terms", "branch": "local/feature-customer-credit-terms-2026-08-27", "loc": 330, "commits": 2, "tests_added": 3, "has_checklist": true, "pr": 412, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/412", "pr_state": "failing", "pr_merge_state": "DIRTY", "status": "pr-failing"}, "customer-search-filter": {"slug": "customer-search-filter", "branch": "local/feature-customer-search-filter-2026-08-27", "loc": 10458, "commits": 30, "tests_added": 28, "has_checklist": true, "pr": 390, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/390", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "customer-quotes-crosslink": {"slug": "customer-quotes-crosslink", "branch": "local/feature-customer-quotes-crosslink-2026-08-27", "loc": 10827, "commits": 34, "tests_added": 29, "has_checklist": true, "pr": 387, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/387", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "copy-clipboard-customer": {"slug": "copy-clipboard-customer", "branch": "local/feature-copy-clipboard-customer-2026-08-27", "loc": 327, "commits": 1, "tests_added": 1, "has_checklist": false, "pr": 393, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/393", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "phone-address-autoformat": {"slug": "phone-address-autoformat", "branch": "local/feature-phone-address-autoformat-2026-08-27", "loc": 282, "commits": 1, "tests_added": 2, "has_checklist": true, "pr": 389, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/389", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "dark-mode-toggle": {"slug": "dark-mode-toggle", "branch": "local/feature-dark-mode-toggle-2026-08-27", "loc": 469, "commits": 1, "tests_added": 1, "has_checklist": true, "pr": 397, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/397", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "kbd-shortcuts-mvp": {"slug": "kbd-shortcuts-mvp", "branch": "local/feature-kbd-shortcuts-mvp-2026-08-27", "loc": 102, "commits": 1, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "kbd-shortcut-modal": {"slug": "kbd-shortcut-modal", "branch": "local/feature-kbd-shortcut-modal-2026-08-27", "loc": 101, "commits": 1, "tests_added": 0, "has_checklist": true, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "sortable-columns": {"slug": "sortable-columns", "branch": "local/feature-sortable-columns-2026-08-27", "loc": 638, "commits": 1, "tests_added": 4, "has_checklist": true, "pr": 398, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398", "pr_state": "pending", "pr_merge_state": "DIRTY", "status": "pr-open"}, "session-timeout-warning": {"slug": "session-timeout-warning", "branch": null, "loc": 0, "commits": 0, "tests_added": 0, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "not-started"}, "recent-items-sidebar": {"slug": "recent-items-sidebar", "branch": "local/feature-recent-items-sidebar-2026-08-27", "loc": 308, "commits": 2, "tests_added": 1, "has_checklist": true, "pr": 391, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/391", "pr_state": "failing", "pr_merge_state": "BEHIND", "status": "pr-failing"}, "line-item-typeahead": {"slug": "line-item-typeahead", "branch": "local/feature-line-item-typeahead-2026-08-27", "loc": 247, "commits": 1, "tests_added": 2, "has_checklist": true, "pr": 386, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "lineitem-dup-delete": {"slug": "lineitem-dup-delete", "branch": "local/feature-lineitem-dup-delete-2026-08-27", "loc": 244, "commits": 2, "tests_added": 1, "has_checklist": true, "pr": 415, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/415", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "qty-discount-ladder": {"slug": "qty-discount-ladder", "branch": "local/feature-qty-discount-ladder-2026-08-27", "loc": 12502, "commits": 39, "tests_added": 33, "has_checklist": true, "pr": 399, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/399", "pr_state": "failing", "pr_merge_state": "DIRTY", "status": "pr-failing"}, "pricebook-admin-crud": {"slug": "pricebook-admin-crud", "branch": "local/feature-pricebook-admin-crud-2026-08-27", "loc": 960, "commits": 2, "tests_added": 2, "has_checklist": true, "pr": 411, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/411", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "login-lockout": {"slug": "login-lockout", "branch": "local/feature-login-lockout-2026-08-27", "loc": 530, "commits": 6, "tests_added": 2, "has_checklist": true, "pr": 409, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/409", "pr_state": null, "pr_merge_state": null, "status": "merged"}, "sage-pragmatic-demo": {"slug": "sage-pragmatic-demo", "branch": "local/feature-sage-pragmatic-demo-2026-08-27", "loc": 1995, "commits": 7, "tests_added": 1, "has_checklist": false, "pr": 401, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/401", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}, "sage-extract-prep": {"slug": "sage-extract-prep", "branch": "local/feature-sage-extract-prep-2026-08-27", "loc": 977, "commits": 1, "tests_added": 1, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "sage-extract-paid-script": {"slug": "sage-extract-paid-script", "branch": "local/feature-sage-extract-paid-script-2026-08-27", "loc": 1472, "commits": 2, "tests_added": 1, "has_checklist": false, "pr": null, "pr_url": null, "pr_state": null, "pr_merge_state": null, "status": "in-progress"}, "rep-kpi-mvp": {"slug": "rep-kpi-mvp", "branch": "local/feature-rep-kpi-mvp-2026-08-27", "loc": 307, "commits": 2, "tests_added": 1, "has_checklist": false, "pr": 392, "pr_url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/392", "pr_state": "pending", "pr_merge_state": "BLOCKED", "status": "pr-open"}}, "summary": {"total": 38, "by_status": {"not-started": 3, "in-progress": 6, "tests-written": 2, "pr-open": 12, "pr-failing": 6, "pr-behind": 0, "merged": 9}, "percent": 24}};
-
-const STAGE_ORDER = ["not-started","in-progress","tests-written","pr-open","pr-failing","pr-behind","merged"];
+const DATA = {"generated_at": "2026-09-04T04:13:48+00:00", "since": "2026-08-27T00:00:00Z", "pr_data_available": true, "counts": {"features": 141, "tasks": 141, "tasks_merged": 76, "tasks_open": 65, "prs_merged": 100, "prs_open": 65}, "pipeline": {"not-started": {"count": 0, "slugs": []}, "in-progress": {"count": 0, "slugs": []}, "tests-written": {"count": 0, "slugs": []}, "pr-open": {"count": 52, "slugs": ["sla-p21-rep-diagnostics", "test-split", "ci-cache", "sla-p36-po-versioning", "sla-p33-supersede-quote", "forge-cli", "pre-push-hook", "laughing-noyce-0b027b", "ci-pip-venv-isolation", "fix-bulkops-header-misalignment", "sla-p41-alert-detector-audit", "sla-p3-2-artifact-versioning-guard", "quote-recurring-schedule", "weekly-digest", "quote-followup-tasks", "quote-to-order", "supplier-po", "quote-tz-display", "quote-saved-views", "shipping-tracker", "customer-anniversary", "quote-batch-send", "quote-lock", "customer-custom-fields", "customer-portal", "quote-analytics", "lineitem-bulk-copy", "db-backup", "quote-comments", "dashboard-charts", "sage-detail-client", "sage-storage-hardening", "days-since-sent-mvp", "quote-print-view", "recent-quotes-sidebar", "quote-reminder-cron", "pricebook-admin-crud", "quote-pipeline-kanban", "audit-log", "user-profile-avatar", "quote-share-link", "quote-signature-capture", "quote-compare-view", "sage-pragmatic-demo", "sortable-columns", "dark-mode-toggle", "quote-email-send", "rep-kpi-mvp", "line-item-typeahead", "quote-status-chips", "plan-multi-tenant-transition", "rebrand-pr6-support-forgeos"]}, "pr-failing": {"count": 12, "slugs": ["sla-p33-supersede", "lineitem-groups", "quote-approval-workflow", "quote-tags-filters", "customer-credit-terms", "lineitem-thumbnails", "quote-to-invoice", "quote-activity-log", "qty-discount-ladder", "quote-total-breakdown", "recent-items-sidebar", "gtm-send-email-polish"]}, "pr-behind": {"count": 1, "slugs": ["win-loss-reasons"]}, "merged": {"count": 76, "slugs": ["docs-ci-runner-node-finding", "docs-ci-runner-quotediff-finding", "sla-p35-invoice-version", "security-ack-template", "sla-p63-issue-templates", "sla-artifact-versioning", "sla-p34-document-stamping", "outlook-urgent-security-rules", "sla-p32-artifact-versioning", "adr-021-no-app-level-2fa", "sage-cache-quote-integration", "quote-suggested-products", "sage-cache-admin", "ci-prevention-doc", "backlog-queue-scaffold", "quote-margin-calc", "mobile-responsive-list", "quote-recurring", "onboarding-tour", "quote-diff-view", "rep-leaderboard", "quote-inline-edit", "quote-favorites", "password-reset", "quote-attachments", "pricing-rules", "team-roles-perms", "feature-flags", "customer-segments", "customer-tags", "email-template-vars", "health-check", "quote-payment-link", "outbound-webhooks", "quote-clone-mods", "multi-currency", "quote-number-format", "quote-versioning", "api-v1", "notifications-bell", "customer-import-csv", "customer-merge-dup", "email-templates", "customer-multi-contacts", "quote-batch-actions", "lineitem-dup-delete", "global-omnibox", "login-lockout", "quote-internal-notes", "copy-clipboard-customer", "customer-search-filter", "phone-address-autoformat", "quote-pdf-download", "customer-quotes-crosslink", "plans-consolidated", "ship-log", "quote-authoring-polish", "phase1-org-partitioning", "sage-catalog-extract", "rebrand-pr4-repo-slug", "rebrand-pr5-prose-forgeos", "rebrand-pr3-roles-forgeos", "rebrand-pr2-package-name", "rebrand-sales-pipeline-to-forgeos", "send-deliver-quote", "customer-management", "data-safety", "list-hygiene", "gtm-quote-autosave", "gtm-quote-status-chips", "gate-check-harness", "dispatch-feat-sage-cache-demo-page-visible-artifa", "dispatch-regenerate-dashboard-refresh-live-pr-mer", "dispatch-dashboard-v3-pipeline-stage-view", "dispatch-dashboard-v2-progress-tracking-projects", "dispatch-publish-forgeos-dispatch-dashboard"]}}, "bottleneck": {"ci_queued": 0, "ci_failing": 12, "behind": 4, "pr_data_available": true}, "projects": [{"name": "ForgeOS Product", "feature_total": 114, "feature_done": 59, "task_total": 114, "task_done": 59, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 42, "pr-failing": 12, "pr-behind": 1, "merged": 59}, "percent": 52, "epics": [{"slug": "quote-lifecycle", "label": "Quote Lifecycle", "feature_total": 39, "feature_done": 13, "task_total": 39, "task_done": 13, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 20, "pr-failing": 6, "pr-behind": 0, "merged": 13}, "percent": 33, "features": [{"slug": "days-since-sent-mvp", "label": "days-since-sent indicator (MVP)", "branch": "local/feature-days-since-sent-mvp-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 421, "title": "feat(quote): days-since-sent indicator (MVP)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/421", "status": "pr-open", "updated_at": null}]}, {"slug": "fix-bulkops-header-misalignment", "label": "bulk-select header/row column mismatch on non-quote #rows tables", "branch": "claude/fix-bulkops-header-misalignment", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 492, "title": "fix: bulk-select header/row column mismatch on non-quote #rows tables", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/492", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-analytics", "label": "quote view analytics (view count, unique IPs, 30-day sparkline)", "branch": "local/feature-quote-analytics-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 446, "title": "feat: quote view analytics (view count, unique IPs, 30-day sparkline)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/446", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-batch-send", "label": "batch \"Send all\" for quotes (multi-select -> one reviewed draft each)", "branch": "local/feature-quote-batch-send-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 458, "title": "feat: batch \"Send all\" for quotes (multi-select -> one reviewed draft each)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/458", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-comments", "label": "internal comments panel on the quote row (@mentions feed the alert list)", "branch": "local/feature-quote-comments-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 438, "title": "feat: internal comments panel on the quote row (@mentions feed the alert list)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/438", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-compare-view", "label": "quote comparison view", "branch": "local/feature-quote-compare-view-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 403, "title": "feat: quote comparison view", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/403", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-email-send", "label": "send quote via email", "branch": "local/feature-quote-email-send-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 394, "title": "feat(quote): send quote via email", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/394", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-followup-tasks", "label": "follow-up to-dos on a quote + a /tasks worklist", "branch": "local/feature-quote-followup-tasks-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 470, "title": "feat: follow-up to-dos on a quote + a /tasks worklist", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/470", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-lock", "label": "manager lock on a quote (K-QL)", "branch": "local/feature-quote-lock-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 457, "title": "feat: manager lock on a quote (K-QL)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/457", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-pipeline-kanban", "label": "quote pipeline kanban view", "branch": "local/feature-quote-pipeline-kanban-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 410, "title": "feat: quote pipeline kanban view", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/410", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-print-view", "label": "quote print-friendly view", "branch": "local/feature-quote-print-view-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 418, "title": "feat: quote print-friendly view", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/418", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-recurring-schedule", "label": "quote recurring schedule", "branch": "local/feature-quote-recurring-schedule-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 479, "title": "feat: quote recurring schedule", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/479", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-reminder-cron", "label": "quote reminder email cron", "branch": "local/feature-quote-reminder-cron-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 414, "title": "feat: quote reminder email cron", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/414", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-saved-views", "label": "saved views on the Quotes list (tabs + column layout)", "branch": "local/feature-quote-saved-views-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 464, "title": "feat: saved views on the Quotes list (tabs + column layout)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/464", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-share-link", "label": "quote share link + view tracking", "branch": "local/feature-quote-share-link-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 406, "title": "feat: quote share link + view tracking", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/406", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-signature-capture", "label": "quote acceptance signature capture", "branch": "local/feature-quote-signature-capture-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 405, "title": "feat: quote acceptance signature capture", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/405", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-status-chips", "label": "status chips on quote list", "branch": "local/feature-quote-status-chips-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 384, "title": "feat(quote): status chips on quote list", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/384", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-to-order", "label": "quote -> order lifecycle (status, tracking, /orders detail)", "branch": "local/feature-quote-to-order-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 469, "title": "feat: quote -> order lifecycle (status, tracking, /orders detail)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/469", "status": "pr-open", "updated_at": null}]}, {"slug": "quote-tz-display", "label": "show timestamps in the rep's own time zone (SX-217)", "branch": "local/feature-quote-tz-display-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 467, "title": "feat: show timestamps in the rep's own time zone (SX-217)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/467", "status": "pr-open", "updated_at": null}]}, {"slug": "recent-quotes-sidebar", "label": "recent quotes sidebar", "branch": "local/feature-recent-quotes-sidebar-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 416, "title": "feat: recent quotes sidebar", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/416", "status": "pr-open", "updated_at": null}]}, {"slug": "qty-discount-ladder", "label": "quantity discount ladder", "branch": "local/feature-qty-discount-ladder-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 399, "title": "feat(quote): quantity discount ladder", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/399", "status": "pr-failing", "updated_at": null}]}, {"slug": "quote-activity-log", "label": "activity log for quote changes", "branch": "local/feature-quote-activity-log-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 400, "title": "feat(quote): activity log for quote changes", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/400", "status": "pr-failing", "updated_at": null}]}, {"slug": "quote-approval-workflow", "label": "quote approval workflow for over-threshold quotes", "branch": "local/feature-quote-approval-workflow-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 428, "title": "feat: quote approval workflow for over-threshold quotes", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/428", "status": "pr-failing", "updated_at": null}]}, {"slug": "quote-tags-filters", "label": "quote tags + saved filters", "branch": "local/feature-quote-tags-filters-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 417, "title": "feat: quote tags + saved filters", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/417", "status": "pr-failing", "updated_at": null}]}, {"slug": "quote-to-invoice", "label": "quote convert-to-invoice", "branch": "local/feature-quote-to-invoice-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 402, "title": "feat: quote convert-to-invoice", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/402", "status": "pr-failing", "updated_at": null}]}, {"slug": "quote-total-breakdown", "label": "total breakdown display", "branch": "local/feature-quote-total-breakdown-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 395, "title": "feat(quote): total breakdown display", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/395", "status": "pr-failing", "updated_at": null}]}, {"slug": "gtm-quote-autosave", "label": "clear the quote checkpoint after a successful Generate", "branch": "local/gtm-quote-autosave-2026-08-21", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 358, "title": "fix: clear the quote checkpoint after a successful Generate", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/358", "status": "merged", "merged_at": "2026-09-02T04:43:52Z"}]}, {"slug": "quote-attachments", "label": "quote attachments - upload mockups, spec sheets and art proofs", "branch": "local/feature-quote-attachments-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 451, "title": "feat: quote attachments - upload mockups, spec sheets and art proofs", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/451", "status": "merged", "merged_at": "2026-08-31T02:00:58Z"}]}, {"slug": "quote-authoring-polish", "label": "local/feature quote authoring polish 2026 08 21", "branch": "local/feature-quote-authoring-polish-2026-08-21", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 381, "title": "local/feature quote authoring polish 2026 08 21", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/381", "status": "merged", "merged_at": "2026-08-28T06:05:08Z"}]}, {"slug": "quote-batch-actions", "label": "quote list batch actions", "branch": "local/feature-quote-batch-actions-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 419, "title": "feat: quote list batch actions", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/419", "status": "merged", "merged_at": "2026-08-30T13:25:46Z"}]}, {"slug": "quote-diff-view", "label": "compare two versions of a quote side by side", "branch": "local/feature-quote-diff-view-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 459, "title": "feat: compare two versions of a quote side by side", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/459", "status": "merged", "merged_at": "2026-08-31T11:54:47Z"}]}, {"slug": "quote-favorites", "label": "pin a quote to your own header list (quote favourites)", "branch": "local/feature-quote-favorites-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 453, "title": "feat: pin a quote to your own header list (quote favourites)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/453", "status": "merged", "merged_at": "2026-08-30T23:19:40Z"}]}, {"slug": "quote-internal-notes", "label": "internal notes on quote", "branch": "local/feature-quote-internal-notes-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 396, "title": "feat(quote): internal notes on quote", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/396", "status": "merged", "merged_at": "2026-09-02T01:40:59Z"}]}, {"slug": "quote-number-format", "label": "quote number format setting (Settings page)", "branch": "local/feature-quote-number-format-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 434, "title": "feat: quote number format setting (Settings page)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/434", "status": "merged", "merged_at": "2026-08-31T05:33:43Z"}]}, {"slug": "quote-pdf-download", "label": "download quote as PDF", "branch": "local/feature-quote-pdf-download-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 388, "title": "feat(quote): download quote as PDF", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/388", "status": "merged", "merged_at": "2026-08-29T22:14:39Z"}]}, {"slug": "quote-recurring", "label": "recurring quotes (cadence + scheduled draft duplicate)", "branch": "local/feature-quote-recurring-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 462, "title": "feat: recurring quotes (cadence + scheduled draft duplicate)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/462", "status": "merged", "merged_at": "2026-08-31T05:12:02Z"}]}, {"slug": "quote-suggested-products", "label": "\"Add suggested products\" panel on the quote edit view", "branch": "local/feature-quote-suggested-products-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 475, "title": "feat: \"Add suggested products\" panel on the quote edit view", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/475", "status": "merged", "merged_at": "2026-08-31T02:12:57Z"}]}, {"slug": "quote-versioning", "label": "quote revision history \u00e2\u20ac\u201d versions, diff vs current, restore", "branch": "local/feature-quote-versioning-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 432, "title": "feat: quote revision history \u00e2\u20ac\u201d versions, diff vs current, restore", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/432", "status": "merged", "merged_at": "2026-08-31T06:31:34Z"}]}, {"slug": "send-deliver-quote", "label": "local/feature send deliver quote 2026 08 22", "branch": "local/feature-send-deliver-quote-2026-08-22", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 371, "title": "local/feature send deliver quote 2026 08 22", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/371", "status": "merged", "merged_at": "2026-08-28T05:23:09Z"}]}]}, {"slug": "customer", "label": "Customer", "feature_total": 18, "feature_done": 13, "task_total": 18, "task_done": 13, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 4, "pr-failing": 1, "pr-behind": 0, "merged": 13}, "percent": 72, "features": [{"slug": "customer-anniversary", "label": "birthday / company-anniversary reminders for the assigned rep", "branch": "local/feature-customer-anniversary-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 461, "title": "feat: birthday / company-anniversary reminders for the assigned rep", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/461", "status": "pr-open", "updated_at": null}]}, {"slug": "customer-custom-fields", "label": "customer custom fields (admin-defined, per-customer values)", "branch": "local/feature-customer-custom-fields-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 454, "title": "feat: customer custom fields (admin-defined, per-customer values)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/454", "status": "pr-open", "updated_at": null}]}, {"slug": "customer-portal", "label": "public customer portal at /portal/<token>", "branch": "local/feature-customer-portal-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 449, "title": "feat: public customer portal at /portal/<token>", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/449", "status": "pr-open", "updated_at": null}]}, {"slug": "laughing-noyce-0b027b", "label": "/customers ReferenceError from a dead makeDebouncedFilter call", "branch": "claude/laughing-noyce-0b027b", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 496, "title": "fix: /customers ReferenceError from a dead makeDebouncedFilter call", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/496", "status": "pr-open", "updated_at": null}]}, {"slug": "customer-credit-terms", "label": "customer credit terms + limit", "branch": "local/feature-customer-credit-terms-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 412, "title": "feat: customer credit terms + limit", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/412", "status": "pr-failing", "updated_at": null}]}, {"slug": "api-v1", "label": "REST v1 API \u00e2\u20ac\u201d quotes/customers/line-items CRUD, API-key auth, rate limit", "branch": "local/feature-api-v1-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 431, "title": "feat: REST v1 API \u00e2\u20ac\u201d quotes/customers/line-items CRUD, API-key auth, rate limit", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/431", "status": "merged", "merged_at": "2026-08-31T02:42:03Z"}]}, {"slug": "copy-clipboard-customer", "label": "copy customer address/contact to clipboard", "branch": "local/feature-copy-clipboard-customer-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 393, "title": "feat(customer): copy customer address/contact to clipboard", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/393", "status": "merged", "merged_at": "2026-09-02T04:44:11Z"}]}, {"slug": "customer-import-csv", "label": "CSV customer import with preview, mapping, and progress bar", "branch": "local/feature-customer-import-csv-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 429, "title": "feat: CSV customer import with preview, mapping, and progress bar", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/429", "status": "merged", "merged_at": "2026-09-02T03:46:55Z"}]}, {"slug": "customer-management", "label": "local/feature customer management 2026 08 22", "branch": "local/feature-customer-management-2026-08-22", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 370, "title": "local/feature customer management 2026 08 22", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/370", "status": "merged", "merged_at": "2026-08-28T01:39:14Z"}]}, {"slug": "customer-merge-dup", "label": "customer duplicate merger", "branch": "local/feature-customer-merge-dup-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 425, "title": "feat: customer duplicate merger", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/425", "status": "merged", "merged_at": "2026-08-31T09:22:44Z"}]}, {"slug": "customer-multi-contacts", "label": "per-contact notes, primary backfill, CC-contact picker", "branch": "local/feature-customer-multi-contacts-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 420, "title": "feat: per-contact notes, primary backfill, CC-contact picker", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/420", "status": "merged", "merged_at": "2026-09-02T04:34:50Z"}]}, {"slug": "customer-quotes-crosslink", "label": "cross-link customer detail to their quotes", "branch": "local/feature-customer-quotes-crosslink-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 387, "title": "feat(customer): cross-link customer detail to their quotes", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/387", "status": "merged", "merged_at": "2026-09-02T00:38:53Z"}]}, {"slug": "customer-search-filter", "label": "search + filter on customer list", "branch": "local/feature-customer-search-filter-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 390, "title": "feat(customer): search + filter on customer list", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/390", "status": "merged", "merged_at": "2026-09-01T22:07:25Z"}]}, {"slug": "customer-segments", "label": "customer segments (named, rule-defined groups)", "branch": "local/feature-customer-segments-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 445, "title": "feat: customer segments (named, rule-defined groups)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/445", "status": "merged", "merged_at": "2026-08-31T03:10:01Z"}]}, {"slug": "customer-tags", "label": "free-form customer tags with autocomplete + multi-select filter", "branch": "local/feature-customer-tags-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 444, "title": "feat: free-form customer tags with autocomplete + multi-select filter", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/444", "status": "merged", "merged_at": "2026-09-02T05:06:56Z"}]}, {"slug": "phone-address-autoformat", "label": "phone & address auto-format on input", "branch": "local/feature-phone-address-autoformat-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 389, "title": "feat(customer): phone & address auto-format on input", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/389", "status": "merged", "merged_at": "2026-09-02T04:33:55Z"}]}, {"slug": "quote-clone-mods", "label": "clone a quote with price/quantity/customer changes applied", "branch": "local/feature-quote-clone-mods-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 436, "title": "feat: clone a quote with price/quantity/customer changes applied", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/436", "status": "merged", "merged_at": "2026-08-31T00:47:31Z"}]}, {"slug": "quote-inline-edit", "label": "inline-edit quote list cells (customer, qty, unit price)", "branch": "local/feature-quote-inline-edit-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 455, "title": "ux: inline-edit quote list cells (customer, qty, unit price)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/455", "status": "merged", "merged_at": "2026-08-31T01:00:18Z"}]}]}, {"slug": "line-items-pricing", "label": "Line Items & Pricing", "feature_total": 12, "feature_done": 6, "task_total": 12, "task_done": 6, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 4, "pr-failing": 2, "pr-behind": 0, "merged": 6}, "percent": 50, "features": [{"slug": "line-item-typeahead", "label": "line-item typeahead", "branch": "local/feature-line-item-typeahead-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 386, "title": "feat(quote): line-item typeahead", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/386", "status": "pr-open", "updated_at": null}]}, {"slug": "lineitem-bulk-copy", "label": "copy line items from a past quote in the quote editor", "branch": "local/feature-lineitem-bulk-copy-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 442, "title": "feat: copy line items from a past quote in the quote editor", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/442", "status": "pr-open", "updated_at": null}]}, {"slug": "pricebook-admin-crud", "label": "pricebook admin CRUD", "branch": "local/feature-pricebook-admin-crud-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 411, "title": "feat: pricebook admin CRUD", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/411", "status": "pr-open", "updated_at": null}]}, {"slug": "supplier-po", "label": "generate one supplier PO per order from the price book", "branch": "local/feature-supplier-po-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 468, "title": "feat: generate one supplier PO per order from the price book", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/468", "status": "pr-open", "updated_at": null}]}, {"slug": "lineitem-groups", "label": "line item groups with editor subtotals and PDF sections", "branch": "local/feature-lineitem-groups-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 433, "title": "feat: line item groups with editor subtotals and PDF sections", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/433", "status": "pr-failing", "updated_at": null}]}, {"slug": "lineitem-thumbnails", "label": "line-item image thumbnails", "branch": "local/feature-lineitem-thumbnails-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 404, "title": "feat: line-item image thumbnails", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/404", "status": "pr-failing", "updated_at": null}]}, {"slug": "lineitem-dup-delete", "label": "line-item duplicate + trash icons", "branch": "local/feature-lineitem-dup-delete-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 415, "title": "feat: line-item duplicate + trash icons", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/415", "status": "merged", "merged_at": "2026-09-02T04:31:14Z"}]}, {"slug": "multi-currency", "label": "multi-currency quotes (currency + exchange_rate_to_usd)", "branch": "local/feature-multi-currency-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 435, "title": "feat: multi-currency quotes (currency + exchange_rate_to_usd)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/435", "status": "merged", "merged_at": "2026-08-31T15:55:16Z"}]}, {"slug": "outbound-webhooks", "label": "outbound webhooks for quote lifecycle events", "branch": "local/feature-outbound-webhooks-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 437, "title": "feat: outbound webhooks for quote lifecycle events", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/437", "status": "merged", "merged_at": "2026-08-31T06:01:46Z"}]}, {"slug": "pricing-rules", "label": "admin-maintained pricing rules, shown when a quote is generated", "branch": "local/feature-pricing-rules-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 450, "title": "feat: admin-maintained pricing rules, shown when a quote is generated", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/450", "status": "merged", "merged_at": "2026-08-31T13:31:53Z"}]}, {"slug": "quote-margin-calc", "label": "live per-line margin % and a deal gross-margin footer", "branch": "local/feature-quote-margin-calc-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 466, "title": "feat: live per-line margin % and a deal gross-margin footer", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/466", "status": "merged", "merged_at": "2026-08-31T03:56:07Z"}]}, {"slug": "quote-payment-link", "label": "payment link on an accepted quote (plumbing, no processor)", "branch": "local/feature-quote-payment-link-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 439, "title": "feat: payment link on an accepted quote (plumbing, no processor)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/439", "status": "merged", "merged_at": "2026-08-31T04:59:58Z"}]}]}, {"slug": "security", "label": "Security & Auth", "feature_total": 10, "feature_done": 9, "task_total": 10, "task_done": 9, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 9}, "percent": 90, "features": [{"slug": "audit-log", "label": "audit log for edits", "branch": "local/feature-audit-log-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 408, "title": "feat: audit log for edits", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/408", "status": "pr-open", "updated_at": null}]}, {"slug": "adr-021-no-app-level-2fa", "label": "ADR-023 \u00e2\u20ac\u201d reject app-level 2FA, defer MFA to Entra tenant policy", "branch": "local/adr-021-no-app-level-2fa-2026-08-30", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 477, "title": "docs: ADR-023 \u00e2\u20ac\u201d reject app-level 2FA, defer MFA to Entra tenant policy", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/477", "status": "merged", "merged_at": "2026-09-02T05:03:34Z"}]}, {"slug": "data-safety", "label": "local/feature data safety 2026 08 22", "branch": "local/feature-data-safety-2026-08-22", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 369, "title": "local/feature data safety 2026 08 22", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/369", "status": "merged", "merged_at": "2026-08-28T01:17:59Z"}]}, {"slug": "login-lockout", "label": "login lockout + rate limit", "branch": "local/feature-login-lockout-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 409, "title": "feat: login lockout + rate limit", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/409", "status": "merged", "merged_at": "2026-08-30T21:38:18Z"}]}, {"slug": "onboarding-tour", "label": "first-login product tour (5 steps, replayable from Settings)", "branch": "local/feature-onboarding-tour-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 460, "title": "feat: first-login product tour (5 steps, replayable from Settings)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/460", "status": "merged", "merged_at": "2026-08-30T21:24:04Z"}]}, {"slug": "outlook-urgent-security-rules", "label": "URGENT/SECURITY Outlook rules (EP-SLA SLA-P3.1, SLA-P7.1)", "branch": "local/feature-outlook-urgent-security-rules-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 484, "title": "docs: URGENT/SECURITY Outlook rules (EP-SLA SLA-P3.1, SLA-P7.1)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/484", "status": "merged", "merged_at": "2026-08-31T13:02:14Z"}]}, {"slug": "password-reset", "label": "password-based login + self-service password reset", "branch": "local/feature-password-reset-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 452, "title": "feat: password-based login + self-service password reset", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/452", "status": "merged", "merged_at": "2026-08-31T07:17:33Z"}]}, {"slug": "security-ack-template", "label": "security-report ack template (EP-SLA SLA-P7.3)", "branch": "local/feature-security-ack-template-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 489, "title": "docs: security-report ack template (EP-SLA SLA-P7.3)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/489", "status": "merged", "merged_at": "2026-09-01T23:26:31Z"}]}, {"slug": "sla-p63-issue-templates", "label": "GitHub issue templates with \"before you ask\" fields (SLA-P6.3)", "branch": "local/sla-p63-issue-templates-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 487, "title": "feat: GitHub issue templates with \"before you ask\" fields (SLA-P6.3)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/487", "status": "merged", "merged_at": "2026-08-31T14:47:08Z"}]}, {"slug": "team-roles-perms", "label": "team roles and permission checks (admin/manager/rep/viewer)", "branch": "local/feature-team-roles-perms-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 448, "title": "feat: team roles and permission checks (admin/manager/rep/viewer)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/448", "status": "merged", "merged_at": "2026-08-30T23:53:19Z"}]}]}, {"slug": "ux-nav", "label": "UX & Navigation", "feature_total": 10, "feature_done": 5, "task_total": 10, "task_done": 5, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 2, "pr-behind": 0, "merged": 5}, "percent": 50, "features": [{"slug": "dark-mode-toggle", "label": "dark mode toggle", "branch": "local/feature-dark-mode-toggle-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 397, "title": "feat(ui): dark mode toggle", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/397", "status": "pr-open", "updated_at": null}]}, {"slug": "sortable-columns", "label": "sortable columns on lists", "branch": "local/feature-sortable-columns-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 398, "title": "feat(ui): sortable columns on lists", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398", "status": "pr-open", "updated_at": null}]}, {"slug": "user-profile-avatar", "label": "user profile + avatar", "branch": "local/feature-user-profile-avatar-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 407, "title": "feat: user profile + avatar", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/407", "status": "pr-open", "updated_at": null}]}, {"slug": "gtm-send-email-polish", "label": "polish the send-via-email flow (S-01/S-03)", "branch": "local/gtm-send-email-polish-2026-08-21", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 359, "title": "ux: polish the send-via-email flow (S-01/S-03)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/359", "status": "pr-failing", "updated_at": null}]}, {"slug": "recent-items-sidebar", "label": "recent items sidebar", "branch": "local/feature-recent-items-sidebar-2026-08-27", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 391, "title": "feat(ui): recent items sidebar", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/391", "status": "pr-failing", "updated_at": null}]}, {"slug": "feature-flags", "label": "admin feature-flags page (Operations tab)", "branch": "local/feature-feature-flags-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 447, "title": "feat: admin feature-flags page (Operations tab)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/447", "status": "merged", "merged_at": "2026-09-02T02:33:43Z"}]}, {"slug": "global-omnibox", "label": "global search omnibox", "branch": "local/feature-global-omnibox-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 413, "title": "feat: global search omnibox", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/413", "status": "merged", "merged_at": "2026-08-30T04:52:54Z"}]}, {"slug": "gtm-quote-status-chips", "label": "quote status chips on the list + a status detail modal (GTM-01)", "branch": "local/gtm-quote-status-chips-2026-08-21", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 356, "title": "ux: quote status chips on the list + a status detail modal (GTM-01)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/356", "status": "merged", "merged_at": "2026-09-02T04:22:25Z"}]}, {"slug": "mobile-responsive-list", "label": "quotes list becomes cards with swipe quick-actions on a narrow viewport", "branch": "local/feature-mobile-responsive-list-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 465, "title": "ux: quotes list becomes cards with swipe quick-actions on a narrow viewport", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/465", "status": "merged", "merged_at": "2026-09-03T02:32:47Z"}]}, {"slug": "notifications-bell", "label": "notification bell in the header", "branch": "local/feature-notifications-bell-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 430, "title": "feat: notification bell in the header", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/430", "status": "merged", "merged_at": "2026-08-30T18:22:42Z"}]}]}, {"slug": "infra-platform", "label": "Infrastructure & Platform", "feature_total": 6, "feature_done": 3, "task_total": 6, "task_done": 3, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 0, "pr-behind": 0, "merged": 3}, "percent": 50, "features": [{"slug": "db-backup", "label": "db_backup command \u00e2\u20ac\u201d compressed, tiered-retention backup", "branch": "local/feature-db-backup-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 440, "title": "feat: db_backup command \u00e2\u20ac\u201d compressed, tiered-retention backup", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/440", "status": "pr-open", "updated_at": null}]}, {"slug": "plan-multi-tenant-transition", "label": "multi-tenant transition plan (planning only, no code changes)", "branch": "local/plan-multi-tenant-transition-2026-08-22", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 378, "title": "docs: multi-tenant transition plan (planning only, no code changes)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/378", "status": "pr-open", "updated_at": null}]}, {"slug": "shipping-tracker", "label": "carrier detection + shipment status on the tracking number", "branch": "local/feature-shipping-tracker-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 463, "title": "feat: carrier detection + shipment status on the tracking number", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/463", "status": "pr-open", "updated_at": null}]}, {"slug": "health-check", "label": "/status detailed ops endpoint alongside /health", "branch": "local/feature-health-check-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 441, "title": "feat: /status detailed ops endpoint alongside /health", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/441", "status": "merged", "merged_at": "2026-08-31T17:47:04Z"}]}, {"slug": "list-hygiene", "label": "local/feature list hygiene 2026 08 22", "branch": "local/feature-list-hygiene-2026-08-22", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 368, "title": "local/feature list hygiene 2026 08 22", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/368", "status": "merged", "merged_at": "2026-08-28T05:00:44Z"}]}, {"slug": "phase1-org-partitioning", "label": "Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)", "branch": "local/phase1-org-partitioning-2026-08-28", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 380, "title": "feat: Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/380", "status": "merged", "merged_at": "2026-09-02T04:00:35Z"}]}]}, {"slug": "rebrand", "label": "ForgeOS Rebrand", "feature_total": 6, "feature_done": 5, "task_total": 6, "task_done": 5, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 5}, "percent": 83, "features": [{"slug": "rebrand-pr6-support-forgeos", "label": "ForgeOS support-subject convention + final legacy reconciliation", "branch": "local/rebrand-pr6-support-forgeos-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 377, "title": "rebrand(6/6): ForgeOS support-subject convention + final legacy reconciliation", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/377", "status": "pr-open", "updated_at": null}]}, {"slug": "rebrand-pr2-package-name", "label": "package distribution name forge-sales-pipeline \u00e2\u2020\u2019 forgeos", "branch": "local/rebrand-pr2-package-name-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 373, "title": "rebrand(2/6): package distribution name forge-sales-pipeline \u00e2\u2020\u2019 forgeos", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/373", "status": "merged", "merged_at": "2026-08-27T18:24:48Z"}]}, {"slug": "rebrand-pr3-roles-forgeos", "label": "az_sales_pipeline_* \u00e2\u2020\u2019 az_forgeos_* role identifiers (ADR-022)", "branch": "local/rebrand-pr3-roles-forgeos-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 374, "title": "rebrand(3/6): az_sales_pipeline_* \u00e2\u2020\u2019 az_forgeos_* role identifiers (ADR-022)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/374", "status": "merged", "merged_at": "2026-08-27T18:34:33Z"}]}, {"slug": "rebrand-pr4-repo-slug", "label": "repo-slug references \u00e2\u2020\u2019 Forge-Promo-LLC/ForgeOS", "branch": "local/rebrand-pr4-repo-slug-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 376, "title": "rebrand(4/6): repo-slug references \u00e2\u2020\u2019 Forge-Promo-LLC/ForgeOS", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/376", "status": "merged", "merged_at": "2026-08-27T19:53:12Z"}]}, {"slug": "rebrand-pr5-prose-forgeos", "label": "ForgeOS brand prose \u00e2\u20ac\u201d README H1, CLAUDE.md, dashboards, labels", "branch": "local/rebrand-pr5-prose-forgeos-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 375, "title": "rebrand(5/6): ForgeOS brand prose \u00e2\u20ac\u201d README H1, CLAUDE.md, dashboards, labels", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/375", "status": "merged", "merged_at": "2026-08-27T19:53:44Z"}]}, {"slug": "rebrand-sales-pipeline-to-forgeos", "label": "ForgeOS safe strings + inventory + legacy-names register", "branch": "local/rebrand-sales-pipeline-to-forgeos-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 372, "title": "rebrand(1/6): ForgeOS safe strings + inventory + legacy-names register", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/372", "status": "merged", "merged_at": "2026-08-27T18:25:23Z"}]}]}, {"slug": "sla-artifacts", "label": "SLA & Artifact Versioning", "feature_total": 6, "feature_done": 2, "task_total": 6, "task_done": 2, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 1, "pr-behind": 0, "merged": 2}, "percent": 33, "features": [{"slug": "sla-p3-2-artifact-versioning-guard", "label": "never silently overwrite a PO/invoice artifact (SLA-P3.2)", "branch": "local/sla-p3-2-artifact-versioning-guard-2026-08-30", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 483, "title": "fix: never silently overwrite a PO/invoice artifact (SLA-P3.2)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/483", "status": "pr-open", "updated_at": null}]}, {"slug": "sla-p33-supersede-quote", "label": "in-app \"supersede this sent doc\" action", "branch": "local/feature-sla-p33-supersede-quote-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 499, "title": "feat(sla-p3.3): in-app \"supersede this sent doc\" action", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/499", "status": "pr-open", "updated_at": null}]}, {"slug": "sla-p36-po-versioning", "label": "PO naming carries a version segment, corrected POs no longer overwrite sent ones (SLA-P3.6)", "branch": "local/feature-sla-p36-po-versioning-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 500, "title": "fix: PO naming carries a version segment, corrected POs no longer overwrite sent ones (SLA-P3.6)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/500", "status": "pr-open", "updated_at": null}]}, {"slug": "sla-p33-supersede", "label": "in-app \"Supersede this sent doc\" action for quotes (SLA-P3.3)", "branch": "local/feature-sla-p33-supersede-2026-08-31", "status": "pr-failing", "percent": 60, "task_total": 1, "task_done": 0, "tasks": [{"pr": 495, "title": "feat: in-app \"Supersede this sent doc\" action for quotes (SLA-P3.3)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/495", "status": "pr-failing", "updated_at": null}]}, {"slug": "sla-p34-document-stamping", "label": "SLA-P3.4 \u00e2\u20ac\u201d stamp version + date on the vendor PO", "branch": "local/sla-p34-document-stamping-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 485, "title": "feat: SLA-P3.4 \u00e2\u20ac\u201d stamp version + date on the vendor PO", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/485", "status": "merged", "merged_at": "2026-09-01T21:31:44Z"}]}, {"slug": "sla-p35-invoice-version", "label": "invoice reissue silently overwrote the sent original (SLA-P3.5)", "branch": "local/feature-sla-p35-invoice-version-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 493, "title": "fix: invoice reissue silently overwrote the sent original (SLA-P3.5)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/493", "status": "merged", "merged_at": "2026-09-02T03:47:54Z"}]}]}, {"slug": "reporting", "label": "Reporting & KPIs", "feature_total": 5, "feature_done": 1, "task_total": 5, "task_done": 1, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 0, "pr-behind": 1, "merged": 1}, "percent": 20, "features": [{"slug": "dashboard-charts", "label": "dashboard KPI cards + charts on the Reports tab", "branch": "local/feature-dashboard-charts-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 427, "title": "feat: dashboard KPI cards + charts on the Reports tab", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/427", "status": "pr-open", "updated_at": null}]}, {"slug": "rep-kpi-mvp", "label": "KPI page (MVP)", "branch": "local/feature-rep-kpi-mvp-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 392, "title": "feat(rep): KPI page (MVP)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/392", "status": "pr-open", "updated_at": null}]}, {"slug": "weekly-digest", "label": "weekly quote-pipeline KPI digest (EP-Q)", "branch": "local/feature-weekly-digest-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 472, "title": "feat: weekly quote-pipeline KPI digest (EP-Q)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/472", "status": "pr-open", "updated_at": null}]}, {"slug": "win-loss-reasons", "label": "win/loss close reasons + /reports/win-loss breakdown page", "branch": "local/feature-win-loss-reasons-2026-08-27", "status": "pr-behind", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 426, "title": "feat: win/loss close reasons + /reports/win-loss breakdown page", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426", "status": "pr-behind", "updated_at": null}]}, {"slug": "rep-leaderboard", "label": "rep leaderboard at /reports/leaderboard", "branch": "local/feature-rep-leaderboard-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 456, "title": "feat: rep leaderboard at /reports/leaderboard", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456", "status": "merged", "merged_at": "2026-08-31T00:10:20Z"}]}]}, {"slug": "email-templates", "label": "Email Templates", "feature_total": 2, "feature_done": 2, "task_total": 2, "task_done": 2, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 2}, "percent": 100, "features": [{"slug": "email-template-vars", "label": "dotted Jinja-style email template variables + live preview", "branch": "local/feature-email-template-vars-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 443, "title": "feat: dotted Jinja-style email template variables + live preview", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/443", "status": "merged", "merged_at": "2026-08-30T20:41:27Z"}]}, {"slug": "email-templates", "label": "per-user custom email templates + Settings admin page", "branch": "local/feature-email-templates-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 423, "title": "feat: per-user custom email templates + Settings admin page", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/423", "status": "merged", "merged_at": "2026-09-02T05:04:16Z"}]}]}]}, {"name": "SAGE Integration", "feature_total": 6, "feature_done": 3, "task_total": 6, "task_done": 3, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 0, "pr-behind": 0, "merged": 3}, "percent": 50, "epics": [{"slug": "sage-integration", "label": "SAGE Integration", "feature_total": 6, "feature_done": 3, "task_total": 6, "task_done": 3, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 3, "pr-failing": 0, "pr-behind": 0, "merged": 3}, "percent": 50, "features": [{"slug": "sage-detail-client", "label": "SageDetailClient wrapper (real Connect client)", "branch": "local/feature-sage-detail-client-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 424, "title": "feat(sage): SageDetailClient wrapper (real Connect client)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/424", "status": "pr-open", "updated_at": null}]}, {"slug": "sage-pragmatic-demo", "label": "pragmatic demo tool (sage_ledger + sage_lens)", "branch": "local/feature-sage-pragmatic-demo-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 401, "title": "feat(sage): pragmatic demo tool (sage_ledger + sage_lens)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/401", "status": "pr-open", "updated_at": null}]}, {"slug": "sage-storage-hardening", "label": "storage hardening -- raw + provenance + manifest + incremental TTL", "branch": "local/feature-sage-storage-hardening-2026-08-27", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 422, "title": "feat(sage): storage hardening -- raw + provenance + manifest + incremental TTL", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/422", "status": "pr-open", "updated_at": null}]}, {"slug": "sage-cache-admin", "label": "read-only SAGE response-cache browser", "branch": "local/feature-sage-cache-admin-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 474, "title": "admin: read-only SAGE response-cache browser", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/474", "status": "merged", "merged_at": "2026-08-31T01:30:38Z"}]}, {"slug": "sage-cache-quote-integration", "label": "SAGE-verified line items from the cached product extract", "branch": "local/feature-sage-cache-quote-integration-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 476, "title": "feat: SAGE-verified line items from the cached product extract", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/476", "status": "merged", "merged_at": "2026-08-31T01:49:07Z"}]}, {"slug": "sage-catalog-extract", "label": "SAGE Connect API schema corrections + catalog-extract outcome (2026-08-27)", "branch": "local/sage-catalog-extract-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 379, "title": "docs: SAGE Connect API schema corrections + catalog-extract outcome (2026-08-27)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/379", "status": "merged", "merged_at": "2026-09-02T04:42:01Z"}]}]}]}, {"name": "Dispatch Dashboard", "feature_total": 5, "feature_done": 5, "task_total": 5, "task_done": 5, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 5}, "percent": 100, "epics": [{"slug": "dispatch-dashboard-work", "label": "Dispatch Dashboard Work", "feature_total": 5, "feature_done": 5, "task_total": 5, "task_done": 5, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 0, "pr-failing": 0, "pr-behind": 0, "merged": 5}, "percent": 100, "features": [{"slug": "dispatch-dashboard-v2-progress-tracking-projects", "label": "Dashboard v2: progress tracking (Projects then Epics then Features)", "branch": "", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": null, "title": "Dashboard v2: progress tracking (Projects then Epics then Features)", "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/041bf1c618f54d03b766b8d2a4028cd3151625a2", "status": "merged", "merged_at": "2026-08-29T11:33:55-04:00", "sha": "041bf1c618f54d03b766b8d2a4028cd3151625a2"}]}, {"slug": "dispatch-dashboard-v3-pipeline-stage-view", "label": "Dashboard v3: pipeline-stage view", "branch": "", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": null, "title": "Dashboard v3: pipeline-stage view", "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/d7021f6f2a7703b9f71bc41970d8ef884401c73d", "status": "merged", "merged_at": "2026-08-29T23:47:13-04:00", "sha": "d7021f6f2a7703b9f71bc41970d8ef884401c73d"}]}, {"slug": "dispatch-feat-sage-cache-demo-page-visible-artifa", "label": "feat: SAGE cache demo page - visible artifact of 391 extracted SKUs", "branch": "", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": null, "title": "feat: SAGE cache demo page - visible artifact of 391 extracted SKUs", "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/702edbc0d538af73bb575fc4428f877176764ee0", "status": "merged", "merged_at": "2026-08-31T08:06:27-04:00", "sha": "702edbc0d538af73bb575fc4428f877176764ee0"}]}, {"slug": "dispatch-publish-forgeos-dispatch-dashboard", "label": "Publish ForgeOS Dispatch dashboard", "branch": "", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": null, "title": "Publish ForgeOS Dispatch dashboard", "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/520b3b396c95b05fb5abc575966b2deea826d760", "status": "merged", "merged_at": "2026-08-29T05:13:21-04:00", "sha": "520b3b396c95b05fb5abc575966b2deea826d760"}]}, {"slug": "dispatch-regenerate-dashboard-refresh-live-pr-mer", "label": "Regenerate dashboard: refresh live PR/merge state", "branch": "", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": null, "title": "Regenerate dashboard: refresh live PR/merge state", "url": "https://github.com/jhebert-forgepromo/dispatch-dashboard/commit/6b83773e09f1bec2fcf746f4eb3544d29c09754f", "status": "merged", "merged_at": "2026-08-30T06:03:21-04:00", "sha": "6b83773e09f1bec2fcf746f4eb3544d29c09754f"}]}]}]}, {"name": "Ops & Delivery", "feature_total": 16, "feature_done": 9, "task_total": 16, "task_done": 9, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 7, "pr-failing": 0, "pr-behind": 0, "merged": 9}, "percent": 56, "epics": [{"slug": "ci-tooling", "label": "CI & Tooling", "feature_total": 13, "feature_done": 7, "task_total": 13, "task_done": 7, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 6, "pr-failing": 0, "pr-behind": 0, "merged": 7}, "percent": 54, "features": [{"slug": "ci-cache", "label": "keep the tool caches actions/checkout deletes", "branch": "local/feature-ci-cache-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 501, "title": "ci: keep the tool caches actions/checkout deletes", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/501", "status": "pr-open", "updated_at": null}]}, {"slug": "ci-pip-venv-isolation", "label": "isolate pip install per job to a workspace-local venv", "branch": "chore/ci-pip-venv-isolation-2026-09-01", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 494, "title": "fix(ci): isolate pip install per job to a workspace-local venv", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/494", "status": "pr-open", "updated_at": null}]}, {"slug": "forge-cli", "label": "forge CLI \u00e2\u20ac\u201d one command per dev operation", "branch": "local/feature-forge-cli-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 498, "title": "feat(tools): forge CLI \u00e2\u20ac\u201d one command per dev operation", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/498", "status": "pr-open", "updated_at": null}]}, {"slug": "pre-push-hook", "label": "pre-push gate that runs CI's black/ruff checks locally", "branch": "local/feature-pre-push-hook-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 497, "title": "build: pre-push gate that runs CI's black/ruff checks locally", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/497", "status": "pr-open", "updated_at": null}]}, {"slug": "sla-p21-rep-diagnostics", "label": "rep diagnostic bundle (SLA-P2.1)", "branch": "local/feature-sla-p21-rep-diagnostics-2026-09-02", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 505, "title": "feat: rep diagnostic bundle (SLA-P2.1)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/505", "status": "pr-open", "updated_at": null}]}, {"slug": "test-split", "label": "fast/slow lane split so push-time runs take 1m18s not 8m40s", "branch": "local/feature-test-split-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 502, "title": "test: fast/slow lane split so push-time runs take 1m18s not 8m40s", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/502", "status": "pr-open", "updated_at": null}]}, {"slug": "backlog-queue-scaffold", "label": "bootstrap self-pull backlog queue", "branch": "local/feature-backlog-queue-scaffold-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 471, "title": "chore: bootstrap self-pull backlog queue", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/471", "status": "merged", "merged_at": "2026-09-02T03:50:11Z"}]}, {"slug": "ci-prevention-doc", "label": "CI runner jam prevention playbook", "branch": "local/feature-ci-prevention-doc-2026-08-30", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 473, "title": "docs: CI runner jam prevention playbook", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/473", "status": "merged", "merged_at": "2026-08-31T01:07:22Z"}]}, {"slug": "docs-ci-runner-node-finding", "label": "second CI runner finding - broken Node on at least one runner", "branch": "local/docs-ci-runner-node-finding-2026-09-02", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 504, "title": "docs: second CI runner finding - broken Node on at least one runner", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/504", "status": "merged", "merged_at": "2026-09-03T01:59:48Z"}]}, {"slug": "docs-ci-runner-quotediff-finding", "label": "CI runner false-positive on quotediff/chrome.TABS (2026-09-02)", "branch": "local/docs-ci-runner-quotediff-finding-2026-09-02", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 503, "title": "docs: CI runner false-positive on quotediff/chrome.TABS (2026-09-02)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/503", "status": "merged", "merged_at": "2026-09-02T02:04:57Z"}]}, {"slug": "gate-check-harness", "label": "local CI gate harness (forge-gate-check.ps1)", "branch": "local/gate-check-harness-2026-08-20", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 351, "title": "tools: local CI gate harness (forge-gate-check.ps1)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/351", "status": "merged", "merged_at": "2026-09-02T04:24:07Z"}]}, {"slug": "sla-artifact-versioning", "label": "guard the quote artifact never-overwritten promise (SLA-P3.2)", "branch": "local/feature-sla-artifact-versioning-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 486, "title": "test: guard the quote artifact never-overwritten promise (SLA-P3.2)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/486", "status": "merged", "merged_at": "2026-08-31T15:05:56Z"}]}, {"slug": "sla-p32-artifact-versioning", "label": "guard that sent artifacts version instead of overwriting (SLA-P3.2)", "branch": "local/feature-sla-p32-artifact-versioning-2026-08-31", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 482, "title": "test: guard that sent artifacts version instead of overwriting (SLA-P3.2)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/482", "status": "merged", "merged_at": "2026-08-31T12:41:21Z"}]}]}, {"slug": "planning-docs", "label": "Planning & Docs", "feature_total": 3, "feature_done": 2, "task_total": 3, "task_done": 2, "by_status": {"not-started": 0, "in-progress": 0, "tests-written": 0, "pr-open": 1, "pr-failing": 0, "pr-behind": 0, "merged": 2}, "percent": 67, "features": [{"slug": "sla-p41-alert-detector-audit", "label": "A-1..A-7 alert detector gap-audit (SLA-P4.1)", "branch": "local/sla-p41-alert-detector-audit-2026-08-31", "status": "pr-open", "percent": 80, "task_total": 1, "task_done": 0, "tasks": [{"pr": 491, "title": "docs: A-1..A-7 alert detector gap-audit (SLA-P4.1)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/491", "status": "pr-open", "updated_at": null}]}, {"slug": "plans-consolidated", "label": "consolidate 49 planning docs branches (2026-08-27/28)", "branch": "local/plans-consolidated-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 383, "title": "docs: consolidate 49 planning docs branches (2026-08-27/28)", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/383", "status": "merged", "merged_at": "2026-08-29T00:06:48Z"}]}, {"slug": "ship-log", "label": "ship log for the 2026-08-27 5-feature serial push train", "branch": "local/ship-log-2026-08-27", "status": "merged", "percent": 100, "task_total": 1, "task_done": 1, "tasks": [{"pr": 382, "title": "docs: ship log for the 2026-08-27 5-feature serial push train", "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/382", "status": "merged", "merged_at": "2026-08-28T06:09:33Z"}]}]}]}]};
+const STAGES = ["not-started","in-progress","tests-written","pr-open","pr-failing","pr-behind","merged"];
 const STAGE_LABEL = {
-  "not-started":  "Not started",
-  "in-progress":  "In progress",
-  "tests-written":"Tests written",
-  "pr-open":      "PR open",
-  "pr-failing":   "PR failing",
-  "pr-behind":    "PR behind",
-  "merged":       "Merged"
+  "not-started":"Not started","in-progress":"In progress","tests-written":"Tests written",
+  "pr-open":"PR open","pr-failing":"PR failing","pr-behind":"PR behind","merged":"Merged"
 };
 const STAGE_CLASS = {
-  "not-started":  "stage-notstarted",
-  "in-progress":  "stage-inprogress",
-  "tests-written":"stage-tests",
-  "pr-open":      "stage-propen",
-  "pr-failing":   "stage-prfail",
-  "pr-behind":    "stage-prbehind",
-  "merged":       "stage-merged"
+  "not-started":"notstarted","in-progress":"inprogress","tests-written":"tests",
+  "pr-open":"propen","pr-failing":"prfail","pr-behind":"prbehind","merged":"merged"
 };
 
-function fmt(n){ return (n||0).toLocaleString(); }
-function pill(status){ return '<span class="pill ' + status + '">' + status + '</span>'; }
+const LS_KEY = "forgeos_filter_v1";
+const activeProjects = new Set(loadFilter());
 
-function renderPipeline(){
-  const el = document.getElementById('pipeline');
-  const p = DATA.pipeline || {};
-  el.innerHTML = STAGE_ORDER.map(function(s){
-    const d = p[s] || {count:0,loc:0,tests:0};
-    const warn = (s === "pr-failing") ? " warn" : (s === "pr-behind" ? " warn amber" : "");
-    return '<div class="stage ' + STAGE_CLASS[s] + warn + '">' +
-      '<div class="stage-bar"></div>' +
-      '<div>' +
-        '<div class="stage-title">' + STAGE_LABEL[s] + '</div>' +
-        '<div class="stage-count">' + d.count + '</div>' +
-      '</div>' +
-      '<div class="stage-sub"><strong>' + fmt(d.loc) + '</strong> LOC · <strong>' +
-        fmt(d.tests) + '</strong> tests</div>' +
-    '</div>';
+function loadFilter(){
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(_){}
+  return DATA.projects.map(p => p.name);
+}
+function saveFilter(){
+  try { localStorage.setItem(LS_KEY, JSON.stringify([...activeProjects])); } catch(_){}
+}
+function fmt(n){ return (n||0).toLocaleString(); }
+function shortDate(iso){
+  if (!iso) return "";
+  return iso.slice(0,10);
+}
+function esc(s){
+  return String(s||"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+
+function renderFilter(){
+  const el = document.getElementById('filter');
+  const chips = DATA.projects.map(p => {
+    const checked = activeProjects.has(p.name) ? "checked" : "";
+    return `<label><input type="checkbox" data-proj="${esc(p.name)}" ${checked}> ${esc(p.name)} <span class="counts">${p.feature_done}/${p.feature_total}</span></label>`;
   }).join('');
+  el.innerHTML = `<span class="f-label">Initiatives</span>${chips}
+    <div class="actions">
+      <button id="fAll">All</button><button id="fNone">None</button>
+    </div>`;
+  el.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const name = cb.dataset.proj;
+      if (cb.checked) activeProjects.add(name); else activeProjects.delete(name);
+      saveFilter();
+      applyFilter();
+    });
+  });
+  document.getElementById('fAll').addEventListener('click', () => {
+    DATA.projects.forEach(p => activeProjects.add(p.name));
+    saveFilter(); renderFilter(); applyFilter();
+  });
+  document.getElementById('fNone').addEventListener('click', () => {
+    activeProjects.clear(); saveFilter(); renderFilter(); applyFilter();
+  });
 }
 
 function renderStats(){
-  const h = DATA.headline || {};
-  const el = document.getElementById('stats');
-  el.innerHTML =
-    '<div class="stat">' +
-      '<div class="stat-label">Code written today</div>' +
-      '<div class="stat-big">' + fmt(h.loc) + '</div>' +
-      '<div class="stat-sub">LOC across <strong>' + fmt(h.features_with_code) +
-        '</strong> features · <strong>' + fmt(h.tests) + '</strong> new test files</div>' +
-    '</div>' +
-    '<div class="stat">' +
-      '<div class="stat-label">Awaiting merge</div>' +
-      '<div class="stat-big">' + fmt(h.awaiting_merge) + '</div>' +
-      '<div class="stat-sub">features with an open PR (green, failing, or behind)</div>' +
-    '</div>' +
-    '<div class="stat">' +
-      '<div class="stat-label">Shipped to main</div>' +
-      '<div class="stat-big">' + fmt(h.shipped) + '</div>' +
-      '<div class="stat-sub">features merged</div>' +
-    '</div>';
+  const c = DATA.counts;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat">
+      <div class="stat-label">Features tracked</div>
+      <div class="stat-big">${fmt(c.features)}</div>
+      <div class="stat-sub">across ${DATA.projects.length} initiatives since ${DATA.since.slice(0,10)}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Tasks / PRs</div>
+      <div class="stat-big">${fmt(c.tasks_merged)}<span style="font-size:20px;color:var(--muted)">/${fmt(c.tasks)}</span></div>
+      <div class="stat-sub">${fmt(c.tasks_open)} still open · ${fmt(c.prs_merged)} merged PRs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Awaiting merge</div>
+      <div class="stat-big">${fmt(c.prs_open)}</div>
+      <div class="stat-sub">open PRs across all initiatives</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Shipped features</div>
+      <div class="stat-big">${fmt((DATA.pipeline.merged||{}).count||0)}</div>
+      <div class="stat-sub">at least one PR merged to main</div>
+    </div>`;
+}
+
+function renderPipeline(){
+  const p = DATA.pipeline || {};
+  document.getElementById('pipeline').innerHTML = STAGES.map(s => {
+    const d = p[s] || {count:0};
+    return `<div class="stage ${STAGE_CLASS[s]}">
+      <div class="stage-bar"></div>
+      <div class="stage-title">${STAGE_LABEL[s]}</div>
+      <div class="stage-count">${d.count}</div>
+    </div>`;
+  }).join('');
 }
 
 function renderBottleneck(){
   const b = DATA.bottleneck || {};
-  const el = document.getElementById('bottleneck');
   const chips = [];
-  if (!b.pr_data_available) {
+  if (!b.pr_data_available){
     chips.push('<span class="b-chip amber">PR data unavailable — run <code>gh auth login</code></span>');
   } else {
-    if (b.ci_queued > 0)  chips.push('<span class="b-chip amber">Waiting on ' + b.ci_queued + ' CI runner' + (b.ci_queued===1?'':'s') + '</span>');
-    if (b.ci_failing > 0) chips.push('<span class="b-chip red">'    + b.ci_failing + ' failing CI</span>');
-    if (b.behind > 0)     chips.push('<span class="b-chip amber">'  + b.behind    + ' BEHIND main</span>');
-    if (chips.length === 0) chips.push('<span class="b-chip calm">All open PRs green &amp; up-to-date</span>');
+    if (b.ci_queued>0) chips.push(`<span class="b-chip amber">${b.ci_queued} CI check${b.ci_queued===1?"":"s"} queued</span>`);
+    if (b.ci_failing>0) chips.push(`<span class="b-chip red">${b.ci_failing} failing CI</span>`);
+    if (b.behind>0) chips.push(`<span class="b-chip amber">${b.behind} BEHIND main</span>`);
+    if (chips.length===0) chips.push('<span class="b-chip calm">All open PRs green &amp; up-to-date</span>');
   }
-  el.innerHTML = '<span class="b-label">Bottlenecks</span>' + chips.join('');
+  document.getElementById('bottleneck').innerHTML = '<span class="b-label">Bottlenecks</span>' + chips.join('');
 }
 
-function renderProjects(){
-  const el = document.getElementById('projects');
-  el.innerHTML = '';
-  for (const [name, p] of Object.entries(DATA.projects)) {
-    const label = p.total === 0 ? 'no features tracked yet' : (p.by_status.merged + ' of ' + p.total + ' shipped');
-    el.insertAdjacentHTML('beforeend',
-      '<div class="pcard"><h3>' + name + '</h3>' +
-      '<div class="big">' + p.percent + '%</div>' +
-      '<div class="pbar"><i style="width:' + p.percent + '%"></i></div>' +
-      '<div class="sub">' + label + '</div></div>');
-  }
+function pill(status){ return `<span class="pill ${status}">${status}</span>`; }
+
+function progress(pct){
+  return `<div class="progress-bar"><i style="width:${pct}%"></i></div><span class="pct">${pct}%</span>`;
 }
 
-function renderEpics(){
-  const el = document.getElementById('epics');
-  el.innerHTML = '';
-  for (const [epic, e] of Object.entries(DATA.epics)) {
-    let rows = '';
-    for (const slug of e.slugs) {
-      const f = DATA.features[slug];
-      const loc = f.loc ? ('<span class="loc">' + f.loc + ' LOC</span>') : '';
-      const pr  = f.pr  ? ('<a class="pr-link" href="' + f.pr_url + '" target="_blank" rel="noopener">#' + f.pr + '</a>') : '';
-      const chk = f.has_checklist ? '<span class="check" title="verification checklist present">✓</span>' : '';
-      rows += '<div class="frow">' + pill(f.status) +
-              '<span class="slug">' + slug + '</span>' + chk + loc + pr + '</div>';
-    }
-    el.insertAdjacentHTML('beforeend',
-      '<details><summary><span class="epic-name">' + epic + '</span>' +
-      '<div class="epic-bar"><i style="width:' + e.percent + '%"></i></div>' +
-      '<span class="epic-pct">' + e.percent + '% · ' + e.by_status.merged + '/' + e.total + '</span></summary>' +
-      '<div class="features">' + rows + '</div></details>');
-  }
+function renderFeatureTasks(feat){
+  return feat.tasks.map(t => {
+    const link = t.pr ? `<a href="${esc(t.url)}" target="_blank" rel="noopener">#${t.pr}</a>` :
+                        `<a href="${esc(t.url||'#')}" target="_blank" rel="noopener">${(t.sha||'').slice(0,7)}</a>`;
+    return `<div class="task-row">${pill(t.status)}${link}
+      <span class="task-title">${esc(t.title)}</span>
+      <span class="task-date">${shortDate(t.merged_at || t.updated_at || '')}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderFeature(feat){
+  const isMulti = feat.tasks.length > 1;
+  const summaryClass = isMulti ? "" : "leaf";
+  const meta = `<span class="node-meta">${pill(feat.status)}<span class="counts">${feat.task_done}/${feat.task_total} tasks</span>${progress(feat.percent)}</span>`;
+  const body = isMulti
+    ? `<div class="task-list">${renderFeatureTasks(feat)}</div>`
+    : `<div class="task-list">${renderFeatureTasks(feat)}</div>`;
+  return `<details class="feature" data-status="${feat.status}">
+    <summary class="${summaryClass}">
+      <span class="node-name">${esc(feat.label)}<span class="slug"> · ${esc(feat.slug)}</span></span>
+      ${meta}
+    </summary>
+    ${body}
+  </details>`;
+}
+
+function renderEpic(epic){
+  const meta = `<span class="node-meta"><span class="counts">${epic.feature_done}/${epic.feature_total} features · ${epic.task_done}/${epic.task_total} tasks</span>${progress(epic.percent)}</span>`;
+  const body = epic.features.map(renderFeature).join('') || '<div class="empty">no features</div>';
+  return `<details class="epic" data-epic="${esc(epic.slug)}">
+    <summary>
+      <span class="node-name">${esc(epic.label)}<span class="slug"> · ${esc(epic.slug)}</span></span>
+      ${meta}
+    </summary>
+    ${body}
+  </details>`;
+}
+
+function renderProject(proj){
+  const meta = `<span class="node-meta"><span class="counts">${proj.feature_done}/${proj.feature_total} features · ${proj.task_done}/${proj.task_total} tasks</span>${progress(proj.percent)}</span>`;
+  const body = proj.epics.length
+    ? proj.epics.map(renderEpic).join('')
+    : '<div class="empty" style="margin:12px">No epics in this initiative yet.</div>';
+  return `<details class="project" data-project="${esc(proj.name)}" open>
+    <summary>
+      <span class="node-name">${esc(proj.name)}</span>
+      ${meta}
+    </summary>
+    ${body}
+  </details>`;
+}
+
+function renderTree(){
+  document.getElementById('tree').innerHTML =
+    DATA.projects.map(renderProject).join('');
+  applyFilter();
+}
+
+function applyFilter(){
+  document.querySelectorAll('details.project').forEach(el => {
+    const name = el.dataset.project;
+    if (activeProjects.has(name)) el.classList.remove('hidden');
+    else el.classList.add('hidden');
+  });
 }
 
 function render(){
   document.getElementById('updated').textContent =
     'Last updated: ' + new Date(DATA.generated_at).toLocaleString() +
     (DATA.pr_data_available ? '' : ' — PR data unavailable');
-  renderPipeline();
+  renderFilter();
   renderStats();
+  renderPipeline();
   renderBottleneck();
-  renderProjects();
-  renderEpics();
+  renderTree();
+
+  document.getElementById('expandAll').addEventListener('click', () => {
+    document.querySelectorAll('details').forEach(d => d.open = true);
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    document.querySelectorAll('details.feature, details.epic').forEach(d => d.open = false);
+  });
+  document.getElementById('openInProgress').addEventListener('click', () => {
+    document.querySelectorAll('details.feature').forEach(d => {
+      const st = d.dataset.status;
+      d.open = (st !== 'merged' && st !== 'not-started');
+    });
+    document.querySelectorAll('details.epic').forEach(d => {
+      // Open epic if any of its features is open
+      const anyOpen = [...d.querySelectorAll('details.feature')].some(x => x.open);
+      d.open = anyOpen;
+    });
+  });
 }
 render();
-
-document.getElementById('regenBtn').addEventListener('click', function(){
-  const msg = 'regenerate dashboard';
-  if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(function(){});
-  const t = document.getElementById('toast');
-  t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2200);
-  window.open('mailto:jhebert@forgepromo.com?subject=Regenerate%20Dispatch&body=regenerate%20dashboard', '_blank');
-});
 </script>
 </body>
 </html>
