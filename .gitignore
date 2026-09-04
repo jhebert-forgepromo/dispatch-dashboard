@@ -1,0 +1,4 @@
+﻿# Local runtime artifacts (not published)
+freshness.log
+*.pre-*.json
+*.pre-*.py
