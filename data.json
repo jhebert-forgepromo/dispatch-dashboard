@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T04:50:54+00:00",
+  "generated_at": "2026-09-04T04:51:26+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -24,8 +24,9 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 3,
+      "count": 4,
       "slugs": [
+        "sla-p42-reconcile-alert-evaluators",
         "sla-p53-env-health-cron",
         "sla-p2-2-stale-version-log",
         "sla-p35-invoice-versioning"
@@ -40,13 +41,12 @@
       ]
     },
     "pr-behind": {
-      "count": 7,
+      "count": 6,
       "slugs": [
         "quote-export-csv",
         "dashboard-instant-regen",
         "quote-diff-pdf",
         "sla-p14-intake-form",
-        "sla-p42-reconcile-alert-evaluators",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator"
       ]
@@ -164,7 +164,7 @@
   "bottleneck": {
     "ci_queued": 0,
     "ci_failing": 3,
-    "behind": 10,
+    "behind": 9,
     "pr_data_available": true
   },
   "projects": [
@@ -2191,9 +2191,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 1,
+        "pr-open": 2,
         "pr-failing": 2,
-        "pr-behind": 4,
+        "pr-behind": 3,
         "merged": 15
       },
       "percent": 68,
@@ -2481,13 +2481,31 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 0,
+            "pr-open": 1,
             "pr-failing": 1,
-            "pr-behind": 2,
+            "pr-behind": 1,
             "merged": 2
           },
           "percent": 40,
           "features": [
+            {
+              "slug": "sla-p42-reconcile-alert-evaluators",
+              "label": "reconcile the two live alert evaluators",
+              "branch": "local/feature-sla-p42-reconcile-alert-evaluators-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 526,
+                  "title": "fix(sla-p4.2): reconcile the two live alert evaluators",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/526",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T04:51:24Z"
+                }
+              ]
+            },
             {
               "slug": "ui-polish-flash-timestamps",
               "label": "UI polish 2026-09-03 - humantime + event-driven flash banner",
@@ -2521,24 +2539,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
                   "status": "pr-behind",
                   "updated_at": "2026-09-04T04:06:27Z"
-                }
-              ]
-            },
-            {
-              "slug": "sla-p42-reconcile-alert-evaluators",
-              "label": "reconcile the two live alert evaluators",
-              "branch": "local/feature-sla-p42-reconcile-alert-evaluators-2026-09-03",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 526,
-                  "title": "fix(sla-p4.2): reconcile the two live alert evaluators",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/526",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:34:02Z"
                 }
               ]
             },
