@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T04:48:24+00:00",
+  "generated_at": "2026-09-04T04:48:57+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
     "features": 118,
     "tasks": 118,
-    "tasks_merged": 103,
-    "tasks_open": 15,
-    "prs_merged": 438,
-    "prs_open": 15
+    "tasks_merged": 104,
+    "tasks_open": 14,
+    "prs_merged": 439,
+    "prs_open": 14
   },
   "pipeline": {
     "not-started": {
@@ -24,7 +24,7 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 8,
+      "count": 11,
       "slugs": [
         "quote-export-csv",
         "dashboard-instant-regen",
@@ -32,30 +32,29 @@
         "quote-diff-pdf",
         "sla-p14-intake-form",
         "sla-p42-reconcile-alert-evaluators",
+        "quote-bottom-ux",
+        "sla-p42-alert-evaluator",
+        "sla-p53-env-health-cron",
         "sla-p2-2-stale-version-log",
         "sla-p35-invoice-versioning"
       ]
     },
     "pr-failing": {
-      "count": 4,
+      "count": 3,
       "slugs": [
         "customer-birthday-reminders",
         "ui-polish-flash-timestamps",
-        "env-health-cron",
         "queue-file-completed-023"
       ]
     },
     "pr-behind": {
-      "count": 3,
-      "slugs": [
-        "quote-bottom-ux",
-        "sla-p42-alert-evaluator",
-        "sla-p53-env-health-cron"
-      ]
+      "count": 0,
+      "slugs": []
     },
     "merged": {
-      "count": 103,
+      "count": 104,
       "slugs": [
+        "env-health-cron",
         "queue-cleanup",
         "sla-p22-stale-version-log",
         "queue-file-completed-003",
@@ -164,27 +163,27 @@
   },
   "bottleneck": {
     "ci_queued": 1,
-    "ci_failing": 4,
-    "behind": 6,
+    "ci_failing": 3,
+    "behind": 1,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
       "feature_total": 87,
-      "feature_done": 79,
+      "feature_done": 80,
       "task_total": 87,
-      "task_done": 79,
+      "task_done": 80,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 4,
-        "pr-failing": 2,
-        "pr-behind": 2,
-        "merged": 79
+        "pr-open": 6,
+        "pr-failing": 1,
+        "pr-behind": 0,
+        "merged": 80
       },
-      "percent": 91,
+      "percent": 92,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -1339,9 +1338,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 0,
+            "pr-open": 1,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 7
           },
           "percent": 88,
@@ -1350,7 +1349,7 @@
               "slug": "quote-bottom-ux",
               "label": "redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
               "branch": "local/feature-quote-bottom-ux-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -1359,7 +1358,7 @@
                   "pr": 527,
                   "title": "feat(quotes): redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
-                  "status": "pr-behind",
+                  "status": "pr-open",
                   "updated_at": "2026-09-04T04:25:34Z"
                 }
               ]
@@ -1496,19 +1495,19 @@
           "slug": "infra-platform",
           "label": "Infrastructure & Platform",
           "feature_total": 7,
-          "feature_done": 4,
+          "feature_done": 5,
           "task_total": 7,
-          "task_done": 4,
+          "task_done": 5,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
-            "pr-failing": 1,
-            "pr-behind": 1,
-            "merged": 4
+            "pr-open": 2,
+            "pr-failing": 0,
+            "pr-behind": 0,
+            "merged": 5
           },
-          "percent": 57,
+          "percent": 71,
           "features": [
             {
               "slug": "sla-p53-env-health",
@@ -1529,28 +1528,10 @@
               ]
             },
             {
-              "slug": "env-health-cron",
-              "label": "env-health synthetic cron for the golden path (SLA-P5.3)",
-              "branch": "local/feature-env-health-cron-2026-09-03",
-              "status": "pr-failing",
-              "percent": 60,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 521,
-                  "title": "feat: env-health synthetic cron for the golden path (SLA-P5.3)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/521",
-                  "status": "pr-failing",
-                  "updated_at": "2026-09-04T03:48:21Z"
-                }
-              ]
-            },
-            {
               "slug": "sla-p53-env-health-cron",
               "label": "env-health synthetic cron (SLA-P5.3)",
               "branch": "local/feature-sla-p53-env-health-cron-2026-08-31",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -1559,8 +1540,26 @@
                   "pr": 524,
                   "title": "feat: env-health synthetic cron (SLA-P5.3)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/524",
-                  "status": "pr-behind",
+                  "status": "pr-open",
                   "updated_at": "2026-09-04T03:51:53Z"
+                }
+              ]
+            },
+            {
+              "slug": "env-health-cron",
+              "label": "env-health synthetic cron for the golden path (SLA-P5.3)",
+              "branch": "local/feature-env-health-cron-2026-09-03",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 521,
+                  "title": "feat: env-health synthetic cron for the golden path (SLA-P5.3)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/521",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T04:48:31Z"
                 }
               ]
             },
@@ -2210,9 +2209,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 4,
+        "pr-open": 5,
         "pr-failing": 2,
-        "pr-behind": 1,
+        "pr-behind": 0,
         "merged": 15
       },
       "percent": 68,
@@ -2500,13 +2499,31 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 2,
             "pr-failing": 1,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 2
           },
           "percent": 40,
           "features": [
+            {
+              "slug": "sla-p42-alert-evaluator",
+              "label": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
+              "branch": "local/sla-p42-alert-evaluator-2026-09-02",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 522,
+                  "title": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T04:06:27Z"
+                }
+              ]
+            },
             {
               "slug": "sla-p42-reconcile-alert-evaluators",
               "label": "reconcile the two live alert evaluators",
@@ -2540,24 +2557,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/528",
                   "status": "pr-failing",
                   "updated_at": "2026-09-04T04:25:59Z"
-                }
-              ]
-            },
-            {
-              "slug": "sla-p42-alert-evaluator",
-              "label": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
-              "branch": "local/sla-p42-alert-evaluator-2026-09-02",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 522,
-                  "title": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:06:27Z"
                 }
               ]
             },
