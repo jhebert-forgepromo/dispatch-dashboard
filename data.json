@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T04:46:54+00:00",
+  "generated_at": "2026-09-04T04:47:27+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -163,7 +163,7 @@
     }
   },
   "bottleneck": {
-    "ci_queued": 2,
+    "ci_queued": 1,
     "ci_failing": 4,
     "behind": 6,
     "pr_data_available": true
