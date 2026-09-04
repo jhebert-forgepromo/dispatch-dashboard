@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T13:51:14+00:00",
+  "generated_at": "2026-09-04T14:20:54+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 130,
-    "tasks": 130,
-    "tasks_merged": 114,
-    "tasks_open": 16,
-    "prs_merged": 447,
-    "prs_open": 16
+    "features": 134,
+    "tasks": 134,
+    "tasks_merged": 115,
+    "tasks_open": 19,
+    "prs_merged": 448,
+    "prs_open": 19
   },
   "pipeline": {
     "not-started": {
@@ -24,13 +24,15 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 12,
+      "count": 14,
       "slugs": [
-        "ux-dark-mode-persist",
-        "cli-status-subcmd",
+        "quote-pdf-footer",
+        "quote-export-csv",
+        "infra-request-id",
+        "customer-ltv",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
-        "quote-export-csv",
+        "ux-sidebar-collapsed",
         "dashboard-instant-regen",
         "quote-diff-pdf",
         "quote-bottom-ux",
@@ -41,22 +43,23 @@
       ]
     },
     "pr-failing": {
-      "count": 3,
+      "count": 5,
       "slugs": [
+        "dashboard-kpi-quotes-week",
+        "cli-status-subcmd",
         "lip-qty-tier-preview",
         "ui-polish-flash-timestamps",
         "queue-file-completed-023"
       ]
     },
     "pr-behind": {
-      "count": 1,
-      "slugs": [
-        "ux-sidebar-collapsed"
-      ]
+      "count": 0,
+      "slugs": []
     },
     "merged": {
-      "count": 114,
+      "count": 115,
       "slugs": [
+        "ux-dark-mode-persist-2026-09-04-v2",
         "ux-breadcrumbs",
         "ux-sidebar-collapsed-route",
         "reporting-win-rate-monthly",
@@ -175,46 +178,46 @@
     }
   },
   "bottleneck": {
-    "ci_queued": 0,
-    "ci_failing": 3,
+    "ci_queued": 3,
+    "ci_failing": 5,
     "behind": 1,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 95,
-      "feature_done": 87,
-      "task_total": 95,
-      "task_done": 87,
+      "feature_total": 98,
+      "feature_done": 88,
+      "task_total": 98,
+      "task_done": 88,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 7,
-        "pr-failing": 0,
-        "pr-behind": 1,
-        "merged": 87
+        "pr-open": 9,
+        "pr-failing": 1,
+        "pr-behind": 0,
+        "merged": 88
       },
-      "percent": 92,
+      "percent": 90,
       "epics": [
         {
           "slug": "quote-lifecycle",
           "label": "Quote Lifecycle",
-          "feature_total": 25,
+          "feature_total": 26,
           "feature_done": 24,
-          "task_total": 25,
+          "task_total": 26,
           "task_done": 24,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 2,
             "pr-failing": 0,
             "pr-behind": 0,
             "merged": 24
           },
-          "percent": 96,
+          "percent": 92,
           "features": [
             {
               "slug": "quote-export-csv",
@@ -230,7 +233,25 @@
                   "title": "feat: CSV export for the Projects tab quote list",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/525",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T05:59:47Z"
+                  "updated_at": "2026-09-04T14:15:30Z"
+                }
+              ]
+            },
+            {
+              "slug": "quote-pdf-footer",
+              "label": "rep contact, disclaimer, and page label in the PDF footer",
+              "branch": "local/feature-quote-pdf-footer-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 545,
+                  "title": "feat(quote): rep contact, disclaimer, and page label in the PDF footer",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/545",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T14:19:01Z"
                 }
               ]
             },
@@ -671,20 +692,20 @@
         {
           "slug": "customer",
           "label": "Customer",
-          "feature_total": 19,
+          "feature_total": 20,
           "feature_done": 17,
-          "task_total": 19,
+          "task_total": 20,
           "task_done": 17,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 3,
             "pr-failing": 0,
             "pr-behind": 0,
             "merged": 17
           },
-          "percent": 89,
+          "percent": 85,
           "features": [
             {
               "slug": "customer-bulk-delete-undo",
@@ -700,7 +721,25 @@
                   "title": "feat: customer bulk-delete with undo",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/537",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T13:43:10Z"
+                  "updated_at": "2026-09-04T14:13:24Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-ltv",
+              "label": "customer lifetime-value snapshot",
+              "branch": "local/feature-customer-ltv-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 542,
+                  "title": "feat: customer lifetime-value snapshot",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T14:13:51Z"
                 }
               ]
             },
@@ -1033,9 +1072,9 @@
         {
           "slug": "ux-nav",
           "label": "UX & Navigation",
-          "feature_total": 12,
+          "feature_total": 11,
           "feature_done": 9,
-          "task_total": 12,
+          "task_total": 11,
           "task_done": 9,
           "by_status": {
             "not-started": 0,
@@ -1043,10 +1082,10 @@
             "tests-written": 0,
             "pr-open": 2,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 9
           },
-          "percent": 75,
+          "percent": 82,
           "features": [
             {
               "slug": "quote-bottom-ux",
@@ -1067,28 +1106,10 @@
               ]
             },
             {
-              "slug": "ux-dark-mode-persist",
-              "label": "per-account ui_theme on the users table",
-              "branch": "local/feature-ux-dark-mode-persist-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 538,
-                  "title": "feat(ux-dark-mode-persist): per-account ui_theme on the users table",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/538",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T13:49:21Z"
-                }
-              ]
-            },
-            {
               "slug": "ux-sidebar-collapsed",
               "label": "persist ui_sidebar_collapsed per user in auth_pw.users",
               "branch": "local/feature-ux-sidebar-collapsed-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -1097,7 +1118,7 @@
                   "pr": 530,
                   "title": "feat(nav): persist ui_sidebar_collapsed per user in auth_pw.users",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/530",
-                  "status": "pr-behind",
+                  "status": "pr-open",
                   "updated_at": "2026-09-04T13:39:16Z"
                 }
               ]
@@ -1889,21 +1910,39 @@
         {
           "slug": "reporting",
           "label": "Reporting & KPIs",
-          "feature_total": 4,
+          "feature_total": 5,
           "feature_done": 4,
-          "task_total": 4,
+          "task_total": 5,
           "task_done": 4,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
             "pr-open": 0,
-            "pr-failing": 0,
+            "pr-failing": 1,
             "pr-behind": 0,
             "merged": 4
           },
-          "percent": 100,
+          "percent": 80,
           "features": [
+            {
+              "slug": "dashboard-kpi-quotes-week",
+              "label": "\"quotes sent this week\" KPI tile",
+              "branch": "local/feature-dashboard-kpi-quotes-week-2026-09-04",
+              "status": "pr-failing",
+              "percent": 60,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 543,
+                  "title": "feat(dashboard): \"quotes sent this week\" KPI tile",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/543",
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-04T14:13:59Z"
+                }
+              ]
+            },
             {
               "slug": "rep-leaderboard",
               "label": "rep leaderboard at /reports/leaderboard",
@@ -1981,10 +2020,10 @@
         {
           "slug": "sla-artifacts",
           "label": "SLA & Artifact Versioning",
-          "feature_total": 3,
-          "feature_done": 2,
-          "task_total": 3,
-          "task_done": 2,
+          "feature_total": 4,
+          "feature_done": 3,
+          "task_total": 4,
+          "task_done": 3,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
@@ -1992,9 +2031,9 @@
             "pr-open": 1,
             "pr-failing": 0,
             "pr-behind": 0,
-            "merged": 2
+            "merged": 3
           },
-          "percent": 67,
+          "percent": 75,
           "features": [
             {
               "slug": "sla-p35-invoice-versioning",
@@ -2047,6 +2086,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/493",
                   "status": "merged",
                   "merged_at": "2026-09-02T03:47:54Z"
+                }
+              ]
+            },
+            {
+              "slug": "ux-dark-mode-persist-2026-09-04-v2",
+              "label": "per-account ui_theme + reverse-sync + observability (supersedes #538)",
+              "branch": "local/feature-ux-dark-mode-persist-2026-09-04-v2",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 541,
+                  "title": "feat(ux-dark-mode-persist): per-account ui_theme + reverse-sync + observability (supersedes #538)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/541",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T14:09:21Z"
                 }
               ]
             }
@@ -2396,20 +2453,20 @@
     },
     {
       "name": "Ops & Delivery",
-      "feature_total": 24,
+      "feature_total": 25,
       "feature_done": 16,
-      "task_total": 24,
+      "task_total": 25,
       "task_done": 16,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
         "pr-open": 5,
-        "pr-failing": 3,
+        "pr-failing": 4,
         "pr-behind": 0,
         "merged": 16
       },
-      "percent": 67,
+      "percent": 64,
       "epics": [
         {
           "slug": "ci-tooling",
@@ -2686,36 +2743,36 @@
         {
           "slug": "other",
           "label": "Uncategorized",
-          "feature_total": 7,
+          "feature_total": 8,
           "feature_done": 3,
-          "task_total": 7,
+          "task_total": 8,
           "task_done": 3,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
             "pr-open": 2,
-            "pr-failing": 2,
+            "pr-failing": 3,
             "pr-behind": 0,
             "merged": 3
           },
-          "percent": 43,
+          "percent": 38,
           "features": [
             {
-              "slug": "cli-status-subcmd",
-              "label": "add `forge status` subcommand \u00e2\u20ac\u201d runtime/build identity",
-              "branch": "local/feature-cli-status-subcmd-2026-09-04",
+              "slug": "infra-request-id",
+              "label": "request-id middleware for tracing",
+              "branch": "local/feature-infra-request-id-2026-09-04",
               "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
               "tasks": [
                 {
-                  "pr": 540,
-                  "title": "feat(ops): add `forge status` subcommand \u00e2\u20ac\u201d runtime/build identity",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/540",
+                  "pr": 544,
+                  "title": "feat: request-id middleware for tracing",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/544",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T13:48:01Z"
+                  "updated_at": "2026-09-04T14:15:00Z"
                 }
               ]
             },
@@ -2734,6 +2791,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
                   "status": "pr-open",
                   "updated_at": "2026-09-04T04:06:27Z"
+                }
+              ]
+            },
+            {
+              "slug": "cli-status-subcmd",
+              "label": "add `forge status` subcommand \u00e2\u20ac\u201d runtime/build identity",
+              "branch": "local/feature-cli-status-subcmd-2026-09-04",
+              "status": "pr-failing",
+              "percent": 60,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 540,
+                  "title": "feat(ops): add `forge status` subcommand \u00e2\u20ac\u201d runtime/build identity",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/540",
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-04T13:48:01Z"
                 }
               ]
             },
@@ -2861,7 +2936,7 @@
                   "title": "docs: structured support-intake Microsoft Form spec (SLA-P1.4)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/518",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T13:42:42Z"
+                  "updated_at": "2026-09-04T14:12:55Z"
                 }
               ]
             },
