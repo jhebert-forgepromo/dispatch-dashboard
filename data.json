@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T04:46:26+00:00",
+  "generated_at": "2026-09-04T04:46:54+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -37,17 +37,17 @@
       ]
     },
     "pr-failing": {
-      "count": 3,
+      "count": 4,
       "slugs": [
         "customer-birthday-reminders",
+        "ui-polish-flash-timestamps",
         "env-health-cron",
         "queue-file-completed-023"
       ]
     },
     "pr-behind": {
-      "count": 4,
+      "count": 3,
       "slugs": [
-        "ui-polish-flash-timestamps",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
         "sla-p53-env-health-cron"
@@ -163,8 +163,8 @@
     }
   },
   "bottleneck": {
-    "ci_queued": 3,
-    "ci_failing": 3,
+    "ci_queued": 2,
+    "ci_failing": 4,
     "behind": 6,
     "pr_data_available": true
   },
@@ -2211,8 +2211,8 @@
         "in-progress": 0,
         "tests-written": 0,
         "pr-open": 4,
-        "pr-failing": 1,
-        "pr-behind": 2,
+        "pr-failing": 2,
+        "pr-behind": 1,
         "merged": 15
       },
       "percent": 68,
@@ -2501,8 +2501,8 @@
             "in-progress": 0,
             "tests-written": 0,
             "pr-open": 1,
-            "pr-failing": 0,
-            "pr-behind": 2,
+            "pr-failing": 1,
+            "pr-behind": 1,
             "merged": 2
           },
           "percent": 40,
@@ -2526,6 +2526,24 @@
               ]
             },
             {
+              "slug": "ui-polish-flash-timestamps",
+              "label": "UI polish 2026-09-03 - humantime + event-driven flash banner",
+              "branch": "local/feature-ui-polish-flash-timestamps-2026-09-03",
+              "status": "pr-failing",
+              "percent": 60,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 528,
+                  "title": "feat: UI polish 2026-09-03 - humantime + event-driven flash banner",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/528",
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-04T04:25:59Z"
+                }
+              ]
+            },
+            {
               "slug": "sla-p42-alert-evaluator",
               "label": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
               "branch": "local/sla-p42-alert-evaluator-2026-09-02",
@@ -2540,24 +2558,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
                   "status": "pr-behind",
                   "updated_at": "2026-09-04T04:06:27Z"
-                }
-              ]
-            },
-            {
-              "slug": "ui-polish-flash-timestamps",
-              "label": "UI polish 2026-09-03 - humantime + event-driven flash banner",
-              "branch": "local/feature-ui-polish-flash-timestamps-2026-09-03",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 528,
-                  "title": "feat: UI polish 2026-09-03 - humantime + event-driven flash banner",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/528",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:25:59Z"
                 }
               ]
             },
