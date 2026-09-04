@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T13:20:53+00:00",
+  "generated_at": "2026-09-04T13:36:01+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 127,
-    "tasks": 127,
-    "tasks_merged": 112,
-    "tasks_open": 15,
-    "prs_merged": 445,
-    "prs_open": 15
+    "features": 129,
+    "tasks": 129,
+    "tasks_merged": 113,
+    "tasks_open": 16,
+    "prs_merged": 446,
+    "prs_open": 16
   },
   "pipeline": {
     "not-started": {
@@ -24,8 +24,11 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 7,
+      "count": 10,
       "slugs": [
+        "ux-sidebar-collapsed",
+        "ux-dark-mode-persist",
+        "ux-breadcrumbs",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
         "quote-bottom-ux",
@@ -36,26 +39,25 @@
       ]
     },
     "pr-failing": {
-      "count": 4,
+      "count": 3,
       "slugs": [
         "lip-qty-tier-preview",
-        "ux-sidebar-collapsed",
         "ui-polish-flash-timestamps",
         "queue-file-completed-023"
       ]
     },
     "pr-behind": {
-      "count": 4,
+      "count": 3,
       "slugs": [
-        "ux-breadcrumbs",
         "quote-export-csv",
         "dashboard-instant-regen",
         "quote-diff-pdf"
       ]
     },
     "merged": {
-      "count": 112,
+      "count": 113,
       "slugs": [
+        "ux-sidebar-collapsed-route",
         "reporting-win-rate-monthly",
         "quote-email-preview",
         "quote-expiry-banner",
@@ -173,25 +175,25 @@
   },
   "bottleneck": {
     "ci_queued": 0,
-    "ci_failing": 4,
-    "behind": 8,
+    "ci_failing": 3,
+    "behind": 6,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 93,
-      "feature_done": 85,
-      "task_total": 93,
-      "task_done": 85,
+      "feature_total": 95,
+      "feature_done": 86,
+      "task_total": 95,
+      "task_done": 86,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 4,
-        "pr-failing": 1,
-        "pr-behind": 3,
-        "merged": 85
+        "pr-open": 7,
+        "pr-failing": 0,
+        "pr-behind": 2,
+        "merged": 86
       },
       "percent": 91,
       "epics": [
@@ -1030,20 +1032,20 @@
         {
           "slug": "ux-nav",
           "label": "UX & Navigation",
-          "feature_total": 10,
-          "feature_done": 7,
-          "task_total": 10,
-          "task_done": 7,
+          "feature_total": 12,
+          "feature_done": 8,
+          "task_total": 12,
+          "task_done": 8,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
-            "pr-failing": 1,
-            "pr-behind": 1,
-            "merged": 7
+            "pr-open": 4,
+            "pr-failing": 0,
+            "pr-behind": 0,
+            "merged": 8
           },
-          "percent": 70,
+          "percent": 67,
           "features": [
             {
               "slug": "quote-bottom-ux",
@@ -1064,28 +1066,10 @@
               ]
             },
             {
-              "slug": "ux-sidebar-collapsed",
-              "label": "persist ui_sidebar_collapsed per user in auth_pw.users",
-              "branch": "local/feature-ux-sidebar-collapsed-2026-09-03",
-              "status": "pr-failing",
-              "percent": 60,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 530,
-                  "title": "feat(nav): persist ui_sidebar_collapsed per user in auth_pw.users",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/530",
-                  "status": "pr-failing",
-                  "updated_at": "2026-09-04T11:06:21Z"
-                }
-              ]
-            },
-            {
               "slug": "ux-breadcrumbs",
               "label": "server-side breadcrumbs component for detail pages",
               "branch": "local/feature-ux-breadcrumbs-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -1094,8 +1078,44 @@
                   "pr": 531,
                   "title": "feat(ux): server-side breadcrumbs component for detail pages",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/531",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T13:20:21Z"
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T13:22:47Z"
+                }
+              ]
+            },
+            {
+              "slug": "ux-dark-mode-persist",
+              "label": "per-account ui_theme on the users table",
+              "branch": "local/feature-ux-dark-mode-persist-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 538,
+                  "title": "feat(ux-dark-mode-persist): per-account ui_theme on the users table",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/538",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T13:30:04Z"
+                }
+              ]
+            },
+            {
+              "slug": "ux-sidebar-collapsed",
+              "label": "persist ui_sidebar_collapsed per user in auth_pw.users",
+              "branch": "local/feature-ux-sidebar-collapsed-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 530,
+                  "title": "feat(nav): persist ui_sidebar_collapsed per user in auth_pw.users",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/530",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T13:34:37Z"
                 }
               ]
             },
@@ -1222,6 +1242,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398",
                   "status": "merged",
                   "merged_at": "2026-09-03T17:31:42Z"
+                }
+              ]
+            },
+            {
+              "slug": "ux-sidebar-collapsed-route",
+              "label": "POST /api/ui/sidebar-collapsed + logging + counter summary + runbook",
+              "branch": "local/feature-ux-sidebar-collapsed-route-2026-09-04",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 539,
+                  "title": "feat(nav): POST /api/ui/sidebar-collapsed + logging + counter summary + runbook",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/539",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T13:29:16Z"
                 }
               ]
             }
