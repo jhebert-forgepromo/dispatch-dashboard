@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T15:21:11+00:00",
+  "generated_at": "2026-09-04T15:37:05+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
     "features": 135,
     "tasks": 135,
-    "tasks_merged": 118,
-    "tasks_open": 17,
-    "prs_merged": 451,
-    "prs_open": 17
+    "tasks_merged": 119,
+    "tasks_open": 16,
+    "prs_merged": 452,
+    "prs_open": 16
   },
   "pipeline": {
     "not-started": {
@@ -26,12 +26,12 @@
     "pr-open": {
       "count": 11,
       "slugs": [
-        "quote-pdf-footer",
         "customer-ltv",
-        "quote-export-csv",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
         "ux-sidebar-collapsed",
+        "dashboard-instant-regen",
+        "quote-diff-pdf",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
         "sla-p53-env-health-cron",
@@ -49,15 +49,15 @@
       ]
     },
     "pr-behind": {
-      "count": 2,
+      "count": 1,
       "slugs": [
-        "dashboard-instant-regen",
-        "quote-diff-pdf"
+        "quote-export-csv"
       ]
     },
     "merged": {
-      "count": 118,
+      "count": 119,
       "slugs": [
+        "quote-pdf-footer",
         "infra-request-id",
         "dashboard-kpi-quotes-week",
         "customer-notes-panel",
@@ -182,50 +182,50 @@
   "bottleneck": {
     "ci_queued": 0,
     "ci_failing": 4,
-    "behind": 6,
+    "behind": 1,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
       "feature_total": 99,
-      "feature_done": 90,
+      "feature_done": 91,
       "task_total": 99,
-      "task_done": 90,
+      "task_done": 91,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 8,
+        "pr-open": 7,
         "pr-failing": 0,
         "pr-behind": 1,
-        "merged": 90
+        "merged": 91
       },
-      "percent": 91,
+      "percent": 92,
       "epics": [
         {
           "slug": "quote-lifecycle",
           "label": "Quote Lifecycle",
           "feature_total": 26,
-          "feature_done": 24,
+          "feature_done": 25,
           "task_total": 26,
-          "task_done": 24,
+          "task_done": 25,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 0,
             "pr-failing": 0,
-            "pr-behind": 0,
-            "merged": 24
+            "pr-behind": 1,
+            "merged": 25
           },
-          "percent": 92,
+          "percent": 96,
           "features": [
             {
               "slug": "quote-export-csv",
               "label": "CSV export for the Projects tab quote list",
               "branch": "local/feature-quote-export-csv-2026-09-03",
-              "status": "pr-open",
+              "status": "pr-behind",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -234,26 +234,8 @@
                   "pr": 525,
                   "title": "feat: CSV export for the Projects tab quote list",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/525",
-                  "status": "pr-open",
+                  "status": "pr-behind",
                   "updated_at": "2026-09-04T15:08:18Z"
-                }
-              ]
-            },
-            {
-              "slug": "quote-pdf-footer",
-              "label": "rep contact, disclaimer, and page label in the PDF footer",
-              "branch": "local/feature-quote-pdf-footer-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 545,
-                  "title": "feat(quote): rep contact, disclaimer, and page label in the PDF footer",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/545",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T15:16:34Z"
                 }
               ]
             },
@@ -546,6 +528,24 @@
               ]
             },
             {
+              "slug": "quote-pdf-footer",
+              "label": "rep contact, disclaimer, and page label in the PDF footer",
+              "branch": "local/feature-quote-pdf-footer-2026-09-04",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 545,
+                  "title": "feat(quote): rep contact, disclaimer, and page label in the PDF footer",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/545",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T15:28:33Z"
+                }
+              ]
+            },
+            {
               "slug": "quote-recurring",
               "label": "recurring quotes (cadence + scheduled draft duplicate)",
               "branch": "local/feature-quote-recurring-2026-08-27",
@@ -702,9 +702,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 3,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 18
           },
           "percent": 86,
@@ -723,7 +723,7 @@
                   "title": "feat: customer bulk-delete with undo",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/537",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:07:46Z"
+                  "updated_at": "2026-09-04T15:35:03Z"
                 }
               ]
             },
@@ -741,7 +741,7 @@
                   "title": "feat: customer lifetime-value snapshot",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:08:44Z"
+                  "updated_at": "2026-09-04T15:35:37Z"
                 }
               ]
             },
@@ -749,7 +749,7 @@
               "slug": "quote-diff-pdf",
               "label": "customer-facing change log PDF for a quote diff",
               "branch": "local/feature-quote-diff-pdf-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -758,7 +758,7 @@
                   "pr": 520,
                   "title": "feat: customer-facing change log PDF for a quote diff",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/520",
-                  "status": "pr-behind",
+                  "status": "pr-open",
                   "updated_at": "2026-09-04T04:36:31Z"
                 }
               ]
@@ -2481,9 +2481,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 4,
         "pr-failing": 4,
-        "pr-behind": 1,
+        "pr-behind": 0,
         "merged": 17
       },
       "percent": 68,
@@ -2499,13 +2499,31 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 2,
             "pr-failing": 1,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 11
           },
           "percent": 79,
           "features": [
+            {
+              "slug": "dashboard-instant-regen",
+              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 529,
+                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T04:43:50Z"
+                }
+              ]
+            },
             {
               "slug": "sla-p2-2-stale-version-log",
               "label": "SLA-P2.2 \u00e2\u20ac\u201d stale-version ping as a local anonymized log (extends E-02)",
@@ -2539,24 +2557,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/515",
                   "status": "pr-failing",
                   "updated_at": "2026-09-04T03:39:26Z"
-                }
-              ]
-            },
-            {
-              "slug": "dashboard-instant-regen",
-              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 529,
-                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:43:50Z"
                 }
               ]
             },
@@ -2956,7 +2956,7 @@
                   "title": "docs: structured support-intake Microsoft Form spec (SLA-P1.4)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/518",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:07:10Z"
+                  "updated_at": "2026-09-04T15:34:31Z"
                 }
               ]
             },
