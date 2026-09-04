@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T04:43:13+00:00",
+  "generated_at": "2026-09-04T04:43:24+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -24,14 +24,12 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 8,
+      "count": 6,
       "slugs": [
         "sla-p53-env-health",
         "quote-diff-pdf",
         "sla-p14-intake-form",
         "sla-p42-reconcile-alert-evaluators",
-        "ui-polish-flash-timestamps",
-        "quote-bottom-ux",
         "sla-p2-2-stale-version-log",
         "sla-p35-invoice-versioning"
       ]
@@ -45,8 +43,10 @@
       ]
     },
     "pr-behind": {
-      "count": 3,
+      "count": 5,
       "slugs": [
+        "ui-polish-flash-timestamps",
+        "quote-bottom-ux",
         "quote-export-csv",
         "sla-p42-alert-evaluator",
         "sla-p53-env-health-cron"
@@ -164,7 +164,7 @@
   "bottleneck": {
     "ci_queued": 1,
     "ci_failing": 3,
-    "behind": 6,
+    "behind": 8,
     "pr_data_available": true
   },
   "projects": [
@@ -178,9 +178,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 4,
+        "pr-open": 3,
         "pr-failing": 2,
-        "pr-behind": 2,
+        "pr-behind": 3,
         "merged": 79
       },
       "percent": 91,
@@ -1338,9 +1338,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 0,
             "pr-failing": 0,
-            "pr-behind": 0,
+            "pr-behind": 1,
             "merged": 7
           },
           "percent": 88,
@@ -1349,7 +1349,7 @@
               "slug": "quote-bottom-ux",
               "label": "redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
               "branch": "local/feature-quote-bottom-ux-2026-09-03",
-              "status": "pr-open",
+              "status": "pr-behind",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -1358,7 +1358,7 @@
                   "pr": 527,
                   "title": "feat(quotes): redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
-                  "status": "pr-open",
+                  "status": "pr-behind",
                   "updated_at": "2026-09-04T04:25:34Z"
                 }
               ]
@@ -2209,9 +2209,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 4,
+        "pr-open": 3,
         "pr-failing": 1,
-        "pr-behind": 1,
+        "pr-behind": 2,
         "merged": 15
       },
       "percent": 71,
@@ -2481,9 +2481,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 1,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 2,
             "merged": 2
           },
           "percent": 40,
@@ -2507,24 +2507,6 @@
               ]
             },
             {
-              "slug": "ui-polish-flash-timestamps",
-              "label": "UI polish 2026-09-03 - humantime + event-driven flash banner",
-              "branch": "local/feature-ui-polish-flash-timestamps-2026-09-03",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 528,
-                  "title": "feat: UI polish 2026-09-03 - humantime + event-driven flash banner",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/528",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T04:25:59Z"
-                }
-              ]
-            },
-            {
               "slug": "sla-p42-alert-evaluator",
               "label": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
               "branch": "local/sla-p42-alert-evaluator-2026-09-02",
@@ -2539,6 +2521,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/522",
                   "status": "pr-behind",
                   "updated_at": "2026-09-04T04:06:27Z"
+                }
+              ]
+            },
+            {
+              "slug": "ui-polish-flash-timestamps",
+              "label": "UI polish 2026-09-03 - humantime + event-driven flash banner",
+              "branch": "local/feature-ui-polish-flash-timestamps-2026-09-03",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 528,
+                  "title": "feat: UI polish 2026-09-03 - humantime + event-driven flash banner",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/528",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-04T04:25:59Z"
                 }
               ]
             },
