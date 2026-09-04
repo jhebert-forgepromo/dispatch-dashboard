@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T10:57:37+00:00",
+  "generated_at": "2026-09-04T11:12:38+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 117,
-    "tasks": 117,
+    "features": 121,
+    "tasks": 121,
     "tasks_merged": 106,
-    "tasks_open": 11,
+    "tasks_open": 15,
     "prs_merged": 441,
-    "prs_open": 11
+    "prs_open": 15
   },
   "pipeline": {
     "not-started": {
@@ -24,8 +24,12 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 6,
+      "count": 10,
       "slugs": [
+        "reporting-quote-aging",
+        "lip-qty-tier-preview",
+        "ux-breadcrumbs",
+        "ux-sidebar-collapsed",
         "quote-export-csv",
         "sla-p14-intake-form",
         "sla-p42-alert-evaluator",
@@ -170,20 +174,20 @@
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 86,
+      "feature_total": 89,
       "feature_done": 81,
-      "task_total": 86,
+      "task_total": 89,
       "task_done": 81,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 6,
         "pr-failing": 0,
         "pr-behind": 2,
         "merged": 81
       },
-      "percent": 94,
+      "percent": 91,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -964,6 +968,206 @@
           ]
         },
         {
+          "slug": "ux-nav",
+          "label": "UX & Navigation",
+          "feature_total": 10,
+          "feature_done": 7,
+          "task_total": 10,
+          "task_done": 7,
+          "by_status": {
+            "not-started": 0,
+            "in-progress": 0,
+            "tests-written": 0,
+            "pr-open": 2,
+            "pr-failing": 0,
+            "pr-behind": 1,
+            "merged": 7
+          },
+          "percent": 70,
+          "features": [
+            {
+              "slug": "ux-breadcrumbs",
+              "label": "server-side breadcrumbs component for detail pages",
+              "branch": "local/feature-ux-breadcrumbs-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 531,
+                  "title": "feat(ux): server-side breadcrumbs component for detail pages",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/531",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T11:06:57Z"
+                }
+              ]
+            },
+            {
+              "slug": "ux-sidebar-collapsed",
+              "label": "persist ui_sidebar_collapsed per user in auth_pw.users",
+              "branch": "local/feature-ux-sidebar-collapsed-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 530,
+                  "title": "feat(nav): persist ui_sidebar_collapsed per user in auth_pw.users",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/530",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T11:06:21Z"
+                }
+              ]
+            },
+            {
+              "slug": "quote-bottom-ux",
+              "label": "redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
+              "branch": "local/feature-quote-bottom-ux-2026-09-03",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 527,
+                  "title": "feat(quotes): redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-04T04:25:34Z"
+                }
+              ]
+            },
+            {
+              "slug": "feature-flags",
+              "label": "admin feature-flags page (Operations tab)",
+              "branch": "local/feature-feature-flags-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 447,
+                  "title": "feat: admin feature-flags page (Operations tab)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/447",
+                  "status": "merged",
+                  "merged_at": "2026-09-02T02:33:43Z"
+                }
+              ]
+            },
+            {
+              "slug": "global-omnibox",
+              "label": "global search omnibox",
+              "branch": "local/feature-global-omnibox-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 413,
+                  "title": "feat: global search omnibox",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/413",
+                  "status": "merged",
+                  "merged_at": "2026-08-30T04:52:54Z"
+                }
+              ]
+            },
+            {
+              "slug": "gtm-quote-status-chips",
+              "label": "quote status chips on the list + a status detail modal (GTM-01)",
+              "branch": "local/gtm-quote-status-chips-2026-08-21",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 356,
+                  "title": "ux: quote status chips on the list + a status detail modal (GTM-01)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/356",
+                  "status": "merged",
+                  "merged_at": "2026-09-02T04:22:25Z"
+                }
+              ]
+            },
+            {
+              "slug": "mobile-responsive-list",
+              "label": "quotes list becomes cards with swipe quick-actions on a narrow viewport",
+              "branch": "local/feature-mobile-responsive-list-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 465,
+                  "title": "ux: quotes list becomes cards with swipe quick-actions on a narrow viewport",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/465",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T02:32:47Z"
+                }
+              ]
+            },
+            {
+              "slug": "notifications-bell",
+              "label": "notification bell in the header",
+              "branch": "local/feature-notifications-bell-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 430,
+                  "title": "feat: notification bell in the header",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/430",
+                  "status": "merged",
+                  "merged_at": "2026-08-30T18:22:42Z"
+                }
+              ]
+            },
+            {
+              "slug": "recent-items-sidebar",
+              "label": "recent items sidebar",
+              "branch": "local/feature-recent-items-sidebar-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 391,
+                  "title": "feat(ui): recent items sidebar",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/391",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T17:20:29Z"
+                }
+              ]
+            },
+            {
+              "slug": "sortable-columns",
+              "label": "sortable columns on lists",
+              "branch": "local/feature-sortable-columns-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 398,
+                  "title": "feat(ui): sortable columns on lists",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T17:31:42Z"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "slug": "line-items-pricing",
           "label": "Line Items & Pricing",
           "feature_total": 9,
@@ -1328,170 +1532,6 @@
           ]
         },
         {
-          "slug": "ux-nav",
-          "label": "UX & Navigation",
-          "feature_total": 8,
-          "feature_done": 7,
-          "task_total": 8,
-          "task_done": 7,
-          "by_status": {
-            "not-started": 0,
-            "in-progress": 0,
-            "tests-written": 0,
-            "pr-open": 0,
-            "pr-failing": 0,
-            "pr-behind": 1,
-            "merged": 7
-          },
-          "percent": 88,
-          "features": [
-            {
-              "slug": "quote-bottom-ux",
-              "label": "redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
-              "branch": "local/feature-quote-bottom-ux-2026-09-03",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 527,
-                  "title": "feat(quotes): redesign quote-detail bottom for clarity (UX-QD-BOTTOM-01)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:25:34Z"
-                }
-              ]
-            },
-            {
-              "slug": "feature-flags",
-              "label": "admin feature-flags page (Operations tab)",
-              "branch": "local/feature-feature-flags-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 447,
-                  "title": "feat: admin feature-flags page (Operations tab)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/447",
-                  "status": "merged",
-                  "merged_at": "2026-09-02T02:33:43Z"
-                }
-              ]
-            },
-            {
-              "slug": "global-omnibox",
-              "label": "global search omnibox",
-              "branch": "local/feature-global-omnibox-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 413,
-                  "title": "feat: global search omnibox",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/413",
-                  "status": "merged",
-                  "merged_at": "2026-08-30T04:52:54Z"
-                }
-              ]
-            },
-            {
-              "slug": "gtm-quote-status-chips",
-              "label": "quote status chips on the list + a status detail modal (GTM-01)",
-              "branch": "local/gtm-quote-status-chips-2026-08-21",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 356,
-                  "title": "ux: quote status chips on the list + a status detail modal (GTM-01)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/356",
-                  "status": "merged",
-                  "merged_at": "2026-09-02T04:22:25Z"
-                }
-              ]
-            },
-            {
-              "slug": "mobile-responsive-list",
-              "label": "quotes list becomes cards with swipe quick-actions on a narrow viewport",
-              "branch": "local/feature-mobile-responsive-list-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 465,
-                  "title": "ux: quotes list becomes cards with swipe quick-actions on a narrow viewport",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/465",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T02:32:47Z"
-                }
-              ]
-            },
-            {
-              "slug": "notifications-bell",
-              "label": "notification bell in the header",
-              "branch": "local/feature-notifications-bell-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 430,
-                  "title": "feat: notification bell in the header",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/430",
-                  "status": "merged",
-                  "merged_at": "2026-08-30T18:22:42Z"
-                }
-              ]
-            },
-            {
-              "slug": "recent-items-sidebar",
-              "label": "recent items sidebar",
-              "branch": "local/feature-recent-items-sidebar-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 391,
-                  "title": "feat(ui): recent items sidebar",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/391",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T17:20:29Z"
-                }
-              ]
-            },
-            {
-              "slug": "sortable-columns",
-              "label": "sortable columns on lists",
-              "branch": "local/feature-sortable-columns-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 398,
-                  "title": "feat(ui): sortable columns on lists",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/398",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T17:31:42Z"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "slug": "infra-platform",
           "label": "Infrastructure & Platform",
           "feature_total": 6,
@@ -1748,6 +1788,80 @@
           ]
         },
         {
+          "slug": "reporting",
+          "label": "Reporting & KPIs",
+          "feature_total": 3,
+          "feature_done": 2,
+          "task_total": 3,
+          "task_done": 2,
+          "by_status": {
+            "not-started": 0,
+            "in-progress": 0,
+            "tests-written": 0,
+            "pr-open": 1,
+            "pr-failing": 0,
+            "pr-behind": 0,
+            "merged": 2
+          },
+          "percent": 67,
+          "features": [
+            {
+              "slug": "reporting-quote-aging",
+              "label": "open-quote aging report at /reports/quote-aging",
+              "branch": "local/feature-reporting-quote-aging-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 533,
+                  "title": "feat(reports): open-quote aging report at /reports/quote-aging",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/533",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T11:11:40Z"
+                }
+              ]
+            },
+            {
+              "slug": "rep-leaderboard",
+              "label": "rep leaderboard at /reports/leaderboard",
+              "branch": "local/feature-rep-leaderboard-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 456,
+                  "title": "feat: rep leaderboard at /reports/leaderboard",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456",
+                  "status": "merged",
+                  "merged_at": "2026-08-31T00:10:20Z"
+                }
+              ]
+            },
+            {
+              "slug": "win-loss-reasons",
+              "label": "win/loss close reasons + /reports/win-loss breakdown page",
+              "branch": "local/feature-win-loss-reasons-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 426,
+                  "title": "feat: win/loss close reasons + /reports/win-loss breakdown page",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T16:30:06Z"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "slug": "sla-artifacts",
           "label": "SLA & Artifact Versioning",
           "feature_total": 3,
@@ -1872,62 +1986,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/423",
                   "status": "merged",
                   "merged_at": "2026-09-02T05:04:16Z"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "reporting",
-          "label": "Reporting & KPIs",
-          "feature_total": 2,
-          "feature_done": 2,
-          "task_total": 2,
-          "task_done": 2,
-          "by_status": {
-            "not-started": 0,
-            "in-progress": 0,
-            "tests-written": 0,
-            "pr-open": 0,
-            "pr-failing": 0,
-            "pr-behind": 0,
-            "merged": 2
-          },
-          "percent": 100,
-          "features": [
-            {
-              "slug": "rep-leaderboard",
-              "label": "rep leaderboard at /reports/leaderboard",
-              "branch": "local/feature-rep-leaderboard-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 456,
-                  "title": "feat: rep leaderboard at /reports/leaderboard",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456",
-                  "status": "merged",
-                  "merged_at": "2026-08-31T00:10:20Z"
-                }
-              ]
-            },
-            {
-              "slug": "win-loss-reasons",
-              "label": "win/loss close reasons + /reports/win-loss breakdown page",
-              "branch": "local/feature-win-loss-reasons-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 426,
-                  "title": "feat: win/loss close reasons + /reports/win-loss breakdown page",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T16:30:06Z"
                 }
               ]
             }
@@ -2183,20 +2241,20 @@
     },
     {
       "name": "Ops & Delivery",
-      "feature_total": 22,
+      "feature_total": 23,
       "feature_done": 16,
-      "task_total": 22,
+      "task_total": 23,
       "task_done": 16,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 4,
         "pr-failing": 2,
         "pr-behind": 1,
         "merged": 16
       },
-      "percent": 73,
+      "percent": 70,
       "epics": [
         {
           "slug": "ci-tooling",
@@ -2473,21 +2531,39 @@
         {
           "slug": "other",
           "label": "Uncategorized",
-          "feature_total": 5,
+          "feature_total": 6,
           "feature_done": 3,
-          "task_total": 5,
+          "task_total": 6,
           "task_done": 3,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 2,
             "pr-failing": 1,
             "pr-behind": 0,
             "merged": 3
           },
-          "percent": 60,
+          "percent": 50,
           "features": [
+            {
+              "slug": "lip-qty-tier-preview",
+              "label": "current-tier total + next-tier savings chip under qty cell",
+              "branch": "local/feature-lip-qty-tier-preview-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 532,
+                  "title": "feat(qty-tier-preview): current-tier total + next-tier savings chip under qty cell",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/532",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T11:10:01Z"
+                }
+              ]
+            },
             {
               "slug": "sla-p42-alert-evaluator",
               "label": "docs+test: reconcile the two live alert evaluators (SLA-P4.2)",
