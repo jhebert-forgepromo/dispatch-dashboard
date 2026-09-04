@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-04T14:20:54+00:00",
+  "generated_at": "2026-09-04T14:35:56+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 134,
-    "tasks": 134,
+    "features": 135,
+    "tasks": 135,
     "tasks_merged": 115,
-    "tasks_open": 19,
+    "tasks_open": 20,
     "prs_merged": 448,
-    "prs_open": 19
+    "prs_open": 20
   },
   "pipeline": {
     "not-started": {
@@ -24,17 +24,16 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 14,
+      "count": 13,
       "slugs": [
+        "infra-request-id",
+        "customer-notes-panel",
         "quote-pdf-footer",
         "quote-export-csv",
-        "infra-request-id",
         "customer-ltv",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
         "ux-sidebar-collapsed",
-        "dashboard-instant-regen",
-        "quote-diff-pdf",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
         "sla-p53-env-health-cron",
@@ -53,8 +52,11 @@
       ]
     },
     "pr-behind": {
-      "count": 0,
-      "slugs": []
+      "count": 2,
+      "slugs": [
+        "dashboard-instant-regen",
+        "quote-diff-pdf"
+      ]
     },
     "merged": {
       "count": 115,
@@ -178,17 +180,17 @@
     }
   },
   "bottleneck": {
-    "ci_queued": 3,
+    "ci_queued": 0,
     "ci_failing": 5,
-    "behind": 1,
+    "behind": 7,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 98,
+      "feature_total": 99,
       "feature_done": 88,
-      "task_total": 98,
+      "task_total": 99,
       "task_done": 88,
       "by_status": {
         "not-started": 0,
@@ -196,10 +198,10 @@
         "tests-written": 0,
         "pr-open": 9,
         "pr-failing": 1,
-        "pr-behind": 0,
+        "pr-behind": 1,
         "merged": 88
       },
-      "percent": 90,
+      "percent": 89,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -692,9 +694,9 @@
         {
           "slug": "customer",
           "label": "Customer",
-          "feature_total": 20,
+          "feature_total": 21,
           "feature_done": 17,
-          "task_total": 20,
+          "task_total": 21,
           "task_done": 17,
           "by_status": {
             "not-started": 0,
@@ -702,10 +704,10 @@
             "tests-written": 0,
             "pr-open": 3,
             "pr-failing": 0,
-            "pr-behind": 0,
+            "pr-behind": 1,
             "merged": 17
           },
-          "percent": 85,
+          "percent": 81,
           "features": [
             {
               "slug": "customer-bulk-delete-undo",
@@ -744,10 +746,28 @@
               ]
             },
             {
+              "slug": "customer-notes-panel",
+              "label": "customer notes/comments panel on the customer detail page",
+              "branch": "local/feature-customer-notes-panel-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 546,
+                  "title": "feat: customer notes/comments panel on the customer detail page",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/546",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T14:23:47Z"
+                }
+              ]
+            },
+            {
               "slug": "quote-diff-pdf",
               "label": "customer-facing change log PDF for a quote diff",
               "branch": "local/feature-quote-diff-pdf-2026-09-03",
-              "status": "pr-open",
+              "status": "pr-behind",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -756,7 +776,7 @@
                   "pr": 520,
                   "title": "feat: customer-facing change log PDF for a quote diff",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/520",
-                  "status": "pr-open",
+                  "status": "pr-behind",
                   "updated_at": "2026-09-04T04:36:31Z"
                 }
               ]
@@ -2461,9 +2481,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 5,
+        "pr-open": 4,
         "pr-failing": 4,
-        "pr-behind": 0,
+        "pr-behind": 1,
         "merged": 16
       },
       "percent": 64,
@@ -2479,31 +2499,13 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 1,
             "pr-failing": 1,
-            "pr-behind": 0,
+            "pr-behind": 1,
             "merged": 11
           },
           "percent": 79,
           "features": [
-            {
-              "slug": "dashboard-instant-regen",
-              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 529,
-                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T04:43:50Z"
-                }
-              ]
-            },
             {
               "slug": "sla-p2-2-stale-version-log",
               "label": "SLA-P2.2 \u00e2\u20ac\u201d stale-version ping as a local anonymized log (extends E-02)",
@@ -2537,6 +2539,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/515",
                   "status": "pr-failing",
                   "updated_at": "2026-09-04T03:39:26Z"
+                }
+              ]
+            },
+            {
+              "slug": "dashboard-instant-regen",
+              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 529,
+                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-04T04:43:50Z"
                 }
               ]
             },
@@ -2772,7 +2792,7 @@
                   "title": "feat: request-id middleware for tracing",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/544",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T14:15:00Z"
+                  "updated_at": "2026-09-04T14:28:25Z"
                 }
               ]
             },
