@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T19:50:55+00:00",
+  "generated_at": "2026-09-04T20:06:04+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -24,8 +24,9 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 10,
+      "count": 11,
       "slugs": [
+        "customer-address-structured",
         "quote-export-csv",
         "customer-ltv",
         "customer-bulk-delete-undo",
@@ -39,9 +40,8 @@
       ]
     },
     "pr-failing": {
-      "count": 6,
+      "count": 5,
       "slugs": [
-        "customer-address-structured",
         "reporting-revenue-by-month",
         "cli-status-subcmd",
         "lip-qty-tier-preview",
@@ -183,7 +183,7 @@
   },
   "bottleneck": {
     "ci_queued": 0,
-    "ci_failing": 6,
+    "ci_failing": 5,
     "behind": 6,
     "pr_data_available": true
   },
@@ -198,8 +198,8 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 7,
-        "pr-failing": 2,
+        "pr-open": 8,
+        "pr-failing": 1,
         "pr-behind": 1,
         "merged": 91
       },
@@ -704,13 +704,31 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
-            "pr-failing": 1,
+            "pr-open": 3,
+            "pr-failing": 0,
             "pr-behind": 1,
             "merged": 18
           },
           "percent": 82,
           "features": [
+            {
+              "slug": "customer-address-structured",
+              "label": "structured address fields (line_1/2, city, postal_code, country)",
+              "branch": "local/feature-customer-address-structured-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 548,
+                  "title": "feat(customers): structured address fields (line_1/2, city, postal_code, country)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/548",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T20:05:35Z"
+                }
+              ]
+            },
             {
               "slug": "customer-bulk-delete-undo",
               "label": "customer bulk-delete with undo",
@@ -744,24 +762,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
                   "status": "pr-open",
                   "updated_at": "2026-09-04T15:35:37Z"
-                }
-              ]
-            },
-            {
-              "slug": "customer-address-structured",
-              "label": "structured address fields (line_1/2, city, postal_code, country)",
-              "branch": "local/feature-customer-address-structured-2026-09-04",
-              "status": "pr-failing",
-              "percent": 60,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 548,
-                  "title": "feat(customers): structured address fields (line_1/2, city, postal_code, country)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/548",
-                  "status": "pr-failing",
-                  "updated_at": "2026-09-04T18:14:29Z"
                 }
               ]
             },
