@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T12:12:40+00:00",
+  "generated_at": "2026-09-04T12:27:38+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
@@ -24,9 +24,8 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 8,
+      "count": 7,
       "slugs": [
-        "reporting-win-rate-monthly",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
         "quote-bottom-ux",
@@ -37,8 +36,9 @@
       ]
     },
     "pr-failing": {
-      "count": 4,
+      "count": 5,
       "slugs": [
+        "reporting-win-rate-monthly",
         "lip-qty-tier-preview",
         "ux-sidebar-collapsed",
         "ui-polish-flash-timestamps",
@@ -171,7 +171,7 @@
   },
   "bottleneck": {
     "ci_queued": 0,
-    "ci_failing": 4,
+    "ci_failing": 5,
     "behind": 8,
     "pr_data_available": true
   },
@@ -186,8 +186,8 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 5,
-        "pr-failing": 1,
+        "pr-open": 4,
+        "pr-failing": 2,
         "pr-behind": 3,
         "merged": 84
       },
@@ -1856,8 +1856,8 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
-            "pr-failing": 0,
+            "pr-open": 0,
+            "pr-failing": 1,
             "pr-behind": 0,
             "merged": 3
           },
@@ -1867,8 +1867,8 @@
               "slug": "reporting-win-rate-monthly",
               "label": "monthly win-rate table at /reports/win-rate-monthly",
               "branch": "local/feature-reporting-win-rate-monthly-2026-09-03",
-              "status": "pr-open",
-              "percent": 80,
+              "status": "pr-failing",
+              "percent": 60,
               "task_total": 1,
               "task_done": 0,
               "tasks": [
@@ -1876,8 +1876,8 @@
                   "pr": 534,
                   "title": "feat(reports): monthly win-rate table at /reports/win-rate-monthly",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/534",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T12:03:34Z"
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-04T12:16:47Z"
                 }
               ]
             },
