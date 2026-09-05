@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-05T19:35:53+00:00",
+  "generated_at": "2026-09-05T19:50:54+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 141,
-    "tasks": 141,
+    "features": 143,
+    "tasks": 143,
     "tasks_merged": 120,
-    "tasks_open": 21,
+    "tasks_open": 23,
     "prs_merged": 453,
-    "prs_open": 21
+    "prs_open": 23
   },
   "pipeline": {
     "not-started": {
@@ -24,8 +24,10 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 11,
+      "count": 13,
       "slugs": [
+        "quote-copy-to-new",
+        "ops-health-probe-timing",
         "quote-pdf-multipage",
         "customer-map-link",
         "customer-ltv",
@@ -194,20 +196,20 @@
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 105,
+      "feature_total": 107,
       "feature_done": 92,
-      "task_total": 105,
+      "task_total": 107,
       "task_done": 92,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 8,
+        "pr-open": 10,
         "pr-failing": 2,
         "pr-behind": 3,
         "merged": 92
       },
-      "percent": 88,
+      "percent": 86,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -1170,20 +1172,20 @@
         {
           "slug": "ux-nav",
           "label": "UX & Navigation",
-          "feature_total": 11,
+          "feature_total": 12,
           "feature_done": 9,
-          "task_total": 11,
+          "task_total": 12,
           "task_done": 9,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 3,
             "pr-failing": 0,
             "pr-behind": 0,
             "merged": 9
           },
-          "percent": 82,
+          "percent": 75,
           "features": [
             {
               "slug": "quote-bottom-ux",
@@ -1200,6 +1202,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
                   "status": "pr-open",
                   "updated_at": "2026-09-04T04:25:34Z"
+                }
+              ]
+            },
+            {
+              "slug": "quote-copy-to-new",
+              "label": "Copy to new quote action (UX-COPY-QUOTE-01, detail)",
+              "branch": "local/feature-quote-copy-to-new-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 554,
+                  "title": "feat(quote-detail): Copy to new quote action (UX-COPY-QUOTE-01, detail)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/554",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-05T19:46:17Z"
                 }
               ]
             },
@@ -1750,6 +1770,152 @@
           ]
         },
         {
+          "slug": "infra-platform",
+          "label": "Infrastructure & Platform",
+          "feature_total": 7,
+          "feature_done": 5,
+          "task_total": 7,
+          "task_done": 5,
+          "by_status": {
+            "not-started": 0,
+            "in-progress": 0,
+            "tests-written": 0,
+            "pr-open": 2,
+            "pr-failing": 0,
+            "pr-behind": 0,
+            "merged": 5
+          },
+          "percent": 71,
+          "features": [
+            {
+              "slug": "ops-health-probe-timing",
+              "label": "time connector health probes and publish probe_ms on /ops/health",
+              "branch": "local/feature-ops-health-probe-timing-2026-09-05",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 553,
+                  "title": "feat: time connector health probes and publish probe_ms on /ops/health",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/553",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-05T19:42:38Z"
+                }
+              ]
+            },
+            {
+              "slug": "sla-p53-env-health-cron",
+              "label": "env-health synthetic cron (SLA-P5.3)",
+              "branch": "local/feature-sla-p53-env-health-cron-2026-08-31",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 524,
+                  "title": "feat: env-health synthetic cron (SLA-P5.3)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/524",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T03:51:53Z"
+                }
+              ]
+            },
+            {
+              "slug": "env-health-cron",
+              "label": "env-health synthetic cron for the golden path (SLA-P5.3)",
+              "branch": "local/feature-env-health-cron-2026-09-03",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 521,
+                  "title": "feat: env-health synthetic cron for the golden path (SLA-P5.3)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/521",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T04:48:31Z"
+                }
+              ]
+            },
+            {
+              "slug": "health-check",
+              "label": "/status detailed ops endpoint alongside /health",
+              "branch": "local/feature-health-check-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 441,
+                  "title": "feat: /status detailed ops endpoint alongside /health",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/441",
+                  "status": "merged",
+                  "merged_at": "2026-08-31T17:47:04Z"
+                }
+              ]
+            },
+            {
+              "slug": "list-hygiene",
+              "label": "local/feature list hygiene 2026 08 22",
+              "branch": "local/feature-list-hygiene-2026-08-22",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 368,
+                  "title": "local/feature list hygiene 2026 08 22",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/368",
+                  "status": "merged",
+                  "merged_at": "2026-08-28T05:00:44Z"
+                }
+              ]
+            },
+            {
+              "slug": "phase1-org-partitioning",
+              "label": "Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)",
+              "branch": "local/phase1-org-partitioning-2026-08-28",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 380,
+                  "title": "feat: Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/380",
+                  "status": "merged",
+                  "merged_at": "2026-09-02T04:00:35Z"
+                }
+              ]
+            },
+            {
+              "slug": "plan-multi-tenant-transition",
+              "label": "multi-tenant transition plan (planning only, no code changes)",
+              "branch": "local/plan-multi-tenant-transition-2026-08-22",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 378,
+                  "title": "docs: multi-tenant transition plan (planning only, no code changes)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/378",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T06:02:29Z"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "slug": "reporting",
           "label": "Reporting & KPIs",
           "feature_total": 7,
@@ -1890,134 +2056,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426",
                   "status": "merged",
                   "merged_at": "2026-09-03T16:30:06Z"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "infra-platform",
-          "label": "Infrastructure & Platform",
-          "feature_total": 6,
-          "feature_done": 5,
-          "task_total": 6,
-          "task_done": 5,
-          "by_status": {
-            "not-started": 0,
-            "in-progress": 0,
-            "tests-written": 0,
-            "pr-open": 1,
-            "pr-failing": 0,
-            "pr-behind": 0,
-            "merged": 5
-          },
-          "percent": 83,
-          "features": [
-            {
-              "slug": "sla-p53-env-health-cron",
-              "label": "env-health synthetic cron (SLA-P5.3)",
-              "branch": "local/feature-sla-p53-env-health-cron-2026-08-31",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 524,
-                  "title": "feat: env-health synthetic cron (SLA-P5.3)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/524",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-04T03:51:53Z"
-                }
-              ]
-            },
-            {
-              "slug": "env-health-cron",
-              "label": "env-health synthetic cron for the golden path (SLA-P5.3)",
-              "branch": "local/feature-env-health-cron-2026-09-03",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 521,
-                  "title": "feat: env-health synthetic cron for the golden path (SLA-P5.3)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/521",
-                  "status": "merged",
-                  "merged_at": "2026-09-04T04:48:31Z"
-                }
-              ]
-            },
-            {
-              "slug": "health-check",
-              "label": "/status detailed ops endpoint alongside /health",
-              "branch": "local/feature-health-check-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 441,
-                  "title": "feat: /status detailed ops endpoint alongside /health",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/441",
-                  "status": "merged",
-                  "merged_at": "2026-08-31T17:47:04Z"
-                }
-              ]
-            },
-            {
-              "slug": "list-hygiene",
-              "label": "local/feature list hygiene 2026 08 22",
-              "branch": "local/feature-list-hygiene-2026-08-22",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 368,
-                  "title": "local/feature list hygiene 2026 08 22",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/368",
-                  "status": "merged",
-                  "merged_at": "2026-08-28T05:00:44Z"
-                }
-              ]
-            },
-            {
-              "slug": "phase1-org-partitioning",
-              "label": "Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)",
-              "branch": "local/phase1-org-partitioning-2026-08-28",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 380,
-                  "title": "feat: Phase 1 multi-tenant storage partitioning (data/orgs/<org_id>/)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/380",
-                  "status": "merged",
-                  "merged_at": "2026-09-02T04:00:35Z"
-                }
-              ]
-            },
-            {
-              "slug": "plan-multi-tenant-transition",
-              "label": "multi-tenant transition plan (planning only, no code changes)",
-              "branch": "local/plan-multi-tenant-transition-2026-08-22",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 378,
-                  "title": "docs: multi-tenant transition plan (planning only, no code changes)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/378",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T06:02:29Z"
                 }
               ]
             }
