@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-05T20:05:51+00:00",
+  "generated_at": "2026-09-05T20:20:53+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
     "features": 143,
     "tasks": 143,
-    "tasks_merged": 121,
-    "tasks_open": 22,
-    "prs_merged": 454,
-    "prs_open": 22
+    "tasks_merged": 122,
+    "tasks_open": 21,
+    "prs_merged": 455,
+    "prs_open": 21
   },
   "pipeline": {
     "not-started": {
@@ -24,9 +24,8 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 7,
+      "count": 6,
       "slugs": [
-        "quote-copy-to-new",
         "ux-sidebar-collapsed",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
@@ -61,8 +60,9 @@
       ]
     },
     "merged": {
-      "count": 121,
+      "count": 122,
       "slugs": [
+        "quote-copy-to-new",
         "ops-health-probe-timing",
         "reporting-leaderboard-revamp",
         "quote-pdf-footer",
@@ -197,19 +197,19 @@
     {
       "name": "ForgeOS Product",
       "feature_total": 107,
-      "feature_done": 93,
+      "feature_done": 94,
       "task_total": 107,
-      "task_done": 93,
+      "task_done": 94,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 5,
+        "pr-open": 4,
         "pr-failing": 2,
         "pr-behind": 7,
-        "merged": 93
+        "merged": 94
       },
-      "percent": 87,
+      "percent": 88,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -1173,19 +1173,19 @@
           "slug": "ux-nav",
           "label": "UX & Navigation",
           "feature_total": 12,
-          "feature_done": 9,
+          "feature_done": 10,
           "task_total": 12,
-          "task_done": 9,
+          "task_done": 10,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 3,
+            "pr-open": 2,
             "pr-failing": 0,
             "pr-behind": 0,
-            "merged": 9
+            "merged": 10
           },
-          "percent": 75,
+          "percent": 83,
           "features": [
             {
               "slug": "quote-bottom-ux",
@@ -1202,24 +1202,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/527",
                   "status": "pr-open",
                   "updated_at": "2026-09-04T04:25:34Z"
-                }
-              ]
-            },
-            {
-              "slug": "quote-copy-to-new",
-              "label": "Copy to new quote action (UX-COPY-QUOTE-01, detail)",
-              "branch": "local/feature-quote-copy-to-new-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 554,
-                  "title": "feat(quote-detail): Copy to new quote action (UX-COPY-QUOTE-01, detail)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/554",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T20:00:45Z"
                 }
               ]
             },
@@ -1328,6 +1310,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/430",
                   "status": "merged",
                   "merged_at": "2026-08-30T18:22:42Z"
+                }
+              ]
+            },
+            {
+              "slug": "quote-copy-to-new",
+              "label": "Copy to new quote action (UX-COPY-QUOTE-01, detail)",
+              "branch": "local/feature-quote-copy-to-new-2026-09-04",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 554,
+                  "title": "feat(quote-detail): Copy to new quote action (UX-COPY-QUOTE-01, detail)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/554",
+                  "status": "merged",
+                  "merged_at": "2026-09-05T20:20:01Z"
                 }
               ]
             },
