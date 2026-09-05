@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-05T15:21:53+00:00",
+  "generated_at": "2026-09-05T15:36:17+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 137,
-    "tasks": 137,
+    "features": 139,
+    "tasks": 139,
     "tasks_merged": 119,
-    "tasks_open": 18,
+    "tasks_open": 20,
     "prs_merged": 452,
-    "prs_open": 18
+    "prs_open": 20
   },
   "pipeline": {
     "not-started": {
@@ -24,8 +24,10 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 11,
+      "count": 13,
       "slugs": [
+        "customer-map-link",
+        "reporting-leaderboard-revamp",
         "customer-address-structured",
         "quote-export-csv",
         "customer-ltv",
@@ -190,20 +192,20 @@
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 101,
+      "feature_total": 103,
       "feature_done": 91,
-      "task_total": 101,
+      "task_total": 103,
       "task_done": 91,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 8,
+        "pr-open": 10,
         "pr-failing": 1,
         "pr-behind": 1,
         "merged": 91
       },
-      "percent": 90,
+      "percent": 88,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -696,20 +698,20 @@
         {
           "slug": "customer",
           "label": "Customer",
-          "feature_total": 22,
+          "feature_total": 23,
           "feature_done": 18,
-          "task_total": 22,
+          "task_total": 23,
           "task_done": 18,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 3,
+            "pr-open": 4,
             "pr-failing": 0,
             "pr-behind": 1,
             "merged": 18
           },
-          "percent": 82,
+          "percent": 78,
           "features": [
             {
               "slug": "customer-address-structured",
@@ -762,6 +764,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
                   "status": "pr-open",
                   "updated_at": "2026-09-04T15:35:37Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-map-link",
+              "label": "\"View on map\" link on a customer address",
+              "branch": "local/feature-customer-map-link-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 550,
+                  "title": "feat: \"View on map\" link on a customer address",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/550",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-05T15:32:39Z"
                 }
               ]
             },
@@ -1692,6 +1712,152 @@
           ]
         },
         {
+          "slug": "reporting",
+          "label": "Reporting & KPIs",
+          "feature_total": 7,
+          "feature_done": 5,
+          "task_total": 7,
+          "task_done": 5,
+          "by_status": {
+            "not-started": 0,
+            "in-progress": 0,
+            "tests-written": 0,
+            "pr-open": 1,
+            "pr-failing": 1,
+            "pr-behind": 0,
+            "merged": 5
+          },
+          "percent": 71,
+          "features": [
+            {
+              "slug": "reporting-leaderboard-revamp",
+              "label": "rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
+              "branch": "local/feature-reporting-leaderboard-revamp-2026-09-04",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 549,
+                  "title": "feat: rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/549",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-05T15:23:25Z"
+                }
+              ]
+            },
+            {
+              "slug": "reporting-revenue-by-month",
+              "label": "/reports/revenue-by-month 12-month rollup with inline SVG chart",
+              "branch": "local/feature-reporting-revenue-by-month-2026-09-04",
+              "status": "pr-failing",
+              "percent": 60,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 547,
+                  "title": "feat(reports): /reports/revenue-by-month 12-month rollup with inline SVG chart",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/547",
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-04T18:12:04Z"
+                }
+              ]
+            },
+            {
+              "slug": "dashboard-kpi-quotes-week",
+              "label": "\"quotes sent this week\" KPI tile",
+              "branch": "local/feature-dashboard-kpi-quotes-week-2026-09-04",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 543,
+                  "title": "feat(dashboard): \"quotes sent this week\" KPI tile",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/543",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T14:43:56Z"
+                }
+              ]
+            },
+            {
+              "slug": "rep-leaderboard",
+              "label": "rep leaderboard at /reports/leaderboard",
+              "branch": "local/feature-rep-leaderboard-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 456,
+                  "title": "feat: rep leaderboard at /reports/leaderboard",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456",
+                  "status": "merged",
+                  "merged_at": "2026-08-31T00:10:20Z"
+                }
+              ]
+            },
+            {
+              "slug": "reporting-quote-aging",
+              "label": "open-quote aging report at /reports/quote-aging",
+              "branch": "local/feature-reporting-quote-aging-2026-09-03",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 533,
+                  "title": "feat(reports): open-quote aging report at /reports/quote-aging",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/533",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T11:23:58Z"
+                }
+              ]
+            },
+            {
+              "slug": "reporting-win-rate-monthly",
+              "label": "monthly win-rate table at /reports/win-rate-monthly",
+              "branch": "local/feature-reporting-win-rate-monthly-2026-09-03",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 534,
+                  "title": "feat(reports): monthly win-rate table at /reports/win-rate-monthly",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/534",
+                  "status": "merged",
+                  "merged_at": "2026-09-04T12:28:27Z"
+                }
+              ]
+            },
+            {
+              "slug": "win-loss-reasons",
+              "label": "win/loss close reasons + /reports/win-loss breakdown page",
+              "branch": "local/feature-win-loss-reasons-2026-08-27",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 426,
+                  "title": "feat: win/loss close reasons + /reports/win-loss breakdown page",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426",
+                  "status": "merged",
+                  "merged_at": "2026-09-03T16:30:06Z"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "slug": "infra-platform",
           "label": "Infrastructure & Platform",
           "feature_total": 6,
@@ -1942,134 +2108,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/372",
                   "status": "merged",
                   "merged_at": "2026-08-27T18:25:23Z"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "slug": "reporting",
-          "label": "Reporting & KPIs",
-          "feature_total": 6,
-          "feature_done": 5,
-          "task_total": 6,
-          "task_done": 5,
-          "by_status": {
-            "not-started": 0,
-            "in-progress": 0,
-            "tests-written": 0,
-            "pr-open": 0,
-            "pr-failing": 1,
-            "pr-behind": 0,
-            "merged": 5
-          },
-          "percent": 83,
-          "features": [
-            {
-              "slug": "reporting-revenue-by-month",
-              "label": "/reports/revenue-by-month 12-month rollup with inline SVG chart",
-              "branch": "local/feature-reporting-revenue-by-month-2026-09-04",
-              "status": "pr-failing",
-              "percent": 60,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 547,
-                  "title": "feat(reports): /reports/revenue-by-month 12-month rollup with inline SVG chart",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/547",
-                  "status": "pr-failing",
-                  "updated_at": "2026-09-04T18:12:04Z"
-                }
-              ]
-            },
-            {
-              "slug": "dashboard-kpi-quotes-week",
-              "label": "\"quotes sent this week\" KPI tile",
-              "branch": "local/feature-dashboard-kpi-quotes-week-2026-09-04",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 543,
-                  "title": "feat(dashboard): \"quotes sent this week\" KPI tile",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/543",
-                  "status": "merged",
-                  "merged_at": "2026-09-04T14:43:56Z"
-                }
-              ]
-            },
-            {
-              "slug": "rep-leaderboard",
-              "label": "rep leaderboard at /reports/leaderboard",
-              "branch": "local/feature-rep-leaderboard-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 456,
-                  "title": "feat: rep leaderboard at /reports/leaderboard",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456",
-                  "status": "merged",
-                  "merged_at": "2026-08-31T00:10:20Z"
-                }
-              ]
-            },
-            {
-              "slug": "reporting-quote-aging",
-              "label": "open-quote aging report at /reports/quote-aging",
-              "branch": "local/feature-reporting-quote-aging-2026-09-03",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 533,
-                  "title": "feat(reports): open-quote aging report at /reports/quote-aging",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/533",
-                  "status": "merged",
-                  "merged_at": "2026-09-04T11:23:58Z"
-                }
-              ]
-            },
-            {
-              "slug": "reporting-win-rate-monthly",
-              "label": "monthly win-rate table at /reports/win-rate-monthly",
-              "branch": "local/feature-reporting-win-rate-monthly-2026-09-03",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 534,
-                  "title": "feat(reports): monthly win-rate table at /reports/win-rate-monthly",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/534",
-                  "status": "merged",
-                  "merged_at": "2026-09-04T12:28:27Z"
-                }
-              ]
-            },
-            {
-              "slug": "win-loss-reasons",
-              "label": "win/loss close reasons + /reports/win-loss breakdown page",
-              "branch": "local/feature-win-loss-reasons-2026-08-27",
-              "status": "merged",
-              "percent": 100,
-              "task_total": 1,
-              "task_done": 1,
-              "tasks": [
-                {
-                  "pr": 426,
-                  "title": "feat: win/loss close reasons + /reports/win-loss breakdown page",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/426",
-                  "status": "merged",
-                  "merged_at": "2026-09-03T16:30:06Z"
                 }
               ]
             }
