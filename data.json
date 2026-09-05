@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-05T19:50:54+00:00",
+  "generated_at": "2026-09-05T20:05:51+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
     "features": 143,
     "tasks": 143,
-    "tasks_merged": 120,
-    "tasks_open": 23,
-    "prs_merged": 453,
-    "prs_open": 23
+    "tasks_merged": 121,
+    "tasks_open": 22,
+    "prs_merged": 454,
+    "prs_open": 22
   },
   "pipeline": {
     "not-started": {
@@ -24,15 +24,9 @@
       "slugs": []
     },
     "pr-open": {
-      "count": 13,
+      "count": 7,
       "slugs": [
         "quote-copy-to-new",
-        "ops-health-probe-timing",
-        "quote-pdf-multipage",
-        "customer-map-link",
-        "customer-ltv",
-        "customer-bulk-delete-undo",
-        "sla-p14-intake-form",
         "ux-sidebar-collapsed",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
@@ -53,8 +47,13 @@
       ]
     },
     "pr-behind": {
-      "count": 4,
+      "count": 9,
       "slugs": [
+        "quote-pdf-multipage",
+        "customer-map-link",
+        "customer-ltv",
+        "customer-bulk-delete-undo",
+        "sla-p14-intake-form",
         "customer-address-structured",
         "quote-export-csv",
         "dashboard-instant-regen",
@@ -62,8 +61,9 @@
       ]
     },
     "merged": {
-      "count": 120,
+      "count": 121,
       "slugs": [
+        "ops-health-probe-timing",
         "reporting-leaderboard-revamp",
         "quote-pdf-footer",
         "infra-request-id",
@@ -190,26 +190,26 @@
   "bottleneck": {
     "ci_queued": 0,
     "ci_failing": 6,
-    "behind": 9,
+    "behind": 15,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
       "feature_total": 107,
-      "feature_done": 92,
+      "feature_done": 93,
       "task_total": 107,
-      "task_done": 92,
+      "task_done": 93,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 10,
+        "pr-open": 5,
         "pr-failing": 2,
-        "pr-behind": 3,
-        "merged": 92
+        "pr-behind": 7,
+        "merged": 93
       },
-      "percent": 86,
+      "percent": 87,
       "epics": [
         {
           "slug": "quote-lifecycle",
@@ -222,31 +222,13 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 0,
             "pr-failing": 0,
-            "pr-behind": 1,
+            "pr-behind": 2,
             "merged": 25
           },
           "percent": 93,
           "features": [
-            {
-              "slug": "quote-pdf-multipage",
-              "label": "quote PDF multi-page pagination with page breaks",
-              "branch": "local/feature-quote-pdf-multipage-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 552,
-                  "title": "feat: quote PDF multi-page pagination with page breaks",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/552",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T16:08:01Z"
-                }
-              ]
-            },
             {
               "slug": "quote-export-csv",
               "label": "CSV export for the Projects tab quote list",
@@ -262,6 +244,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/525",
                   "status": "pr-behind",
                   "updated_at": "2026-09-04T15:37:17Z"
+                }
+              ]
+            },
+            {
+              "slug": "quote-pdf-multipage",
+              "label": "quote PDF multi-page pagination with page breaks",
+              "branch": "local/feature-quote-pdf-multipage-2026-09-04",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 552,
+                  "title": "feat: quote PDF multi-page pagination with page breaks",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/552",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-05T16:08:01Z"
                 }
               ]
             },
@@ -728,67 +728,13 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 3,
+            "pr-open": 0,
             "pr-failing": 1,
-            "pr-behind": 2,
+            "pr-behind": 5,
             "merged": 18
           },
           "percent": 75,
           "features": [
-            {
-              "slug": "customer-bulk-delete-undo",
-              "label": "customer bulk-delete with undo",
-              "branch": "local/feature-customer-bulk-delete-undo-2026-09-03",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 537,
-                  "title": "feat: customer bulk-delete with undo",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/537",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T15:49:08Z"
-                }
-              ]
-            },
-            {
-              "slug": "customer-ltv",
-              "label": "customer lifetime-value snapshot",
-              "branch": "local/feature-customer-ltv-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 542,
-                  "title": "feat: customer lifetime-value snapshot",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T15:49:46Z"
-                }
-              ]
-            },
-            {
-              "slug": "customer-map-link",
-              "label": "\"View on map\" link on a customer address",
-              "branch": "local/feature-customer-map-link-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 550,
-                  "title": "feat: \"View on map\" link on a customer address",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/550",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T15:53:10Z"
-                }
-              ]
-            },
             {
               "slug": "customer-contact-history",
               "label": "customer contact-history timeline",
@@ -822,6 +768,60 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/548",
                   "status": "pr-behind",
                   "updated_at": "2026-09-04T20:05:35Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-bulk-delete-undo",
+              "label": "customer bulk-delete with undo",
+              "branch": "local/feature-customer-bulk-delete-undo-2026-09-03",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 537,
+                  "title": "feat: customer bulk-delete with undo",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/537",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-05T15:49:08Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-ltv",
+              "label": "customer lifetime-value snapshot",
+              "branch": "local/feature-customer-ltv-2026-09-04",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 542,
+                  "title": "feat: customer lifetime-value snapshot",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-05T15:49:46Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-map-link",
+              "label": "\"View on map\" link on a customer address",
+              "branch": "local/feature-customer-map-link-2026-09-04",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 550,
+                  "title": "feat: \"View on map\" link on a customer address",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/550",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-05T15:53:10Z"
                 }
               ]
             },
@@ -1219,7 +1219,7 @@
                   "title": "feat(quote-detail): Copy to new quote action (UX-COPY-QUOTE-01, detail)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/554",
                   "status": "pr-open",
-                  "updated_at": "2026-09-05T19:46:17Z"
+                  "updated_at": "2026-09-05T20:00:45Z"
                 }
               ]
             },
@@ -1773,38 +1773,20 @@
           "slug": "infra-platform",
           "label": "Infrastructure & Platform",
           "feature_total": 7,
-          "feature_done": 5,
+          "feature_done": 6,
           "task_total": 7,
-          "task_done": 5,
+          "task_done": 6,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 2,
+            "pr-open": 1,
             "pr-failing": 0,
             "pr-behind": 0,
-            "merged": 5
+            "merged": 6
           },
-          "percent": 71,
+          "percent": 86,
           "features": [
-            {
-              "slug": "ops-health-probe-timing",
-              "label": "time connector health probes and publish probe_ms on /ops/health",
-              "branch": "local/feature-ops-health-probe-timing-2026-09-05",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 553,
-                  "title": "feat: time connector health probes and publish probe_ms on /ops/health",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/553",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T19:42:38Z"
-                }
-              ]
-            },
             {
               "slug": "sla-p53-env-health-cron",
               "label": "env-health synthetic cron (SLA-P5.3)",
@@ -1874,6 +1856,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/368",
                   "status": "merged",
                   "merged_at": "2026-08-28T05:00:44Z"
+                }
+              ]
+            },
+            {
+              "slug": "ops-health-probe-timing",
+              "label": "time connector health probes and publish probe_ms on /ops/health",
+              "branch": "local/feature-ops-health-probe-timing-2026-09-05",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 553,
+                  "title": "feat: time connector health probes and publish probe_ms on /ops/health",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/553",
+                  "status": "merged",
+                  "merged_at": "2026-09-05T19:53:24Z"
                 }
               ]
             },
@@ -2633,9 +2633,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 2,
         "pr-failing": 4,
-        "pr-behind": 1,
+        "pr-behind": 2,
         "merged": 17
       },
       "percent": 68,
@@ -3087,9 +3087,9 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 0,
             "pr-failing": 0,
-            "pr-behind": 0,
+            "pr-behind": 1,
             "merged": 2
           },
           "percent": 67,
@@ -3098,7 +3098,7 @@
               "slug": "sla-p14-intake-form",
               "label": "structured support-intake Microsoft Form spec (SLA-P1.4)",
               "branch": "local/feature-sla-p14-intake-form-2026-09-04",
-              "status": "pr-open",
+              "status": "pr-behind",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -3107,7 +3107,7 @@
                   "pr": 518,
                   "title": "docs: structured support-intake Microsoft Form spec (SLA-P1.4)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/518",
-                  "status": "pr-open",
+                  "status": "pr-behind",
                   "updated_at": "2026-09-05T15:48:32Z"
                 }
               ]
