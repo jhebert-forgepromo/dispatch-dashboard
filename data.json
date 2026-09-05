@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-05T15:36:17+00:00",
+  "generated_at": "2026-09-05T15:51:01+00:00",
   "since": "2026-08-27T00:00:00Z",
   "pr_data_available": true,
   "counts": {
-    "features": 139,
-    "tasks": 139,
-    "tasks_merged": 119,
+    "features": 140,
+    "tasks": 140,
+    "tasks_merged": 120,
     "tasks_open": 20,
-    "prs_merged": 452,
+    "prs_merged": 453,
     "prs_open": 20
   },
   "pipeline": {
@@ -26,14 +26,14 @@
     "pr-open": {
       "count": 13,
       "slugs": [
-        "customer-map-link",
-        "reporting-leaderboard-revamp",
-        "customer-address-structured",
-        "quote-export-csv",
         "customer-ltv",
         "customer-bulk-delete-undo",
         "sla-p14-intake-form",
+        "customer-address-structured",
+        "quote-export-csv",
         "ux-sidebar-collapsed",
+        "dashboard-instant-regen",
+        "quote-diff-pdf",
         "quote-bottom-ux",
         "sla-p42-alert-evaluator",
         "sla-p53-env-health-cron",
@@ -42,8 +42,9 @@
       ]
     },
     "pr-failing": {
-      "count": 5,
+      "count": 6,
       "slugs": [
+        "customer-contact-history",
         "reporting-revenue-by-month",
         "cli-status-subcmd",
         "lip-qty-tier-preview",
@@ -52,15 +53,15 @@
       ]
     },
     "pr-behind": {
-      "count": 2,
+      "count": 1,
       "slugs": [
-        "dashboard-instant-regen",
-        "quote-diff-pdf"
+        "customer-map-link"
       ]
     },
     "merged": {
-      "count": 119,
+      "count": 120,
       "slugs": [
+        "reporting-leaderboard-revamp",
         "quote-pdf-footer",
         "infra-request-id",
         "dashboard-kpi-quotes-week",
@@ -185,25 +186,25 @@
   },
   "bottleneck": {
     "ci_queued": 0,
-    "ci_failing": 5,
-    "behind": 6,
+    "ci_failing": 6,
+    "behind": 1,
     "pr_data_available": true
   },
   "projects": [
     {
       "name": "ForgeOS Product",
-      "feature_total": 103,
-      "feature_done": 91,
-      "task_total": 103,
-      "task_done": 91,
+      "feature_total": 104,
+      "feature_done": 92,
+      "task_total": 104,
+      "task_done": 92,
       "by_status": {
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 10,
-        "pr-failing": 1,
+        "pr-open": 9,
+        "pr-failing": 2,
         "pr-behind": 1,
-        "merged": 91
+        "merged": 92
       },
       "percent": 88,
       "epics": [
@@ -698,20 +699,20 @@
         {
           "slug": "customer",
           "label": "Customer",
-          "feature_total": 23,
+          "feature_total": 24,
           "feature_done": 18,
-          "task_total": 23,
+          "task_total": 24,
           "task_done": 18,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
             "pr-open": 4,
-            "pr-failing": 0,
+            "pr-failing": 1,
             "pr-behind": 1,
             "merged": 18
           },
-          "percent": 78,
+          "percent": 75,
           "features": [
             {
               "slug": "customer-address-structured",
@@ -745,7 +746,7 @@
                   "title": "feat: customer bulk-delete with undo",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/537",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:35:03Z"
+                  "updated_at": "2026-09-05T15:49:08Z"
                 }
               ]
             },
@@ -763,25 +764,7 @@
                   "title": "feat: customer lifetime-value snapshot",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/542",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:35:37Z"
-                }
-              ]
-            },
-            {
-              "slug": "customer-map-link",
-              "label": "\"View on map\" link on a customer address",
-              "branch": "local/feature-customer-map-link-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 550,
-                  "title": "feat: \"View on map\" link on a customer address",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/550",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T15:32:39Z"
+                  "updated_at": "2026-09-05T15:49:46Z"
                 }
               ]
             },
@@ -789,7 +772,7 @@
               "slug": "quote-diff-pdf",
               "label": "customer-facing change log PDF for a quote diff",
               "branch": "local/feature-quote-diff-pdf-2026-09-03",
-              "status": "pr-behind",
+              "status": "pr-open",
               "percent": 80,
               "task_total": 1,
               "task_done": 0,
@@ -798,8 +781,44 @@
                   "pr": 520,
                   "title": "feat: customer-facing change log PDF for a quote diff",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/520",
-                  "status": "pr-behind",
+                  "status": "pr-open",
                   "updated_at": "2026-09-04T04:36:31Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-contact-history",
+              "label": "customer contact-history timeline",
+              "branch": "local/feature-customer-contact-history-2026-09-04",
+              "status": "pr-failing",
+              "percent": 60,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 551,
+                  "title": "feat: customer contact-history timeline",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/551",
+                  "status": "pr-failing",
+                  "updated_at": "2026-09-05T15:47:11Z"
+                }
+              ]
+            },
+            {
+              "slug": "customer-map-link",
+              "label": "\"View on map\" link on a customer address",
+              "branch": "local/feature-customer-map-link-2026-09-04",
+              "status": "pr-behind",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 550,
+                  "title": "feat: \"View on map\" link on a customer address",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/550",
+                  "status": "pr-behind",
+                  "updated_at": "2026-09-05T15:32:39Z"
                 }
               ]
             },
@@ -1715,38 +1734,20 @@
           "slug": "reporting",
           "label": "Reporting & KPIs",
           "feature_total": 7,
-          "feature_done": 5,
+          "feature_done": 6,
           "task_total": 7,
-          "task_done": 5,
+          "task_done": 6,
           "by_status": {
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 0,
             "pr-failing": 1,
             "pr-behind": 0,
-            "merged": 5
+            "merged": 6
           },
-          "percent": 71,
+          "percent": 86,
           "features": [
-            {
-              "slug": "reporting-leaderboard-revamp",
-              "label": "rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
-              "branch": "local/feature-reporting-leaderboard-revamp-2026-09-04",
-              "status": "pr-open",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 549,
-                  "title": "feat: rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/549",
-                  "status": "pr-open",
-                  "updated_at": "2026-09-05T15:23:25Z"
-                }
-              ]
-            },
             {
               "slug": "reporting-revenue-by-month",
               "label": "/reports/revenue-by-month 12-month rollup with inline SVG chart",
@@ -1798,6 +1799,24 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/456",
                   "status": "merged",
                   "merged_at": "2026-08-31T00:10:20Z"
+                }
+              ]
+            },
+            {
+              "slug": "reporting-leaderboard-revamp",
+              "label": "rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
+              "branch": "local/feature-reporting-leaderboard-revamp-2026-09-04",
+              "status": "merged",
+              "percent": 100,
+              "task_total": 1,
+              "task_done": 1,
+              "tasks": [
+                {
+                  "pr": 549,
+                  "title": "feat: rep leaderboard revamp (open value, avg size, close rate, days to close, podium, date range)",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/549",
+                  "status": "merged",
+                  "merged_at": "2026-09-05T15:42:21Z"
                 }
               ]
             },
@@ -2557,9 +2576,9 @@
         "not-started": 0,
         "in-progress": 0,
         "tests-written": 0,
-        "pr-open": 3,
+        "pr-open": 4,
         "pr-failing": 4,
-        "pr-behind": 1,
+        "pr-behind": 0,
         "merged": 17
       },
       "percent": 68,
@@ -2575,13 +2594,31 @@
             "not-started": 0,
             "in-progress": 0,
             "tests-written": 0,
-            "pr-open": 1,
+            "pr-open": 2,
             "pr-failing": 1,
-            "pr-behind": 1,
+            "pr-behind": 0,
             "merged": 11
           },
           "percent": 79,
           "features": [
+            {
+              "slug": "dashboard-instant-regen",
+              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
+              "status": "pr-open",
+              "percent": 80,
+              "task_total": 1,
+              "task_done": 0,
+              "tasks": [
+                {
+                  "pr": 529,
+                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
+                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
+                  "status": "pr-open",
+                  "updated_at": "2026-09-04T04:43:50Z"
+                }
+              ]
+            },
             {
               "slug": "sla-p2-2-stale-version-log",
               "label": "SLA-P2.2 \u00e2\u20ac\u201d stale-version ping as a local anonymized log (extends E-02)",
@@ -2615,24 +2652,6 @@
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/515",
                   "status": "pr-failing",
                   "updated_at": "2026-09-04T03:39:26Z"
-                }
-              ]
-            },
-            {
-              "slug": "dashboard-instant-regen",
-              "label": "add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-              "branch": "local/feature-dashboard-instant-regen-2026-09-03",
-              "status": "pr-behind",
-              "percent": 80,
-              "task_total": 1,
-              "task_done": 0,
-              "tasks": [
-                {
-                  "pr": 529,
-                  "title": "tools: add regenerate-dashboard.ps1 wrapper for instant dashboard refresh",
-                  "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/529",
-                  "status": "pr-behind",
-                  "updated_at": "2026-09-04T04:43:50Z"
                 }
               ]
             },
@@ -3032,7 +3051,7 @@
                   "title": "docs: structured support-intake Microsoft Form spec (SLA-P1.4)",
                   "url": "https://github.com/Forge-Promo-LLC/ForgeOS/pull/518",
                   "status": "pr-open",
-                  "updated_at": "2026-09-04T15:34:31Z"
+                  "updated_at": "2026-09-05T15:48:32Z"
                 }
               ]
             },
